@@ -270,8 +270,7 @@
 	<script src="assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js"></script>
 	<script src="assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
 	<script>
-		$('.datepicker
-        ').pickadate({
+		$('.datepicker').pickadate({
 			selectMonths: true,
 	        selectYears: true
 		}),

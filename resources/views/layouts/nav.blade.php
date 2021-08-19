@@ -92,6 +92,63 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                        </div>
+                        <div class="menu-title">Clients</div>
+                    </a>
+                    <ul>
+                        <li> <a href="{{ url('index') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
+                        </li>
+                        <li> <a href="{{ url('dashboard-alternate') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                        </div>
+                        <div class="menu-title">Servers</div>
+                    </a>
+                    <ul>
+                        <li> <a href="{{ url('index') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
+                        </li>
+                        <li> <a href="{{ url('dashboard-alternate') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                        </div>
+                        <div class="menu-title">Email</div>
+                    </a>
+                    <ul>
+                    <li> <a href="{{ url('domain-exp-15') }}"><i class="bx bx-right-arrow-alt"></i>Expire in 15 days</a>
+                        </li>
+                        <li> <a href="{{ url('domain-exp-7') }}"><i class="bx bx-right-arrow-alt"></i>Expire in 7 days</a>
+                        </li>
+                        <li> <a href="{{ url('domain-expired') }}"><i class="bx bx-right-arrow-alt"></i>Expired Accounts</a>
+                        </li>
+                        <li> <a href="{{ url('domain-suspend') }}"><i class="bx bx-right-arrow-alt"></i>Suspended Accounts</a>
+                        </li>
+                        <li> <a href="{{ url('domain-deleted') }}"><i class="bx bx-right-arrow-alt"></i>Deleted Accounts</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                        </div>
+                        <div class="menu-title">Settings</div>
+                    </a>
+                   
+                </li>
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bx bx-category"></i>
