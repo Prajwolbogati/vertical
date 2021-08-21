@@ -61,10 +61,24 @@
                                                     <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
                                                     </li>
 													
-                                                    <li><a class="dropdown-item" name="status" value="suspend" href="{{url('update')}}">Suspend</a>
+													
+                                                    <li>
+													<form action="{{url('update/'.$account->account_id)}} " method="post">
+                            
+							@csrf
+							<input type="hidden" name="status" value="suspend">
+                            <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
+                        </form>
+						
                                                     </li>
 
-                                                    <li><a class="dropdown-item" name="status" value="delete" href="{{url('update')}}">Delete</a>
+                                                    <li>
+													<form action="{{url('update/'.$account->account_id)}} " method="post">
+                          
+							@csrf
+							<input type="hidden" name="status" value="delete">
+                            <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                        </form>
                                                     </li>
                                                     <li>
                                                         <hr class="dropdown-divider">

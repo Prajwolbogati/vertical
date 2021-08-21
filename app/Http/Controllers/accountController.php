@@ -32,8 +32,8 @@ $account->companyaddress=$req->companyaddress;
 $account->phone_num=$req->phone_num;
 $account->email=$req->email;
 $account->status='active';
-$account->domain_vat=$req->domain_vat;
-$account->hosting_vat=$req->hosting_vat;
+$account->domain_vat=$req->domain_vat ? $req->domain_vat : 0;
+$account->hosting_vat=$req->hosting_vat ? $req->hosting_vat : 0;
 $account->marketby=$req->marketby;
 $account->inputserver=$req->inputserver;
 $account->detail=$req->detail;
@@ -42,11 +42,11 @@ $account->hosting_exp_date=Carbon::parse($req->hosting_exp_date);
 $account->hosting_amount=$req->hosting_amount;
 $account->hosting_finalamount=($req->hosting_amount - $req->hosting_discount) * ($req->hosting_vat/100) + ($req->hosting_amount - $req->hosting_discount);
 $account->domain_finalamount=($req->domain_amount - $req->domain_discount) * ($req->domain_vat/100) + ($req->domain_amount - $req->domain_discount);
-$account->hosting_discount=$req->hosting_discount;
+$account->hosting_discount=$req->hosting_discount ? $req->hosting_discount : 0;
 $account->domain_active_date=Carbon::parse($req->domain_active_date);
 $account->domain_exp_date=Carbon::parse($req->domain_exp_date);
 $account->domain_amount=$req->domain_amount;
-$account->domain_discount=$req->domain_discount;
+$account->domain_discount=$req->domain_discount ? $req->domain_discount : 0;
 $account->save();
 session::flash('message','Data inserted successfully');
 return redirect()->back();
@@ -73,6 +73,7 @@ public function editAccount($id){
 
         public function updateData(Request $req)
         {
+      
         $account = account::find($req->account_id);
         $account->domainname=$req->domainname;
         $account->hostingquota=$req->hostingquota;
@@ -82,8 +83,8 @@ public function editAccount($id){
         $account->phone_num=$req->phone_num;
         $account->email=$req->email;
         $account->status='active';
-        $account->domain_vat=$req->domain_vat;
-        $account->hosting_vat=$req->hosting_vat;
+        $account->domain_vat=$req->domain_vat ? $req->domain_vat : 0;
+        $account->hosting_vat=$req->hosting_vat ? $req->hosting_vat : 0;
         $account->marketby=$req->marketby;
         $account->inputserver=$req->inputserver;
         $account->detail=$req->detail;
@@ -91,12 +92,12 @@ public function editAccount($id){
         $account->hosting_exp_date=Carbon::parse($req->hosting_exp_date);
         $account->hosting_amount=$req->hosting_amount;
         $account->hosting_finalamount=($req->hosting_amount - $req->hosting_discount) * ($req->hosting_vat/100) + ($req->hosting_amount - $req->hosting_discount);
-        $account->domain_finalamount=($req->domain_amount - $req->domain_discount) * ($req->domain_vat/100) + ($req->domain_amount - $req->domain_discount);
-        $account->hosting_discount=$req->hosting_discount;
+      $account->domain_finalamount=($req->domain_amount - $req->domain_discount) * ($req->domain_vat/100) + ($req->domain_amount - $req->domain_discount);
+        $account->hosting_discount=$req->hosting_discount ? $req->hosting_discount : 0;
         $account->domain_active_date=Carbon::parse($req->domain_active_date);
         $account->domain_exp_date=Carbon::parse($req->domain_exp_date);
         $account->domain_amount=$req->domain_amount;
-        $account->domain_discount=$req->domain_discount;
+        $account->domain_discount=$req->domain_discount ? $req->domain_discount : 0;
         $account->save();
         session::flash('message','Data inserted successfully');
         return redirect()->back();
@@ -107,10 +108,11 @@ public function editAccount($id){
 
 
 
-        public function updateStatus(Request $req)
+        public function updateStatus(Request $req, $id)
         {
-            $account = account::find($req->account_id);
-        $account->status=$req->status;
+            $account = account::find($id);
+           
+            $account->status=$req->status;
         
         $account->save();
         session::flash('message','Data inserted successfully');

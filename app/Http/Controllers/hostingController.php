@@ -32,24 +32,24 @@ public function hostingExp7(){
     
 }
 public function hostingExpired(){
-    
+    $data = account::whereRaw('DATEDIFF(hosting_exp_date,now())<=0')->get();
 
 
-    return view ('webtech.hosting-expired');
+    return view ('webtech.hosting-expired',['data'=>$data]);
     
 }
 public function hostingDeleted(){
-    
+    $data = account::where('status' , 'delete')->get();
 
 
-    return view ('webtech.hosting-deleted');
+    return view ('webtech.hosting-deleted',['data'=>$data]);
     
 }
 public function hostingSuspend(){
-    
+    $data = account::where('status' , 'suspend')->get();
 
 
-    return view ('webtech.hosting-suspend');
+    return view ('webtech.hosting-suspend',['data'=>$data]);
     
 }
 

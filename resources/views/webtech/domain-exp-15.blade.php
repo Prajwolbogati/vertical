@@ -53,39 +53,52 @@
                                    <td>{{$account->status}}</td>
                                    <td>
                                    <div class="col">
-                                       <div class="btn-group">
-                                           <button type="button" class="btn btn-success">Action</button>
-                                           <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                           </button>
-                                           <ul class="dropdown-menu">
-                                               <li><a class="dropdown-item" href="#">Edit</a>
-                                               </li>
-                                               <li><a class="dropdown-item" href="#">Suspend</a>
-                                               </li>
-                                               <li><a class="dropdown-item" href="#">Delete</a>
-                                               </li>
-                                               <li>
-                                                   <hr class="dropdown-divider">
-                                               </li>
-                                               <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                               </li>
-                                               <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                               </li>
-                                               <li><a class="dropdown-item" href="#">Print Domain</a>
-                                               </li>
-                                           </ul>
-                                       </div>
-                                   </div>
-                                   </td>
-                               </tr>
-                               
-                               
-                           @endforeach
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success">Action</button>
+                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
+                                                </li>
+                                                
+                                                
+                                                <li>
+                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
                         
-                        
-                       
-                            
+                        @csrf
+                        <input type="hidden" name="status" value="suspend">
+                        <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
+                    </form>
+                    
+                                                </li>
+
+                                                <li>
+                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                      
+                        @csrf
+                        <input type="hidden" name="status" value="delete">
+                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                    </form>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Print Domain</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                                
+                                
+                            @endforeach
                             </tbody>
+                        
                         
                         </table>
                     </div>

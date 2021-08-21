@@ -39,17 +39,17 @@ public function domainExpired(){
     
 }
 public function domainDeleted(){
-    
+    $data = account::where('status' , 'delete')->get();
+   
 
-
-    return view ('webtech.domain-deleted');
+    return view ('webtech.domain-deleted',['data'=>$data]);
     
 }
 public function domainSuspend(){
     
+    $data = account::where('status' , 'suspend')->get();
 
-
-    return view ('webtech.domain-suspend');
+    return view ('webtech.domain-suspend',['data'=>$data]);
     
 }
 

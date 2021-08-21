@@ -35,10 +35,9 @@
                                             <label for="hostingquota" class="form-label">Hosting Quota</label>
                                             <input type="text" class="form-control" name="hostingquota" placeholder="Hosting Quota">
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="inputserver" class="form-label">Server</label>
-                                            <input type="text" class="form-control" name="inputserver" placeholder="Server">
-                                        </div>
+                                   
+
+                                      
                                         <div class="col-md-12">
                                             <label for="fullname" class="form-label">Full Name</label>
                                             <input type="text" class="form-control" name="fullname" placeholder="Full Name">
@@ -124,6 +123,15 @@
                                             <label for="hosting_discount" class="form-label">Discount Amount</label>
                                             <input type="text" class="form-control" name="hosting_discount" placeholder="Discount Amount">
                                         </div>
+                                        <div class="col-md-12">
+                                            <label for="inputserver" class="form-label">Server</label>
+                                            <select class="form-select" name="inputserver">
+                                            <option selected>Choose Server...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                        </div>
                                         <div class="form-check form-switch">
                                         <label class="form-check-label" for="hosting_vat">Vat Bill 13%</label>
                                         <input class="form-check-input" type="checkbox" name="hosting_vat" value="13" checked>
@@ -171,6 +179,16 @@
                                            <label for="domain_discount" class="form-label">Discount Amount</label>
                                            <input type="text" class="form-control" name="domain_discount" placeholder="Discount Amount">
                                        </div>
+                                       <div class="col-md-12">
+                                           <label for="hosting_discount" class="form-label">Domain Provider</label>
+                                           <select class="form-select" id="inputemail">
+                                            <option selected>Choose Domain Provider...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                       </div>
+
                                        <div class="form-check form-switch">
                                        <label class="form-check-label" for="domain_vat">Vat Bill 13%</label>
                                        <input class="form-check-input" type="checkbox" name="domain_vat" value="13" checked>
@@ -199,23 +217,32 @@
                                    <div class="row g-3">
                                        <div class="col-md-6">
                                            <label for="hosting_active_date" class="form-label">Active Date</label>
-                                           <input type="date" class="form-control datepicker" name="hosting_active_date" placeholder="Active Date">
+                                           <input type="date" class="form-control datepicker" name="email_active_date" placeholder="Active Date">
                                        </div>
                                        <div class="col-md-6">
                                            <label for="hosting_exp_date" class="form-label">Expiry Date</label>
-                                           <input type="date" class="form-control datepicker" name="hosting_exp_date" placeholder="Expiry Date">
+                                           <input type="date" class="form-control datepicker" name="email_exp_date" placeholder="Expiry Date">
                                        </div>
                                        <div class="col-md-12">
                                            <label for="hosting_amount" class="form-label">Amount</label>
-                                           <input type="text" class="form-control" name="hosting_amount" placeholder="Amount">
+                                           <input type="text" class="form-control" name="email_amount" placeholder="Amount">
                                        </div>
                                        <div class="col-md-12">
                                            <label for="hosting_discount" class="form-label">Discount Amount</label>
-                                           <input type="text" class="form-control" name="hosting_discount" placeholder="Discount Amount">
-                                       </div>
+                                           <input type="text" class="form-control" name="email_discount" placeholder="Discount Amount">
+                                       </div>  
+                                       <div class="col-md-12">
+                                           <label for="hosting_discount" class="form-label">Email Service Provider</label>
+                                           <select class="form-select" id="inputemail">
+                                            <option selected>Choose Email Provider...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                       </div>                                  
                                        <div class="form-check form-switch">
                                        <label class="form-check-label" for="hosting_vat">Vat Bill 13%</label>
-                                       <input class="form-check-input" type="checkbox" name="hosting_vat" value="13" checked>
+                                       <input class="form-check-input" type="checkbox" name="email_vat" value="13" checked>
                                      
                                    </div>
 </div>

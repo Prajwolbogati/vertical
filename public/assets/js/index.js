@@ -17,7 +17,7 @@ $(function() {
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Pra'],
           datasets: [{
             label: 'Laptops',
             data: [65, 59, 80, 81,65, 59, 80, 81,59, 80, 81,65],

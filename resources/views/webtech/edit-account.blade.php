@@ -128,9 +128,9 @@
                                         <div class="form-check form-switch">
                                         <label class="form-check-label" for="hosting_vat">Vat Bill 13%</label>
                                         @if($singledata->hosting_vat == '')
-                                        <input class="form-check-input" type="checkbox" name="hosting_vat" unchecked>
+                                        <input class="form-check-input" type="checkbox" name="hosting_vat" value="13" unchecked>
                                         @else
-                                        <input class="form-check-input" type="checkbox" name="hosting_vat" value="13" checked>
+                                        <input class="form-check-input" type="checkbox" name="hosting_vat" value="13"  checked>
                                         @endif
                                       
                                     </div>
@@ -177,7 +177,7 @@
                                        <div class="form-check form-switch">
                                        <label class="form-check-label" for="domain_vat">Vat Bill 13%</label>
                                        @if($singledata->domain_vat == '')
-                                        <input class="form-check-input" type="checkbox" name="domain_vat" unchecked>
+                                        <input class="form-check-input" type="checkbox" name="domain_vat" value="13" unchecked>
                                         @else
                                         <input class="form-check-input" type="checkbox" name="domain_vat" value="13" checked>
                                         @endif

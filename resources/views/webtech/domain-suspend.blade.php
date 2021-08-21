@@ -30,188 +30,27 @@
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
+                           
                                 <tr>
                                     <th>Domain Name</th>
                                     <th>Quota</th>
                                     <th>Days Left</th>
-                                    <th>Amount</th>
+                                    <th>Final Amount</th>
+                                    <th>End Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2012/03/29</td>
-                                    <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>
-                                    <div class="col">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
 
+                            @foreach($data as $account)
                                 <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
+                                    <td>{{$account->domainname}}</td>
+                                    <td>{{$account->hostingquota}}</td>
+                                    <td>{{$account->remaining_domain_days}}</td>
+                                    <td>{{$account->domain_finalamount}}</td>
+                                    <td>{{$account->domain_exp_date}}</td>
+                                    <td>{{$account->status}}</td>
                                     <td>
                                     <div class="col">
                                         <div class="btn-group">
@@ -219,11 +58,27 @@
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Edit</a>
+                                                <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Suspend</a>
+                                                
+                                                
+                                                <li>
+                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                        
+                        @csrf
+                        <input type="hidden" name="status" value="suspend">
+                        <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
+                    </form>
+                    
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Delete</a>
+
+                                                <li>
+                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                      
+                        @csrf
+                        <input type="hidden" name="status" value="delete">
+                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                    </form>
                                                 </li>
                                                 <li>
                                                     <hr class="dropdown-divider">
@@ -240,7 +95,8 @@
                                     </td>
                                 </tr>
                                 
-                            
+                                
+                            @endforeach
                             </tbody>
                         
                         </table>

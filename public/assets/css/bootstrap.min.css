@@ -1191,7 +1191,7 @@ progress {
 	}
 	.col-xl-5 {
 		flex: 0 0 auto;
-		width: 45%
+		width: 50%
 	}
 	.col-xl-6 {
 		flex: 0 0 auto;
@@ -1219,7 +1219,7 @@ progress {
 	}
 	.col-xl-12 {
 		flex: 0 0 auto;
-		width: 95%
+		width: 100%
 	}
 	.offset-xl-0 {
 		margin-left: 0

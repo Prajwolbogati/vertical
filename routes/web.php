@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\accountController;
 use App\Http\Controllers\domainController;
 use App\Http\Controllers\hostingController;
+use App\Http\Controllers\clientController;
+use App\Http\Controllers\serverController;
+use App\Http\Controllers\settingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +58,13 @@ Route::get('edit-account/{id}', [accountController::class, 'editAccount']);
 
 Route::post('updateaccount', [accountController::class, 'updateData']);
 
-Route::post('update', [accountController::class, 'updateStatus']);
+Route::post('update/{id}', [accountController::class, 'updateStatus']);
+
+Route::get('newclient', [clientController::class, 'addClient']);
+
+Route::get('newserver', [serverController::class, 'addServer']);
+
+Route::get('newsetting', [settingController::class, 'addSetting']);
 
 
 
