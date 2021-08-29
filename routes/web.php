@@ -8,6 +8,8 @@ use App\Http\Controllers\clientController;
 use App\Http\Controllers\serviceController;
 use App\Http\Controllers\servicetypeController;
 use App\Http\Controllers\settingController;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\registerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,15 @@ use App\Http\Controllers\settingController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/index', function () {
-    return view('index');
-});
+
+// Route::get('/', function () {
+//     return view('webtech.login');
+// });
+
+
+Route::group(['middleware'=>['auth']],function(){
+
+
 
 Route::get('/', [accountController::class, 'index']);
 
@@ -57,7 +62,7 @@ Route::get('newclient', [clientController::class, 'addClient']);
 
 Route::get('newservice', [servicetypeController::class, 'addService']);
 
-Route::post('addservice', [serviceController::class, 'insertdata']);
+Route::post('addservice', [serviceController::class, 'insertdata'])->middleware('role:sales|admin');
 
 Route::get('allClient', [clientController::class, 'allClient']);
 
@@ -73,7 +78,7 @@ Route::post('addsetting', [settingController::class, 'insertdata']);
 
 Route::post('addclient', [clientController::class, 'insertdata']);
 
-Route::post('addservicetype', [servicetypeController::class, 'insertdata']);
+Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:create account');;
 
 Route::get('newsetting', [settingController::class, 'addSetting']);
 
@@ -92,5 +97,9 @@ Route::post('updateservicetype', [servicetypeController::class, 'updateData']);
 
 
 
+
+
+});
+require __DIR__.'/auth.php';
 
 

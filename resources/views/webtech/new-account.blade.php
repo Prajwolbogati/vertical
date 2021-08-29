@@ -10,7 +10,7 @@
 		@section("wrapper")
         <div class="page-wrappers">
                 <div class="page-content">
-
+@hasanyrole('admin|sales')
                 <form class="row g-3" method="post" action="{{url('addaccount')}}">
 				{{csrf_field()}}
                 <div class="row">
@@ -180,7 +180,7 @@
 </div>
 </div>
 </form>
-                                
+               @endhasanyrole                 
                 </div>
             </div>
 

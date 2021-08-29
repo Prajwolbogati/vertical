@@ -10,6 +10,7 @@
 		@section("wrapper")
             <div class="page-wrapper">
                 <div class="page-content">
+                @can('create account')
                     <!--breadcrumb-->
                     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                         <div class="breadcrumb-title pe-3">Clients</div>
@@ -106,6 +107,7 @@
                         </div>
                     </div>
                     <!--end row-->
+               @endcan
                 </div>
             </div>
 		@endsection

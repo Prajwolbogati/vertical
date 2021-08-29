@@ -80,9 +80,9 @@
                         <div class="menu-title">User</div>
                     </a>
                     <ul>
-                        <li> <a href="{{ url('index') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
+                        <li> <a href="{{ url('adduser') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
                         </li>
-                        <li> <a href="{{ url('dashboard-alternate') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
+                        <li> <a href="{{ url('viewuser') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
                         </li>
                     </ul>
                 </li>
