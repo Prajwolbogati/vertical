@@ -37,32 +37,33 @@
                                             </div>
                                             <h5 class="mb-0 text-info">Add Client</h5>
                                         </div>
-                                        <form class="row g-3" method="post" action="{{url('addclient')}}">
+                                        <form class="row g-3" method="post" action="{{url('updateclient')}}">
                {{csrf_field()}}
+               <input type="hidden" name="client_id" value="{{$singledata->client_id}}">
                                         <hr/>
                                         <div class="row mb-3">
                                             <label for="clientname" class="col-sm-3 col-form-label">Client Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="clientname" placeholder="Enter Name">
+                                                <input type="text" class="form-control" name="clientname" placeholder="Enter Name" value="{{$singledata->clientname}}">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="clientemail" class="col-sm-3 col-form-label">Client Email</label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control" name="clientemail" placeholder="Email Address">
+                                                <input type="email" class="form-control" name="clientemail" placeholder="Email Address" value="{{$singledata->clientemail}}">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="clientphone" class="col-sm-3 col-form-label">Client Phone</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="clientphone" placeholder="Phone No">
+                                                <input type="text" class="form-control" name="clientphone" placeholder="Phone No" value="{{$singledata->clientphone}}">
                                             </div>
                                         </div>
                                        
                                         <div class="row mb-3">
                                             <label for="clientaddress" class="col-sm-3 col-form-label">Client Address</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="clientaddress" placeholder="Address">
+                                                <input type="text" class="form-control" name="clientaddress" placeholder="Address" value="{{$singledata->clientaddress}}">
                                             </div>
                                         </div>
 
@@ -71,25 +72,26 @@
                                         <div class="row mb-3">
                                             <label for="requirement" class="col-sm-3 col-form-label">Client Requirement</label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" name="requirement" rows="3" placeholder="Add requirements"></textarea>
+                                                <textarea class="form-control" name="requirement" rows="3" placeholder="Add requirements">{{$singledata->requirement}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="clientactive_date" class="col-sm-3 col-form-label">Active Date</label>
                                             <div class="col-sm-9">
-                                            <input type="date" class="form-control datepicker" name="clientactive_date" placeholder="Active Date">
+                                            <input type="date" class="form-control datepicker" name="clientactive_date" placeholder="Active Date" value="{{$singledata->clientactive_date}}">
                                         </div>
 </div>
                                         <div class="row mb-3">
                                             <label for="clientstatus" class="col-sm-3 col-form-label">Status</label>
                                             <div class="col-sm-9">
                                             <select class="form-select" name="clientstatus">
-                                            <option selected>New</option>
-                                            <option value="1">Successed</option>
-                                            <option value="2">Call Back</option>
-                                            <option value="3">Interested</option>
-                                            <option value="3">Not Interested</option>
+                                            <option > {{$singledata->clientstatus}}</option>
+                                            <option>New</option>
+                                            <option>Successed</option>
+                                            <option >Call Back</option>
+                                            <option >Interested</option>
+                                            <option >Not Interested</option>
                                         </select>
                                             </div>
                                         </div>

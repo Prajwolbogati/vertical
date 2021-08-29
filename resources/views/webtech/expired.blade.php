@@ -45,11 +45,11 @@
 
                            @foreach($data as $account)
                                <tr>
-                                   <td>{{$account->domainname}}</td>
-                                   <td>{{$account->hostingquota}}</td>
-                                   <td>{{$account->remaining_host_days}}</td>
-                                   <td>{{$account->hosting_finalamount}}</td>
-                                   <td>{{$account->hosting_exp_date}}</td>
+                               <td>{{$account->account->domainname}}</td>
+                                   <td>{{$account->account->hostingquota}}</td>
+                                   <td>{{$account->remaining_days}}</td>
+                                   <td>{{$account->finalamount}}</td>
+                                   <td>{{$account->exp_date}}</td>
                                    <td>{{$account->status}}</td>
                                    <td>
                                    <div class="col">
@@ -63,7 +63,7 @@
                                                 
                                                 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                         
                         @csrf
                         <input type="hidden" name="status" value="suspend">
@@ -73,7 +73,7 @@
                                                 </li>
 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                       
                         @csrf
                         <input type="hidden" name="status" value="delete">
@@ -98,6 +98,7 @@
                                 
                             @endforeach
                             </tbody>
+                        
                         </table>
                     </div>
                 </div>

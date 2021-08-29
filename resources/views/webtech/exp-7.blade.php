@@ -29,14 +29,15 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                               
-                               <tr>
+                            <thead>
+                                 
+                            <tr>
                                    <th>Domain Name</th>
                                    <th>Quota</th>
                                    <th>Days Left</th>
                                    <th>Final Amount</th>
                                    <th>End Date</th>
+                                   <th>Service Type</th>
                                    <th>Status</th>
                                    <th>Action</th>
                                </tr>
@@ -45,11 +46,12 @@
 
                            @foreach($data as $account)
                                <tr>
-                                   <td>{{$account->domainname}}</td>
-                                   <td>{{$account->hostingquota}}</td>
-                                   <td>{{$account->remaining_host_days}}</td>
-                                   <td>{{$account->hosting_finalamount}}</td>
-                                   <td>{{$account->hosting_exp_date}}</td>
+                               <td>{{$account->account->domainname}}</td>
+                                   <td>{{$account->account->hostingquota}}</td>
+                                   <td>{{$account->remaining_days}}</td>
+                                   <td>{{$account->finalamount}}</td>
+                                   <td>{{$account->exp_date}}</td>
+                                   <td>{{$account->service->parent->stype_name}}</td>
                                    <td>{{$account->status}}</td>
                                    <td>
                                    <div class="col">
@@ -63,7 +65,7 @@
                                                 
                                                 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                         
                         @csrf
                         <input type="hidden" name="status" value="suspend">
@@ -73,7 +75,7 @@
                                                 </li>
 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                       
                         @csrf
                         <input type="hidden" name="status" value="delete">
@@ -98,6 +100,8 @@
                                 
                             @endforeach
                             </tbody>
+                        
+                        
                         </table>
                     </div>
                 </div>

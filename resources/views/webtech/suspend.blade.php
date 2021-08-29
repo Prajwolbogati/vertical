@@ -29,30 +29,30 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                               
-                               <tr>
-                                   <th>Domain Name</th>
-                                   <th>Quota</th>
-                                   <th>Days Left</th>
-                                   <th>Final Amount</th>
-                                   <th>End Date</th>
-                                   <th>Status</th>
-                                   <th>Action</th>
-                               </tr>
-                           </thead>
-                           <tbody>
+                            <thead>
+                           
+                                <tr>
+                                    <th>Domain Name</th>
+                                    <th>Quota</th>
+                                    <th>Days Left</th>
+                                    <th>Final Amount</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                           @foreach($data as $account)
-                               <tr>
-                                   <td>{{$account->domainname}}</td>
-                                   <td>{{$account->hostingquota}}</td>
-                                   <td>{{$account->remaining_host_days}}</td>
-                                   <td>{{$account->hosting_finalamount}}</td>
-                                   <td>{{$account->hosting_exp_date}}</td>
+                            @foreach($data as $account)
+                                <tr>
+                                <td>{{$account->account->domainname}}</td>
+                                   <td>{{$account->account->hostingquota}}</td>
+                                   <td>{{$account->remaining_days}}</td>
+                                   <td>{{$account->finalamount}}</td>
+                                   <td>{{$account->exp_date}}</td>
                                    <td>{{$account->status}}</td>
                                    <td>
-                                   <div class="col">
+                                    <div class="col">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-success">Action</button>
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
@@ -63,7 +63,7 @@
                                                 
                                                 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                         
                         @csrf
                         <input type="hidden" name="status" value="suspend">
@@ -73,7 +73,7 @@
                                                 </li>
 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                       
                         @csrf
                         <input type="hidden" name="status" value="delete">
@@ -98,6 +98,7 @@
                                 
                             @endforeach
                             </tbody>
+                        
                         </table>
                     </div>
                 </div>

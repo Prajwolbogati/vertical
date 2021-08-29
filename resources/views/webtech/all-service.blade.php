@@ -28,67 +28,38 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                            
                                 <tr>
-                                    <th>Domain Name</th>
-                                    <th>Quota</th>
-                                    <th>Days Left</th>
-                                    <th>Final Amount</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
+                                    <th>Service Name</th>
+                                    <th>Service Type</th>
+                                  
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($data as $account)
+                            @foreach($data as $service)
                                 <tr>
-                                    <td>{{$account->domainname}}</td>
-                                    <td>{{$account->hostingquota}}</td>
-                                    <td>{{$account->remaining_domain_days}}</td>
-                                    <td>{{$account->domain_finalamount}}</td>
-                                    <td>{{$account->domain_exp_date}}</td>
-                                    <td>{{$account->status}}</td>
-                                    <td>
+                                <td>{{$service->service_name}}</td>
+                               <td> <a href="{{url('edit-servicetype')}}/{{$service->parent->stype_id}}">{{$service->parent->stype_name}}</a></td>
+                              
+                               <td>
                                     <div class="col">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-success">Action</button>
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
+                                                <li><a class="dropdown-item" href="{{url('edit-service')}}/{{$service->service_id}}">Edit</a>
                                                 </li>
                                                 
-                                                
-                                                <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
-                        
-                        @csrf
-                        <input type="hidden" name="status" value="suspend">
-                        <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
-                    </form>
-                    
+                                                <li><a class="dropdown-item" href="">Delete</a>
                                                 </li>
-
-                                                <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
-                      
-                        @csrf
-                        <input type="hidden" name="status" value="delete">
-                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                    </form>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
+                                     
+                                               
+                                               
                                             </ul>
                                         </div>
                                     </div>

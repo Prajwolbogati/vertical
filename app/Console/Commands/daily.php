@@ -38,7 +38,7 @@ class daily extends Command
      */
     public function handle()
     {
-        DB::table('accounts')->whereDate('domain_exp_date', '<=', now())->update(['status' => 'expired']);
+        DB::table('companyservices')->whereDate('exp_date', '<=', now())->update(['status' => 'expired']);
         echo "Operation Done";
     }
 }

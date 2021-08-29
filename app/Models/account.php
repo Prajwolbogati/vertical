@@ -13,6 +13,13 @@ class account extends Model
     protected $primaryKey = 'account_id';
 
 
+    public function compservice(){
+        return $this->hasMany(companyservice::class, 'account_id','account_id');
+    
+       
+    }
+
+
     // public function setHostingActiveDateAttribute($value)
     // {
     //         $this->attributes['hosting_active_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
@@ -44,28 +51,6 @@ class account extends Model
     //     }
     // }
 
-    public function getRemainingHostDaysAttribute()
-{
 
-    if ($this->hosting_exp_date) {
-        $remaining_host_days = Carbon::now()->diffInDays(Carbon::parse($this->hosting_exp_date));
-    } else {
-        $remaining_host_days = 0;
-    }
-    return $remaining_host_days;
-    
-}
-
-public function getRemainingDomainDaysAttribute()
-{
-
-    if ($this->domain_exp_date) {
-        $remaining_domain_days = Carbon::now()->diffInDays(Carbon::parse($this->domain_exp_date));
-    } else {
-        $remaining_domain_days = 0;
-    }
-    return $remaining_domain_days;
-    
-}
 }
 

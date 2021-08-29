@@ -11,7 +11,10 @@
         <div class="page-wrappers">
                 <div class="page-content">
 
-               
+                <form class="row g-3" method="post" action="{{url('updateaccount')}}">
+				{{csrf_field()}}
+                <input type="hidden" name="account_id" value="{{$singledata->account_id}}">
+            
                 <div class="row">
                         <div class="col-xl-5 mx-auto">
                            
@@ -25,9 +28,7 @@
                                     </div>
                                     <hr/>
                                    
-                                    <form class="row g-3" method="post" action="{{url('updateaccount')}}">
-				{{csrf_field()}}
-                <input type="hidden" name="account_id" value="{{$singledata->account_id}}">
+                              
                                         <div class="col-md-12">
                                             <label for="domainname"  class="form-label">Domain Name</label>
                                             <input type="text" class="form-control" name="domainname" placeholder="Domain Name" value="{{$singledata->domainname}}">
@@ -35,10 +36,6 @@
                                         <div class="col-md-12">
                                             <label for="hostingquota" class="form-label">Hosting Quota</label>
                                             <input type="text" class="form-control" name="hostingquota" placeholder="Hosting Quota" value="{{$singledata->hostingquota}}">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label for="inputserver" class="form-label">Server</label>
-                                            <input type="text" class="form-control" name="inputserver" placeholder="Server" value="{{$singledata->inputserver}}">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="fullname" class="form-label">Full Name</label>
@@ -96,8 +93,15 @@
 
                           
 
+
+
 <div class="row">
-                        <div class="col-xl-5 mx-auto">
+
+
+@foreach($singledata->compservice as $key=>$single)
+
+<input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
+                        <div class="col-xl-4 mx-auto">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -105,95 +109,78 @@
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                         </div>
-                                        <h5 class="mb-0 text-primary">Hosting</h5>
+                                        <h5 class="mb-0 text-primary">{{$single->service->parent->stype_name}}</h5>
+                                     
                                     </div>
                                     <hr/>
+                                 
+                                  
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="hosting_active_date" class="form-label">Account Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="hosting_active_date" placeholder="Active Date" value="{{$singledata->hosting_active_date}}">
+                                            <label for="active_date" class="form-label">Active Date</label>
+                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date"  value="{{$single->active_date}}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="hosting_exp_date" class="form-label">Account Expiry Date</label>
-                                            <input type="date" class="form-control datepicker" name="hosting_exp_date" placeholder="Expiry Date" value="{{$singledata->hosting_exp_date}}">
+                                            <label for="exp_date" class="form-label">Expiry Date</label>
+                                            <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date"  value="{{$single->exp_date}}">
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="hosting_amount" class="form-label">Amount</label>
-                                            <input type="text" class="form-control" name="hosting_amount" placeholder="Amount" value="{{$singledata->hosting_amount}}">
+                                            <label for="amount" class="form-label">Amount</label>
+                                            <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount"  value="{{$single->amount}}">
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="hosting_discount" class="form-label">Discount Amount</label>
-                                            <input type="text" class="form-control" name="hosting_discount" placeholder="Discount Amount" value="{{$singledata->hosting_discount}}">
+                                            <label for="discount" class="form-label">Discount Amount</label>
+                                            <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount"  value="{{$single->discount}}">
                                         </div>
-                                        <div class="form-check form-switch">
-                                        <label class="form-check-label" for="hosting_vat">Vat Bill 13%</label>
-                                        @if($singledata->hosting_vat == '')
-                                        <input class="form-check-input" type="checkbox" name="hosting_vat" value="13" unchecked>
-                                        @else
-                                        <input class="form-check-input" type="checkbox" name="hosting_vat" value="13"  checked>
+                                     
+                                        <div class="col-md-12">
+                                       
+                                            <label for="stype_id" class="form-label">Choose {{$single->service->parent->stype_name}}</label>
+                                            <select class="form-select" name="service_id[{{$key}}]">
+                                         
+                                            <option value="{{$single->service_id}}">"{{$single->service->service_name}}"</option>
+                                           
+                                         
+                                         @foreach($data as $key=>$ser)
+                                         @if($ser->stype_id == $single->service->parent->stype_id)
+                                         @foreach($ser->child as $se)
+                                            <option value="{{$se->service_id}}">{{$se->service_name}}</option>
+                                        @endforeach
                                         @endif
-                                      
+                              @endforeach
+                                  
+                                    
+                                        </select>
+                                       
+                                        </div>
+                                     
+                                        <div class="form-check form-switch">
+                                     
+                                        <label class="form-check-label" for="vat_amount">Vat Bill 13%</label>
+                             @if($single->vat_amount == '13')
+                                        <input class="form-check-input" type="checkbox" name=vat_amount[{{$key}}] checked value="13" >
+                                  @else
+                                  <input class="form-check-input" type="checkbox" name=vat_amount[{{$key}}] unchecked value="13" >
+             @endif
+                  
+    
                                     </div>
 </div>
-                                      
+
+                                  
                                   
                                 </div>
 </div>
 
 </div>
 
-</div>
-
-
-<div class="col-xl-5 mx-auto">
-                           
-                           <div class="card border-top border-0 border-4 border-primary">
-                               <div class="card-body">
-                               <div class="border p-4 rounded">
-                                   <div class="card-title d-flex align-items-center">
-                                       <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
-                                       </div>
-                                       <h5 class="mb-0 text-primary">Domain</h5>
-                                   </div>
-                                   <hr/>
-                                   <div class="row g-3">
-                                       <div class="col-md-6">
-                                           <label for="domain_active_date" class="form-label">Account Active Date</label>
-                                           <input type="date" class="form-control datepicker" name="domain_active_date" placeholder="Active Date" value="{{$singledata->domain_active_date}}">
-                                       </div>
-                                       <div class="col-md-6">
-                                           <label for="domain_exp_date" class="form-label">Account Expiry Date</label>
-                                           <input type="date" class="form-control datepicker" name="domain_exp_date" placeholder="Expiry Date" value="{{$singledata->domain_exp_date}}">
-                                       </div>
-                                      
-                                       <div class="col-md-12">
-                                           <label for="domain_amount" class="form-label">Amount</label>
-                                           <input type="text" class="form-control" name="domain_amount" placeholder="Amount" value="{{$singledata->domain_amount}}">
-                                       </div>
-                                       <div class="col-md-12">
-                                           <label for="domain_discount" class="form-label">Discount Amount</label>
-                                           <input type="text" class="form-control" name="domain_discount" placeholder="Discount Amount" value="{{$singledata->domain_discount}}">
-                                       </div>
-                                       <div class="form-check form-switch">
-                                       <label class="form-check-label" for="domain_vat">Vat Bill 13%</label>
-                                       @if($singledata->domain_vat == '')
-                                        <input class="form-check-input" type="checkbox" name="domain_vat" value="13" unchecked>
-                                        @else
-                                        <input class="form-check-input" type="checkbox" name="domain_vat" value="13" checked>
-                                        @endif
-                                     
-                                   </div>
-</div> 
-                                  
-                               </div>
-</div>
 
 </div>
 
-</div>
-</div>
-                    <!--end row-->
+@endforeach
 
+
+</div>
 
 
                     <div class="row">
@@ -202,7 +189,7 @@
                                 <div class="card-body">
                                     <div class="row row-cols-auto g-3">
                                         <div class="col">
-                                            <button type="submit" class="btn btn-primary px-4">Update</button>
+                                            <button type="submit" class="btn btn-primary px-4">Submit</button>
                                         </div>
                                         <div class="col">
                                             <button type="button" class="btn btn-danger px-4">Cancel</button>
@@ -212,8 +199,11 @@
                                         </div>
                                         
                                     </div>
-                                    <!--end row-->
+                                   
                                 </div>
+</div>
+</div>
+</div>
 </form>
                                 
                 </div>

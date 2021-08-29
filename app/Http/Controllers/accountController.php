@@ -6,24 +6,42 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use App\Models\account;
+use App\Models\companyservice;
+use App\Models\service;
+use App\Models\servicetype;
 use Carbon\Carbon;
 
 class accountController extends Controller
 {
 
+//  public function _construct(){
+//     $services = service::with('child')->whereNull('service_id')->get();
+      
+//         view()->share([
+//             'services'=>$services
+       
+          
 
-
-    public function newAccount(){
+//        ]);
+//    }
     
 
+    public function newAccount(){
+       
 
         return view ('webtech.new-account');
         
     }
 
+
+    public function index(){
+       
+        return view ('index');
+    }
+
 public function insertdata(Request $req)
 {
-$account = new account;
+$account = new account();
 $account->domainname=$req->domainname;
 $account->hostingquota=$req->hostingquota;
 $account->fullname=$req->fullname;
@@ -31,23 +49,30 @@ $account->companyname=$req->companyname;
 $account->companyaddress=$req->companyaddress;
 $account->phone_num=$req->phone_num;
 $account->email=$req->email;
-$account->status='active';
-$account->domain_vat=$req->domain_vat ? $req->domain_vat : 0;
-$account->hosting_vat=$req->hosting_vat ? $req->hosting_vat : 0;
 $account->marketby=$req->marketby;
-$account->inputserver=$req->inputserver;
 $account->detail=$req->detail;
-$account->hosting_active_date=Carbon::parse($req->hosting_active_date);
-$account->hosting_exp_date=Carbon::parse($req->hosting_exp_date);
-$account->hosting_amount=$req->hosting_amount;
-$account->hosting_finalamount=($req->hosting_amount - $req->hosting_discount) * ($req->hosting_vat/100) + ($req->hosting_amount - $req->hosting_discount);
-$account->domain_finalamount=($req->domain_amount - $req->domain_discount) * ($req->domain_vat/100) + ($req->domain_amount - $req->domain_discount);
-$account->hosting_discount=$req->hosting_discount ? $req->hosting_discount : 0;
-$account->domain_active_date=Carbon::parse($req->domain_active_date);
-$account->domain_exp_date=Carbon::parse($req->domain_exp_date);
-$account->domain_amount=$req->domain_amount;
-$account->domain_discount=$req->domain_discount ? $req->domain_discount : 0;
 $account->save();
+
+
+
+foreach($req->service_id as $key=>$service_id){
+if($service_id){
+$companyservice = new companyservice();
+$companyservice->status='active';
+
+$companyservice->vat_amount= $req->vat_amount[$key] ?? 0;
+$companyservice->service_id= $service_id;
+$companyservice->account_id=$account->account_id;
+$companyservice->active_date=Carbon::parse($req->active_date[$key]);
+$companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
+$companyservice->amount=$req->amount[$key];
+$companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * ($req->vat_amount[$key] ??0/100) + ($req->amount[$key] - $req->discount[$key]);
+$companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+$companyservice->save();
+}
+}
+
+
 session::flash('message','Data inserted successfully');
 return redirect()->back();
 
@@ -56,50 +81,66 @@ return redirect()->back();
 }
 
 public function allAccount(){
-    $data = account::all();
+    $data = companyservice::with(['account','service.parent'])->get();
 
     return view ('webtech.all-account',['data'=>$data]);
     
 }
 
+
+public function detailAccount($id){
+    $data = companyservice::with('account','service.parent')->where('account_id',$id)->get();
+    if($data == NULL){
+        return redirect('all-account');
+    }
+    $sum = companyservice::with('account','service.parent')->where('account_id',$id)->sum('finalamount');
+    return view ('webtech.detail',['data'=>$data,'sum'=>$sum]);
+    
+}
+
 public function editAccount($id){
-    $singledata = account::where('account_id',$id)->first();
+    $singledata = account::with('compservice.service.parent')->where('account_id',$id)->first();
     if($singledata == NULL){
         return redirect('all-account');
     }
-    
-            return view ('webtech.edit-account',['singledata'=>$singledata]);
+    $data = servicetype::with('child')->get();
+            return view ('webtech.edit-account',['singledata'=>$singledata,'data'=>$data]);
         }
 
         public function updateData(Request $req)
         {
       
-        $account = account::find($req->account_id);
-        $account->domainname=$req->domainname;
-        $account->hostingquota=$req->hostingquota;
-        $account->fullname=$req->fullname;
-        $account->companyname=$req->companyname;
-        $account->companyaddress=$req->companyaddress;
-        $account->phone_num=$req->phone_num;
-        $account->email=$req->email;
-        $account->status='active';
-        $account->domain_vat=$req->domain_vat ? $req->domain_vat : 0;
-        $account->hosting_vat=$req->hosting_vat ? $req->hosting_vat : 0;
-        $account->marketby=$req->marketby;
-        $account->inputserver=$req->inputserver;
-        $account->detail=$req->detail;
-        $account->hosting_active_date=Carbon::parse($req->hosting_active_date);
-        $account->hosting_exp_date=Carbon::parse($req->hosting_exp_date);
-        $account->hosting_amount=$req->hosting_amount;
-        $account->hosting_finalamount=($req->hosting_amount - $req->hosting_discount) * ($req->hosting_vat/100) + ($req->hosting_amount - $req->hosting_discount);
-      $account->domain_finalamount=($req->domain_amount - $req->domain_discount) * ($req->domain_vat/100) + ($req->domain_amount - $req->domain_discount);
-        $account->hosting_discount=$req->hosting_discount ? $req->hosting_discount : 0;
-        $account->domain_active_date=Carbon::parse($req->domain_active_date);
-        $account->domain_exp_date=Carbon::parse($req->domain_exp_date);
-        $account->domain_amount=$req->domain_amount;
-        $account->domain_discount=$req->domain_discount ? $req->domain_discount : 0;
-        $account->save();
-        session::flash('message','Data inserted successfully');
+            $account = account::find($req->account_id);
+            $account->domainname=$req->domainname;
+            $account->hostingquota=$req->hostingquota;
+            $account->fullname=$req->fullname;
+            $account->companyname=$req->companyname;
+            $account->companyaddress=$req->companyaddress;
+            $account->phone_num=$req->phone_num;
+            $account->email=$req->email;
+            $account->marketby=$req->marketby;
+            $account->detail=$req->detail;
+            $account->save();
+            
+            
+            
+            foreach($req->service_id as $key=>$service_id){
+            if($service_id){
+            $companyservice = companyservice::find($req->compservice_id[$key]);
+            
+            
+            $companyservice->vat_amount= $req->vat_amount[$key] ?? 0;
+            $companyservice->service_id= $service_id;
+            $companyservice->account_id=$account->account_id;
+            $companyservice->active_date=Carbon::parse($req->active_date[$key]);
+            $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
+            $companyservice->amount=$req->amount[$key];
+            $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * ($req->vat_amount[$key] ??0/100) + ($req->amount[$key] - $req->discount[$key]);
+            $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+            $companyservice->save();
+            }
+            }
+        session::flash('message','Data updated successfully');
         return redirect()->back();
         
         
@@ -110,11 +151,11 @@ public function editAccount($id){
 
         public function updateStatus(Request $req, $id)
         {
-            $account = account::find($id);
+            $comp = companyservice::find($id);
            
-            $account->status=$req->status;
+            $comp->status=$req->status;
         
-        $account->save();
+        $comp->save();
         session::flash('message','Data inserted successfully');
         return redirect()->back();
         

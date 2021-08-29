@@ -29,66 +29,76 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                               
-                               <tr>
-                                   <th>Domain Name</th>
-                                   <th>Quota</th>
-                                   <th>Days Left</th>
-                                   <th>Final Amount</th>
-                                   <th>End Date</th>
-                                   <th>Status</th>
-                                   <th>Action</th>
-                               </tr>
-                           </thead>
-                           <tbody>
+                            <thead>
+                           
+                                <tr>
+                                    <th>Client Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Active Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                           @foreach($data as $account)
-                               <tr>
-                                   <td>{{$account->domainname}}</td>
-                                   <td>{{$account->hostingquota}}</td>
-                                   <td>{{$account->remaining_host_days}}</td>
-                                   <td>{{$account->hosting_finalamount}}</td>
-                                   <td>{{$account->hosting_exp_date}}</td>
-                                   <td>{{$account->status}}</td>
-                                   <td>
-                                   <div class="col">
+                            @foreach($data as $client)
+                                <tr>
+                                <td>{{$client->clientname}}</td>
+                               <td>{{$client->clientemail}}</td>
+                               <td>{{$client->clientphone}}</td>
+                               <td>{{$client->clientaddress}}</td>
+                               <td>{{$client->clientactive_date}}</td>
+                               <td>{{$client->clientstatus}}</td>
+                               <td>
+                                    <div class="col">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-success">Action</button>
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
+                                                <li><a class="dropdown-item" href="{{url('edit-client')}}/{{$client->client_id}}">Edit</a>
                                                 </li>
                                                 
-                                                
+                                     
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('updatecstatus/'.$client->client_id)}} " method="post">
                         
                         @csrf
-                        <input type="hidden" name="status" value="suspend">
-                        <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
+                        <input type="hidden" name="clientstatus" value="Successed">
+                        <button class="dropdown-item btn btn-xs btn-danger">Successed</button>
                     </form>
                     
                                                 </li>
 
                                                 <li>
-                                                <form action="{{url('update/'.$account->account_id)}} " method="post">
+                                                <form action="{{url('updatecstatus/'.$client->client_id)}} " method="post">
                       
                         @csrf
-                        <input type="hidden" name="status" value="delete">
-                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                        <input type="hidden" name="clientstatus" value="Call Back">
+                        <button class="dropdown-item btn btn-xs btn-danger">Call Back</button>
                     </form>
                                                 </li>
+
                                                 <li>
-                                                    <hr class="dropdown-divider">
+                                                <form action="{{url('updatecstatus/'.$client->client_id)}} " method="post">
+                      
+                        @csrf
+                        <input type="hidden" name="clientstatus" value="Interested">
+                        <button class="dropdown-item btn btn-xs btn-danger">Interested</button>
+                    </form>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Print Invoice</a>
+
+                                                <li>
+                                                <form action="{{url('updatecstatus/'.$client->client_id)}} " method="post">
+                      
+                        @csrf
+                        <input type="hidden" name="clientstatus" value="Not Interested">
+                        <button class="dropdown-item btn btn-xs btn-danger">Not Interested</button>
+                    </form>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
+                                               
                                             </ul>
                                         </div>
                                     </div>
@@ -98,6 +108,7 @@
                                 
                             @endforeach
                             </tbody>
+                        
                         </table>
                     </div>
                 </div>
