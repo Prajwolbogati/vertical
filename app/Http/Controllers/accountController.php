@@ -164,4 +164,55 @@ public function editAccount($id){
         }
 
 
+        public function Exp15(){
+            $data = companyservice::with('account','service.parent')
+            ->whereRaw('DATEDIFF(exp_date,now())<=15')->get();
+           
+            return view ('webtech.accountview',['data'=>$data]);
+            
+        }
+        
+        public function Exp7(){
+            $data = companyservice::with('account','service.parent')
+           
+            ->whereRaw('DATEDIFF(exp_date,now())<=7')->get();
+        
+            return view ('webtech.accountview',['data'=>$data]);
+            
+        }
+        public function Expired(){
+            
+            $data = companyservice::with('account','service.parent')
+            
+            
+            
+            ->where('status' , 'expired')->get();
+        
+            return view ('webtech.accountview',['data'=>$data]);
+            
+        }
+        public function Deleted(){
+            $data = companyservice::with('account','service.parent')
+           
+            
+            ->where('status' , 'delete')->get();
+            
+           
+        
+            return view ('webtech.accountview',['data'=>$data]);
+            
+        }
+        public function Suspend(){
+            
+            $data = companyservice::with('account','service.parent')
+            
+          
+            ->where('status' , 'suspend')->get();
+            return view ('webtech.accountview',['data'=>$data]);
+            
+        }
+        
+        
+
+
 }

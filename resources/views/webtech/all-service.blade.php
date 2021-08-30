@@ -43,7 +43,10 @@
                             @foreach($data as $service)
                                 <tr>
                                 <td>{{$service->service_name}}</td>
-                               <td> <a href="{{url('edit-servicetype')}}/{{$service->parent->stype_id}}">{{$service->parent->stype_name}}</a></td>
+                               <td> <a href="{{url('edit-servicetype')}}/{{$service->parent->stype_id}}">{{$service->parent->stype_name}}</a>
+                            
+                               <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                            </td>
                               
                                <td>
                                     <div class="col">

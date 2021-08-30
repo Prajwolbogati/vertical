@@ -29,33 +29,32 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                               
-                               <tr>
-                                   <th>Domain Name</th>
-                                   <th>Quota</th>
-                                   <th>Days Left</th>
-                                   <th>Final Amount</th>
-                                   <th>End Date</th>
-                                   <th>Service Type</th>
-                                   <th>Status</th>
-                                   <th>Action</th>
-                               </tr>
-                           </thead>
-                           <tbody>
+                            <thead>
+                           
+                                <tr>
+                                    <th>Domain Name</th>
+                                    <th>Quota</th>
+                                    <th>Days Left</th>
+                                    <th>Final Amount</th>
+                                    <th>End Date</th>
+                                    <th>Service Type</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                           @foreach($data as $account)
-                               <tr>
-                              
-                                   <td>{{$account->account->domainname}}</td>
-                                   <td>{{$account->account->hostingquota}}</td>
-                                   <td>{{$account->remaining_days}}</td>
-                                   <td>{{$account->finalamount}}</td>
-                                   <td>{{$account->exp_date}}</td>
-                                   <td>{{$account->service->parent->stype_name}}</td>
-                                   <td>{{$account->status}}</td>
-                                   <td>
-                                   <div class="col">
+                            @foreach($data as $account)
+                                <tr>
+                                <td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
+                               <td>{{$account->account->hostingquota}}</td>
+                               <td>{{$account->remaining_days}}</td>
+                               <td>{{$account->finalamount}}</td>
+                               <td>{{$account->exp_date}}</td>
+                               <td>{{$account->service->parent->stype_name}}</td>
+                               <td>{{$account->status}}</td>
+                               <td>
+                                    <div class="col">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-success">Action</button>
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
@@ -88,10 +87,7 @@
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">Print Invoice</a>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                </li>
+                                               
                                             </ul>
                                         </div>
                                     </div>
@@ -101,7 +97,6 @@
                                 
                             @endforeach
                             </tbody>
-                        
                         
                         </table>
                     </div>

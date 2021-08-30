@@ -97,4 +97,17 @@ public function editClient($id){
         
         
         }
+
+
+        public function deleteClient($id){
+            $client = client::find($id);
+            $client->delete();
+            session::flash('message','Data deleted successfully');
+            return redirect()->back();
+            
+            return redirect()->back();
+                }
+        
+        
+               
 }

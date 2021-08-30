@@ -87,10 +87,7 @@
                                                     </li>
                                                     <li><a class="dropdown-item" href="#">Print Invoice</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#">Print Hosting</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#">Print Domain</a>
-                                                    </li>
+                                                   
                                                 </ul>
                                             </div>
                                         </div>

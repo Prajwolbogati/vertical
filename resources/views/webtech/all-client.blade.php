@@ -98,6 +98,15 @@
                         <button class="dropdown-item btn btn-xs btn-danger">Not Interested</button>
                     </form>
                                                 </li>
+
+                                                <li>
+                                                <form action="{{url('delete')}}/{{$client->client_id}} ">
+                      
+                        @csrf
+                      
+                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                    </form>
+                                                </li>
                                                
                                             </ul>
                                         </div>

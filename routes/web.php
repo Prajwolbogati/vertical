@@ -94,6 +94,20 @@ Route::post('updateservice', [serviceController::class, 'updateData']);
 
 Route::post('updateservicetype', [servicetypeController::class, 'updateData']);
 
+Route::post('delete/{id}', [accountController::class, 'Delete']);
+
+Route::get('delete/{id}', [clientController::class, 'deleteClient']);
+
+Route::get('exp-15', [accountController::class, 'Exp15']);
+
+Route::get('exp-7', [accountController::class, 'Exp7']);
+
+Route::get('expired', [accountController::class, 'Expired']);
+
+Route::get('deleted', [accountController::class, 'Deleted']);
+
+Route::get('suspend', [accountController::class, 'Suspend']);
+
 
 
 

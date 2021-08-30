@@ -27,7 +27,7 @@ public function Exp15($stype_id){
     })
     ->whereRaw('DATEDIFF(exp_date,now())<=15')->get();
    
-    return view ('webtech.exp-15',['data'=>$data]);
+    return view ('webtech.status',['data'=>$data]);
     
 }
 
@@ -38,7 +38,7 @@ public function Exp7($stype_id){
     })
     ->whereRaw('DATEDIFF(exp_date,now())<=7')->get();
 
-    return view ('webtech.exp-7',['data'=>$data]);
+    return view ('webtech.status',['data'=>$data]);
     
 }
 public function Expired($stype_id){
@@ -51,7 +51,7 @@ public function Expired($stype_id){
     
     ->where('status' , 'expired')->get();
 
-    return view ('webtech.expired',['data'=>$data]);
+    return view ('webtech.status',['data'=>$data]);
     
 }
 public function Deleted($stype_id){
@@ -64,7 +64,7 @@ public function Deleted($stype_id){
     
    
 
-    return view ('webtech.deleted',['data'=>$data]);
+    return view ('webtech.status',['data'=>$data]);
     
 }
 public function Suspend($stype_id){
@@ -75,7 +75,7 @@ public function Suspend($stype_id){
     })
   
     ->where('status' , 'suspend')->get();
-    return view ('webtech.suspend',['data'=>$data]);
+    return view ('webtech.status',['data'=>$data]);
     
 }
 

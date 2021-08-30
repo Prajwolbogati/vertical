@@ -6,15 +6,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!--favicon-->
-		<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+		<link rel="icon" href="{{asset('assets/images/favicon-32x32.png')}}" type="image/png" />
 		<!-- loader-->
-		<link href="assets/css/pace.min.css" rel="stylesheet" />
-		<script src="assets/js/pace.min.js"></script>
+		<link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
+		<script src="{{asset('assets/js/pace.min.js')}}"></script>
 		<!-- Bootstrap CSS -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-		<link href="assets/css/app.css" rel="stylesheet">
-		<link href="assets/css/icons.css" rel="stylesheet">
+		<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
+		<link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
 		<title>Rocker - Multipurpose Bootstrap5 Admin Template</title>
 	</head>
 
@@ -32,7 +32,7 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Sign in</h3>
+                                        <h3 class="">Reset Password</h3>
   
                                     </div>
                                     @if (Route::has('login'))
@@ -43,7 +43,8 @@
                                  @endauth
                                  @endif
                                     <div class="form-body">
-                                    <form class="row g-3" method="post" action="{{url('login')}}">
+                                    <form class="row g-3" method="post" action="{{url('reset-password')}}">
+                                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
                {{csrf_field()}}
                                             <div class="col-12">
                                                 <label name="email" class="form-label">Email Address</label>
@@ -55,17 +56,17 @@
                                                     <input type="password" class="form-control border-end-0" name="password"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+                                            <div class="col-12">
+                                                <label for="password" class="form-label">Enter Password</label>
+                                                <div class="input-group" id="show_hide_password">
+                                                    <input type="password" class="form-control border-end-0" name="password_confirmation"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 text-end">	<a href="{{ url('forgot-password') }}">Forgot Password ?</a>
-                                            </div>
+                                           
+                                            
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+                                                    <button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Reset Password</button>
                                                 </div>
                                             </div>
                                         </form>
