@@ -32,6 +32,15 @@
                     <p class="text-muted">Enter your registered email ID to reset the password</p>
                     <form method="POST" action= "{{url('forgot-password')}}">
                {{csrf_field()}}
+
+               @if (count($errors) > 0)
+        <ul>
+            @foreach ($errors->all() as $error)
+            <span class="text-danger">{{ $error }} </span>
+           
+            @endforeach
+        </ul>
+    @endif
                     <div class="my-4">
                         <label class="form-label">Email id</label>
                         <input type="email" class="form-control form-control-lg" name="email" placeholder="example@user.com" />

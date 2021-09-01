@@ -60,13 +60,14 @@ if($service_id){
 $companyservice = new companyservice();
 $companyservice->status='active';
 
-$companyservice->vat_amount= $req->vat_amount[$key] ?? 0;
+$companyservice->vat_amount= "13";
 $companyservice->service_id= $service_id;
 $companyservice->account_id=$account->account_id;
 $companyservice->active_date=Carbon::parse($req->active_date[$key]);
 $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
 $companyservice->amount=$req->amount[$key];
-$companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * ($req->vat_amount[$key] ??0/100) + ($req->amount[$key] - $req->discount[$key]);
+$companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
+$companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
 $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
 $companyservice->save();
 }
@@ -128,18 +129,20 @@ public function editAccount($id){
             if($service_id){
             $companyservice = companyservice::find($req->compservice_id[$key]);
             
-            
-            $companyservice->vat_amount= $req->vat_amount[$key] ?? 0;
+          
+            $companyservice->vat_amount= "13";
             $companyservice->service_id= $service_id;
             $companyservice->account_id=$account->account_id;
             $companyservice->active_date=Carbon::parse($req->active_date[$key]);
             $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
             $companyservice->amount=$req->amount[$key];
-            $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * ($req->vat_amount[$key] ??0/100) + ($req->amount[$key] - $req->discount[$key]);
+            $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
             $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+            }
+         
             $companyservice->save();
             }
-            }
+           
         session::flash('message','Data updated successfully');
         return redirect()->back();
         

@@ -1,10 +1,11 @@
 @extends("layouts.app")
 
 @section("style")
-	<link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
-	<link href="assets/plugins/datetimepicker/css/classic.time.css" rel="stylesheet" />
-	<link href="assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
-	<link rel="stylesheet" href="assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link href="{{asset('assets/plugins/datetimepicker/css/classic.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/datetimepicker/css/classic.time.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/datetimepicker/css/classic.date.css')}}" rel="stylesheet" />
+	<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css')}}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	@endsection
 		@section("wrapper")
@@ -88,15 +89,42 @@
 </div>
 </div>
 </div>
-                       
+
+<div class="col-xl-5 mxr-auto">
+                           
+                            <div class="card border-top border-0 border-4 border-primary">
+                                <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="card-title d-flex align-items-center">
+                                        <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+                                        </div>
+                                        <h5 class="mb-0 text-primary">Choose Services</h5>
+                                    </div>
+                                    <hr/>
+                                    <div class="row g-3">
+                                    @foreach($services as $key=>$ser)
+                                    <div class="form-check form-switch">
+                                  
+                                        <label class="form-check-label" for="vat_amount">{{$ser->stype_name}}</label>
+                                        <input class="form-check-input" type="checkbox" data-serviceName="{{$ser->stype_name}}" onclick="checkMe(this)"/>
+                                      
+                                    </div> 
+                                    @endforeach
+</div>
+                           
+</div>
+</div>
+</div>
+</div>
+              
 </div>
                             
 
                           
 
- <div class="row">
+ <div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 @foreach($services as $key=>$ser)
-                        <div class="col-xl-4 mx-auto">
+                        <div class="col-xl-4" id="{{$ser->stype_name}}" style="display: none">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -138,12 +166,7 @@
                                         </select>
                                        
                                         </div>
-                                        <div class="form-check form-switch">
-                                        
-                                        <label class="form-check-label" for="vat_amount">Vat Bill 13%</label>
-                                        <input class="form-check-input" type="checkbox" name=vat_amount[{{$key}}] checked value="13" />
-                                      
-                                    </div>
+                                    
 </div> 
                                       
                                   
@@ -180,23 +203,54 @@
 </div>
 </div>
 </form>
+
+
                @endhasanyrole                 
                 </div>
             </div>
+
+     
 
 
         @endsection
 
 
         @section("script")
-	<script src="assets/plugins/datetimepicker/js/legacy.js"></script>
-	<script src="assets/plugins/datetimepicker/js/picker.js"></script>
-    <script src="assets/js/tinymce.min.js"></script>
-	<script src="assets/plugins/datetimepicker/js/picker.time.js"></script>
-	<script src="assets/plugins/datetimepicker/js/picker.date.js"></script>
-	<script src="assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js"></script>
-	<script src="assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
+	<script src="{{asset('assets/plugins/datetimepicker/js/legacy.js')}}"></script>
+	<script src="{{asset('assets/plugins/datetimepicker/js/picker.js')}}"></script>
+    <script src="{{asset('assets/js/tinymce.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/datetimepicker/js/picker.time.js')}}"></script>
+	<script src="{{asset('assets/plugins/datetimepicker/js/picker.date.js')}}"></script>
+	<script src="{{asset('assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js')}}"></script>
+  
+
 	<script>
+            function checkMe(x){
+               
+                var id = x.dataset.servicename;
+                var form = document.getElementById(id);
+                if (x.checked == true){
+                    form.style.display = "inline";
+                }
+                else{
+                    form.style.display = "none";
+                }
+                
+                // var data = serviceForm.serviceName;
+                // serviceForm.style.display="none";
+    // var ch = document.ge("ser");
+    // var x = $ser;
+    // var chfrm = document.getElementById("serfrm");
+    // if(ch.checked==true){
+    //     chfrm.style.display="inline";
+    // }else{
+    //     chfrm.style.display="none";  
+    // }
+    
+}
+</script>
+<script>
 		$('.datepicker').pickadate({
 			selectMonths: true,
 	        selectYears: true
@@ -224,6 +278,9 @@
 		  selector: '#mytextareas'
 		});
 	</script>
+
+  
+
 	@endsection
 
   

@@ -15,10 +15,20 @@
                                             </div>
                                             <h5 class="mb-0 text-info">Add User</h5>
                                         </div>
-                                        <hr/>
                                         <form class="row g-3" method="post" action="{{url('register')}}">
                {{csrf_field()}}
+
+               @if (count($errors) > 0)
+        <ul>
+            @foreach ($errors->all() as $error)
+            <span class="text-danger">{{ $error }} </span>
+           
+            @endforeach
+        </ul>
+    @endif
                                 
+                                        <hr/>
+                                       
                                         <div class="row mb-3">
                                             <label for="name" class="col-sm-3 col-form-label">Enter Your Name</label>
                                             <div class="col-sm-9">

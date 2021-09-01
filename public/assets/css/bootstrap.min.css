@@ -5743,6 +5743,12 @@ textarea.form-control-lg {
 	margin-right: auto!important;
 	margin-left: auto!important
 }
+
+.mxr-auto {
+	
+	margin-left: auto!important;
+	margin-top: -330px!important;
+}
 .my-0 {
 	margin-top: 0!important;
 	margin-bottom: 0!important

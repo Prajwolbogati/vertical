@@ -23,6 +23,7 @@ class CreateCompanyservicesTable extends Migration
             $table->string('status');
             $table->integer('vat_amount');
             $table->float('amount');
+            $table->float('amountafterdiscount');
             $table->float('finalamount');
             $table->float('discount', 10,2);
             $table->date('active_date');

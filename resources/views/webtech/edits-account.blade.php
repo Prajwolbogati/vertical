@@ -89,7 +89,7 @@
 </div>
 </div>
 
-<div class="col-xl-5 mxr-auto">
+<!-- <div class="col-xl-5 mxr-auto">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -114,7 +114,7 @@
 </div>
 </div>
 </div>
-</div>
+</div> -->
               
 </div>
                             
@@ -182,7 +182,17 @@
                                        
                                         </div>
                                      
-                             
+                                        <div class="form-check form-switch">
+                                     
+                                        <label class="form-check-label" for="vat_amount">Vat Bill 13%</label>
+                             @if($single->vat_amount == "13")
+                                        <input class="form-check-input" type="checkbox" name="vat_amount[{{$key}}]" checked value="13" />
+                                  @else
+                                  <input class="form-check-input" type="checkbox" name="vat_amount[{{$key}}]" unchecked value="13" />
+             @endif
+                  
+    
+                                    </div>
 </div>
 
                                   
