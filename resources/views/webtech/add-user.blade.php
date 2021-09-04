@@ -53,6 +53,19 @@
                                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                                             </div>
                                         </div>
+                                        <div class="row mb-3">
+                                            <label for="role" class="col-sm-3 col-form-label">Choose Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="role" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="row mb-3">
+                                            <label for="permissions" class="col-sm-3 col-form-label">Choose Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="permissions" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
                                     
                                       
                                        

@@ -36,7 +36,9 @@ public function Exp7($stype_id){
     ->whereHas('service.parent', function($q) use($stype_id) {
         $q->where('stype_id', '=', $stype_id);
     })
-    ->whereRaw('DATEDIFF(exp_date,now())<=7')->get();
+    ->whereRaw('DATEDIFF(exp_date,now())<=7')
+
+    ->orwhere('status' , 'suspend')->get();
 
     return view ('webtech.status',['data'=>$data]);
     

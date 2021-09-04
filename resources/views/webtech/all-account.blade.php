@@ -1,7 +1,17 @@
 	@extends("layouts.app")
 
 	@section("style")
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+	<style>
+		.webtech{
+			display:none;
+		}
+		.webtech:first-child{
+			display: contents;
+		}
+
+		</style>
+
 	@endsection
 
 		@section("wrapper")
@@ -28,10 +38,11 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example" class="table table-striped table-bordered" style="width:100%">
+							<table id="example" class="table table-striped table-bordered display nowrap" style="width:100%">
 								<thead>
                                
 									<tr>
+								<th></th>
 										<th>Domain Name</th>
 										<th>Quota</th>
 										<th>Days Left</th>
@@ -44,8 +55,16 @@
 								</thead>
 								<tbody>
 
-                                @foreach($data as $account)
-									<tr>
+							
+
+								@foreach($datass as $key=>$account)
+
+	<tr class="{{$account->account->account_id}}" id="{{$account->account_id}}">
+								
+								<td class="text-center"> 
+									<button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
+									<!-- <input class="form-check-input" type="checkbox" data-serviceName="{{$account->account->account_id}}" onclick="checkMe(this)"/> -->
+								</td>
 									<td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
                                    <td>{{$account->account->hostingquota}}</td>
                                    <td>{{$account->remaining_days}}</td>
@@ -53,6 +72,7 @@
                                    <td>{{$account->exp_date}}</td>
 								   <td>{{$account->service->parent->stype_name}}</td>
                                    <td>{{$account->status}}</td>
+                                  
                                    <td>
                                         <div class="col">
                                             <div class="btn-group">
@@ -94,8 +114,10 @@
                                         </td>
 									</tr>
 									
-									
+								
 								@endforeach
+
+								
 								</tbody>
 							
 							</table>
@@ -106,17 +128,29 @@
 			</div>
 		</div>
 		<!--end page wrapper -->
+
+		<style>
+/* .haha:first-child {
+ visibility: visible;
+}
+
+.haha{
+  visibility: hidden;
+} */
+			</style>
+
+
 		@endsection
 	
 	@section("script")
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
 		  } );
 	</script>
-	<script>
+	<!-- <script>
 		$(document).ready(function() {
 			var table = $('#example2').DataTable( {
 				lengthChange: false,
@@ -126,5 +160,97 @@
 			table.buttons().container()
 				.appendTo( '#example2_wrapper .col-md-6:eq(0)' );
 		} );
-	</script>
+	</script> -->
+
+
+<!-- <script>
+function format(values) {
+      return '' + values + '' ;
+  }
+  $(document).ready(function () {
+      var table = $('#example').DataTable({
+	  rowGroup: true
+	});
+
+      // Add event listener for opening and closing details
+      $('#example').on('click', 'td.details-control', function () {
+          var tr = $(this).closest('tr');
+          var row = table.row(tr);
+
+          if (row.child.isShown()) {
+              // This row is already open - close it
+              row.child.hide();
+              tr.removeClass('shown');
+          } else {
+              // Open this row
+              row.child(format(tr.data('child-value'))).show();
+              tr.addClass('shown');
+          }
+      });
+  });
+  </script> -->
+
+  <script>
+  $(document).ready(function () {
+				var a = [@foreach($datass as $k => $info)
+   '{{ $info -> account -> account_id }}',
+@endforeach ]
+var uniqueAndSorted = [...new Set(a)].sort() 
+
+uniqueAndSorted.forEach(element => {
+	var x = document.getElementsByClassName(element);
+	console.log(x);
+	if (x.length <= 1) {
+		// x[0].firstElementChild.style.visibility="hidden";
+		// debugger
+					x[0].firstElementChild.firstElementChild.disabled = true;
+					x[0].firstElementChild.firstElementChild.classList.remove("btn-success");
+					x[0].firstElementChild.firstElementChild.classList.add("btn-secondary");
+	}
+	for (let i = 0; i < x.length; i++) {
+		if (i != 0) {
+			x[i].classList.add("d-none");
+			// x[i].firstElementChild.style.visibility="hidden";
+			// x[i].firstChild
+		}
+	}
+});
+
+
+
+	});
+
+            function checkMe(x){
+                var haha = x.dataset.servicename;
+			
+			var rows = document.getElementsByClassName(haha);
+			if (rows[1]) {
+				
+			if (rows[1].classList.contains("d-none")) {
+			
+			for (let i = 0; i < rows			.length; i++) {
+					rows[i].classList.remove("d-none");
+					rows[i].firstElementChild.firstElementChild.innerHTML = "-"
+			}
+			// rows[0].firstElementChild.firstElementChild.innerHTML = "-"		//change it later
+
+			}
+			else{
+				// rows[0].firstElementChild.firstElementChild.innerHTML = "+"
+			
+	for (let i = 0; i < rows			.length; i++) {
+			if (i != 0) {
+				debugger
+				rows[i].classList.add("d-none");
+			}
+				rows[i].firstElementChild.firstElementChild.innerHTML = "+"
+	}
+			}
+			}
+			else{}
+                
+    
+}
+</script>
+
 	@endsection

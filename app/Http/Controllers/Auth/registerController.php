@@ -44,11 +44,16 @@ public function addUser(){
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user =  $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->assignRole($request->role);
+
+            if($request->has('permissions')){
+                $user->givePermissionTo($request->permissions);
+            }
+            $user->save();
 
         event(new Registered($user));
 

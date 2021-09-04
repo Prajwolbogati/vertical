@@ -82,9 +82,11 @@ return redirect()->back();
 }
 
 public function allAccount(){
-    $data = companyservice::with(['account','service.parent'])->get();
+    $data = account::with(['compservice.service.parent'])->get();
 
-    return view ('webtech.all-account',['data'=>$data]);
+    $datass = companyservice::with(['account','service.parent'])->get();
+
+    return view ('webtech.all-account',['data'=>$data,'datass'=>$datass]);
     
 }
 
@@ -110,7 +112,7 @@ public function editAccount($id){
 
         public function updateData(Request $req)
         {
-      
+    
             $account = account::find($req->account_id);
             $account->domainname=$req->domainname;
             $account->hostingquota=$req->hostingquota;
@@ -138,9 +140,13 @@ public function editAccount($id){
             $companyservice->amount=$req->amount[$key];
             $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
             $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+            $companyservice->save();
+
+        
+          
             }
          
-            $companyservice->save();
+         
             }
            
         session::flash('message','Data updated successfully');

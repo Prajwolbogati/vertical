@@ -237,16 +237,6 @@
                     form.style.display = "none";
                 }
                 
-                // var data = serviceForm.serviceName;
-                // serviceForm.style.display="none";
-    // var ch = document.ge("ser");
-    // var x = $ser;
-    // var chfrm = document.getElementById("serfrm");
-    // if(ch.checked==true){
-    //     chfrm.style.display="inline";
-    // }else{
-    //     chfrm.style.display="none";  
-    // }
     
 }
 </script>

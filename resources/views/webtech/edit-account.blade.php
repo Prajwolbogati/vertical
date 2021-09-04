@@ -129,7 +129,7 @@
 @foreach($singledata->compservice as $key=>$single)
 
 <input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
-                        <div class="col-xl-4 ">
+                        <div class="col-xl-4" id="{{$single->service->parent->stype_name}}">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -199,6 +199,61 @@
 
 
 
+@foreach($services as $key=>$ser)
+                        <div class="col-xl-4" id="{{$ser->stype_name}}" style="display: none">
+                           
+                            <div class="card border-top border-0 border-4 border-primary">
+                                <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="card-title d-flex align-items-center">
+                                        <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+                                        </div>
+                                        <h5 class="mb-0 text-primary">{{$ser->stype_name}}</h5>
+                                     
+                                    </div>
+                                    <hr/>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="active_date" class="form-label">Active Date</label>
+                                            <input type="date" class="form-control datepicker" name="active_dates[{{$key}}]" placeholder="Active Date">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="exp_date" class="form-label">Expiry Date</label>
+                                            <input type="date" class="form-control datepicker" name="exp_dates[{{$key}}]" placeholder="Expiry Date">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="amount" class="form-label">Amount</label>
+                                            <input type="text" class="form-control" name="amounts[{{$key}}]" placeholder="Amount">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="discount" class="form-label">Discount Amount</label>
+                                            <input type="text" class="form-control" name="discounts[{{$key}}]" placeholder="Discount Amount">
+                                        </div>
+                                        <div class="col-md-12">
+                                       
+                                            <label for="stype_id" class="form-label">Choose {{$ser->stype_name}}</label>
+                                            <select class="form-select" name="service_ids[{{$key}}]">
+                                         
+                                            <option value="">Choose ...</option>
+                                            @foreach($ser->child as $servic)
+                                            <option value="{{$servic->service_id}}">{{$servic->service_name}}</option>
+                                            @endforeach
+                                           
+                                        </select>
+                                       
+                                        </div>
+                                    
+</div> 
+                                      
+                                  
+                                </div>
+</div>
+
+</div>
+
+
+</div>
+@endforeach
 
 
 
@@ -245,7 +300,7 @@
 	<script src="{{asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js')}}"></script>
   
 
-    <!-- <script>
+    <script>
             function checkMe(x){
                
                 var id = x.dataset.servicename;
@@ -259,7 +314,7 @@
                 
     
 }
-</script> -->
+</script>
 	<script>
 		$('.datepicker').pickadate({
 			selectMonths: true,
@@ -288,6 +343,7 @@
 		  selector: '#mytextareas'
 		});
 	</script>
+    
 	@endsection
 
   

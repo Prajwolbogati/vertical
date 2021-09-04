@@ -23,8 +23,8 @@ use App\Http\Controllers\registerController;
 */
 
 
-// Route::get('/', function () {
-//     return view('webtech.login');
+// Route::get('inventory.data', function () {
+//     return view('webtech.array');
 // });
 
 
@@ -33,6 +33,8 @@ Route::group(['middleware'=>['auth']],function(){
 
 
 Route::get('/', [accountController::class, 'index']);
+
+
 
 Route::get('/index', [accountController::class, 'index']);
 
