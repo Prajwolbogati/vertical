@@ -10,6 +10,8 @@ use App\Http\Controllers\servicetypeController;
 use App\Http\Controllers\settingController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\roleController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +58,7 @@ Route::get('suspend/{stype_id}', [companyserviceController::class, 'Suspend']);
 
 Route::get('edit-account/{id}', [accountController::class, 'editAccount']);
 
-Route::post('updateaccount', [accountController::class, 'updateData']);
+Route::post('updateaccount/{id?}', [accountController::class, 'updateData']);
 
 Route::post('update/{id}', [accountController::class, 'updateStatus']);
 
@@ -110,6 +112,16 @@ Route::get('deleted', [accountController::class, 'Deleted']);
 
 Route::get('suspend', [accountController::class, 'Suspend']);
 
+Route::get('viewrole', [roleController::class, 'viewRole']);
+
+Route::get('addrole', [roleController::class, 'addRole']);
+
+
+Route::get('viewinvoice', [settingController::class, 'viewInvoice']);
+
+Route::post('postRole', [roleController::class, 'store']);
+
+// Route::get('send-email', [MailController::class, 'sendEmail']);
 
 
 

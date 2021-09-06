@@ -105,7 +105,7 @@
                                                     <li>
                                                         <hr class="dropdown-divider">
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#">Print Invoice</a>
+                                                    <li><a class="dropdown-item" href="{{ url('viewinvoice') }}">Print Invoice</a>
                                                     </li>
                                                    
                                                 </ul>
@@ -114,7 +114,7 @@
                                         </td>
 									</tr>
 									
-								
+							
 								@endforeach
 
 								
@@ -191,7 +191,7 @@ function format(values) {
   </script> -->
 
   <script>
-  $(document).ready(function () {
+//   $(document).ready(function () {
 				var a = [@foreach($datass as $k => $info)
    '{{ $info -> account -> account_id }}',
 @endforeach ]
@@ -214,7 +214,7 @@ uniqueAndSorted.forEach(element => {
 			// x[i].firstChild
 		}
 	}
-});
+// });
 
 
 
@@ -240,7 +240,7 @@ uniqueAndSorted.forEach(element => {
 			
 	for (let i = 0; i < rows			.length; i++) {
 			if (i != 0) {
-				debugger
+				
 				rows[i].classList.add("d-none");
 			}
 				rows[i].firstElementChild.firstElementChild.innerHTML = "+"

@@ -90,4 +90,10 @@ public function settings(){
         return view ('webtech.setting',['data'=>$data]);
     }
 
+    public function viewInvoice(){
+      
+       
+            return view ('webtech.invoice');
+        }
+
 }

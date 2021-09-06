@@ -129,18 +129,25 @@ public function editAccount($id){
             
             foreach($req->service_id as $key=>$service_id){
             if($service_id){
-            $companyservice = companyservice::find($req->compservice_id[$key]);
+$compservice_id = $req->compservice_id[$key];
+               
+        
             
           
-            $companyservice->vat_amount= "13";
-            $companyservice->service_id= $service_id;
-            $companyservice->account_id=$account->account_id;
-            $companyservice->active_date=Carbon::parse($req->active_date[$key]);
-            $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
-            $companyservice->amount=$req->amount[$key];
-            $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
-            $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
-            $companyservice->save();
+            $companyservice = array(
+            'vat_amount' => "13",
+            'service_id' => $service_id,
+            'account_id'=> $account->account_id,
+            'active_date' => Carbon::parse($req->active_date[$key]),
+            'exp_date' => Carbon::parse($req->exp_date[$key]),
+            'amount' => $req->amount[$key],
+            'finalamount' => ($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]),
+            'discount' => $req->discount[$key] ? $req->discount[$key] : 0,
+            );
+            companyservice::updateOrCreate(['compservice_id' => $compservice_id],
+            
+        $companyservice
+        );
 
         
           

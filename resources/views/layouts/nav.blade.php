@@ -71,6 +71,8 @@
                     <ul>
                         <li> <a href="{{ url('adduser') }}"><i class="bx bx-right-arrow-alt"></i>Add New</a>
                         </li>
+                        <li> <a href="{{ url('viewrole') }}"><i class="bx bx-right-arrow-alt"></i>Role and Permissions</a>
+                        </li>
                         <li> <a href="{{ url('viewuser') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
                         </li>
                     </ul>

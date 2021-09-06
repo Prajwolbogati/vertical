@@ -128,8 +128,9 @@
 
 @foreach($singledata->compservice as $key=>$single)
 
+
 <input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
-                        <div class="col-xl-4" id="{{$single->service->parent->stype_name}}">
+                        <div class="col-xl-4" id="{{$single->service->parent->stype_name}}" >
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -195,11 +196,14 @@
 
 </div>
 
+
+
+
 @endforeach
-
-
-
+ 
 @foreach($services as $key=>$ser)
+
+
                         <div class="col-xl-4" id="{{$ser->stype_name}}" style="display: none">
                            
                             <div class="card border-top border-0 border-4 border-primary">
@@ -215,19 +219,19 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="active_date" class="form-label">Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="active_dates[{{$key}}]" placeholder="Active Date">
+                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exp_date" class="form-label">Expiry Date</label>
-                                            <input type="date" class="form-control datepicker" name="exp_dates[{{$key}}]" placeholder="Expiry Date">
+                                            <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="amount" class="form-label">Amount</label>
-                                            <input type="text" class="form-control" name="amounts[{{$key}}]" placeholder="Amount">
+                                            <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="discount" class="form-label">Discount Amount</label>
-                                            <input type="text" class="form-control" name="discounts[{{$key}}]" placeholder="Discount Amount">
+                                            <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount">
                                         </div>
                                         <div class="col-md-12">
                                        
@@ -253,7 +257,9 @@
 
 
 </div>
-@endforeach
+
+@endforeach 
+
 
 
 
