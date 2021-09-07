@@ -229,8 +229,14 @@ uniqueAndSorted.forEach(element => {
 			if (rows[1].classList.contains("d-none")) {
 			
 			for (let i = 0; i < rows			.length; i++) {
+				if (i != 0) {
+				
+					rows[i].firstElementChild.firstElementChild.classList.remove("btn-success");
+					rows[i].firstElementChild.firstElementChild.innerHTML = ""
+			}
 					rows[i].classList.remove("d-none");
-					rows[i].firstElementChild.firstElementChild.innerHTML = "-"
+					
+					rows[0].firstElementChild.firstElementChild.innerHTML = "-"
 			}
 			// rows[0].firstElementChild.firstElementChild.innerHTML = "-"		//change it later
 
@@ -243,7 +249,7 @@ uniqueAndSorted.forEach(element => {
 				
 				rows[i].classList.add("d-none");
 			}
-				rows[i].firstElementChild.firstElementChild.innerHTML = "+"
+				rows[0].firstElementChild.firstElementChild.innerHTML = "+"
 	}
 			}
 			}

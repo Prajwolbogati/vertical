@@ -14,6 +14,8 @@ class companyservice extends Model
     protected $primaryKey = 'compservice_id';
 
     protected $fillable = [
+        'compservice_id',
+        'status',
         'vat_amount',
         'active_date',
         'exp_date',
@@ -21,6 +23,7 @@ class companyservice extends Model
         'discount',
         'account_id',
         'service_id',
+        'amountafterdiscount',
         'finalamount'
     ];
 

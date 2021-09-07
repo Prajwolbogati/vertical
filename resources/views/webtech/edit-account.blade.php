@@ -125,9 +125,15 @@
 
 <div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 
+<!-- @php
+$arr = []
+@endphp -->
 
 @foreach($singledata->compservice as $key=>$single)
 
+@php
+$arr[] = $single->service->parent->stype_id;
+@endphp
 
 <input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
                         <div class="col-xl-4" id="{{$single->service->parent->stype_name}}" >
@@ -202,7 +208,9 @@
 @endforeach
  
 @foreach($services as $key=>$ser)
+    @if(in_array($ser->stype_id, $arr))
 
+    @else
 
                         <div class="col-xl-4" id="{{$ser->stype_name}}" style="display: none">
                            
@@ -219,7 +227,7 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="active_date" class="form-label">Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date">
+                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exp_date" class="form-label">Expiry Date</label>
@@ -236,7 +244,7 @@
                                         <div class="col-md-12">
                                        
                                             <label for="stype_id" class="form-label">Choose {{$ser->stype_name}}</label>
-                                            <select class="form-select" name="service_ids[{{$key}}]">
+                                            <select class="form-select" name="service_id[{{$key}}]">
                                          
                                             <option value="">Choose ...</option>
                                             @foreach($ser->child as $servic)
@@ -257,7 +265,7 @@
 
 
 </div>
-
+@endif
 @endforeach 
 
 
