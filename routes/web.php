@@ -117,7 +117,7 @@ Route::get('viewrole', [roleController::class, 'viewRole']);
 Route::get('addrole', [roleController::class, 'addRole']);
 
 
-Route::get('viewinvoice', [settingController::class, 'viewInvoice']);
+Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);
 
 Route::post('postRole', [roleController::class, 'store']);
 

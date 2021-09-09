@@ -84,7 +84,7 @@ return redirect()->back();
 public function allAccount(){
     $data = account::with(['compservice.service.parent'])->get();
 
-    $datass = companyservice::with(['account','service.parent'])->get();
+    $datass = companyservice::with(['account','service.parent']) -> orderBy('account_id', 'asc')->get();
 
     return view ('webtech.all-account',['data'=>$data,'datass'=>$datass]);
     
@@ -129,42 +129,47 @@ public function editAccount($id){
        
             foreach($req->service_id as $key=>$service_id){
                 if($service_id){
-                    $companyservice = companyservice::find($req->compservice_id[$key]);
-if($req->compservice_id[$key] !== null){
+                  
+                   
+if(isSet($req->compservice_id[$key])){
+
+    $companyservice = companyservice::find($req->compservice_id[$key]);
                     
-                $companyservice->status='active';
-                
-                $companyservice->vat_amount= "13";
-                $companyservice->service_id= $service_id;
-                $companyservice->account_id=$account->account_id;
-                $companyservice->active_date=Carbon::parse($req->active_date[$key]);
-                $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
-                $companyservice->amount=$req->amount[$key];
-                $companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
-                $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
-                $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+    $companyservice->status='active';
+    
+    $companyservice->vat_amount= "13";
+    $companyservice->service_id= $service_id;
+    $companyservice->account_id=$account->account_id;
+    $companyservice->active_date=Carbon::parse($req->active_date[$key]);
+    $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
+    $companyservice->amount=$req->amount[$key];
+    $companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
+    $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
+    $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+  
               
                
 }else{
 
-$companyservice = new companyservice();
-$companyservice->status='active';
-
-$companyservice->vat_amount= "13";
-$companyservice->service_id= $service_id;
-$companyservice->account_id=$account->account_id;
-$companyservice->active_date=Carbon::parse($req->active_date[$key]);
-$companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
-$companyservice->amount=$req->amount[$key];
-$companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
-$companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
-$companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
-
-
-
+ 
+ 
+    $companyservice = new companyservice();
+    $companyservice->status='active';
+    
+    $companyservice->vat_amount= "13";
+    $companyservice->service_id= $service_id;
+    $companyservice->account_id=$account->account_id;
+    $companyservice->active_date=Carbon::parse($req->active_date[$key]);
+    $companyservice->exp_date=Carbon::parse($req->exp_date[$key]);
+    $companyservice->amount=$req->amount[$key];
+    $companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
+    $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
+    $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
+    
 
 }
 $companyservice->save();
+
                 }
                 }    
                         

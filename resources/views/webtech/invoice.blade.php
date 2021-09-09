@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("style")
-<link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
 <link href="{{asset('assets/css/invoice.css')}}" rel="stylesheet">
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -87,7 +87,7 @@
                     <!-- /.col -->
                 </div>
 
-                <div class="mt-4">
+                <!-- <div class="mt-4">
                     <div class="row text-600 text-white bgc-default-tp1 py-25">
                         <div class="d-none d-sm-block col-1">#</div>
                         <div class="col-9 col-sm-5">Description</div>
@@ -95,16 +95,16 @@
                         <div class="d-none d-sm-block col-sm-2">Unit Price</div>
                         <div class="col-2">Amount</div>
                     </div>
-
+@foreach($data as $invoice)
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25">
                             <div class="d-none d-sm-block col-1">1</div>
-                            <div class="col-9 col-sm-5">Domain registration</div>
+                            <div class="col-9 col-sm-5">{{$invoice->service->parent->stype_name}}</div>
                             <div class="d-none d-sm-block col-2">2</div>
                             <div class="d-none d-sm-block col-2 text-95">$10</div>
                             <div class="col-2 text-secondary-d2">$20</div>
                         </div>
-
+@endforeach
                         <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
                             <div class="d-none d-sm-block col-1">2</div>
                             <div class="col-9 col-sm-5">Web hosting</div>
@@ -130,35 +130,32 @@
                         </div>
                     </div>
 
-                    <div class="row border-b-2 brc-default-l2"></div>
+                    <div class="row border-b-2 brc-default-l2"></div> -->
 
                     <!-- or use a table instead -->
-                    <!--
+                    
             <div class="table-responsive">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                     <thead class="bg-none bgc-default-tp1">
                         <tr class="text-white">
-                            <th class="opacity-2">#</th>
+                            <th class="opacity-2"></th>
                             <th>Description</th>
-                            <th>Qty</th>
-                            <th>Unit Price</th>
                             <th width="140">Amount</th>
                         </tr>
                     </thead>
-
+                   
                     <tbody class="text-95 text-secondary-d3">
-                        <tr></tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Domain registration</td>
-                            <td>2</td>
-                            <td class="text-95">$10</td>
-                            <td class="text-secondary-d2">$20</td>
-                        </tr> 
+                    @foreach($data as $invoice)
+                        <tr id="{{$invoice->service->parent->stype_name}}">
+                            <td> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
+                            <td>{{$invoice->service->parent->stype_name}}</td>
+                            <td class="text-secondary-d2">{{$invoice->amountafterdiscount}}</td>
+                        </tr>
+                        @endforeach 
                     </tbody>
                 </table>
             </div>
-            -->
+            
 
                     <div class="row mt-3">
                         <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
@@ -171,16 +168,16 @@
                                     SubTotal
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-120 text-secondary-d1">$2,250</span>
+                                    <span class="text-120 text-secondary-d1"> <input type="text" name="subtotal" class="form-control" id="subtotal" value="{{$sum}}" readonly></span>
                                 </div>
                             </div>
 
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    Tax (10%)
+                                    Tax (13%)
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-110 text-secondary-d1">$225</span>
+                                    <span class="text-110 text-secondary-d1" ><input type="text" name="" class="form-control" id="vat"  value="13" readonly> </span>
                                 </div>
                             </div>
 
@@ -189,7 +186,7 @@
                                     Total Amount
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">$2,475</span>
+                                    <span class="text-150 text-success-d3 opacity-2"><input type="text" name="" class="form-control" id="vatsubtotal" value="0.00" readonly> </span>
                                 </div>
                             </div>
                         </div>
@@ -209,3 +206,45 @@
 </div>
 </div>
 @endsection
+
+
+@section("script")
+<script>
+
+$(document).ready(function() {
+
+    var subtotal = $("#subtotal").val();
+         
+var vatpaid = ((13*subtotal)/100);
+
+$('#vat').val(vatpaid);
+
+      
+
+      var vstotal = (parseFloat(subtotal)+parseFloat(vatpaid)).toFixed(1);
+      $('#vatsubtotal').val(vstotal);
+      });
+
+  
+
+</script>
+
+<script>
+function checkMe(x){
+               
+               var id = x.dataset.servicename;
+               var form = document.getElementById(id);
+               if (x.clicked == true){
+                   form.style.display = "inline"; 
+               }
+               else{
+                   form.remove();
+               }
+               
+   
+}
+</script>
+
+@endsection
+
+

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use App\Models\setting;
+use App\Models\account;
+use App\Models\companyservice;
+use App\Models\service;
+use App\Models\servicetype;
 use Carbon\Carbon;
 
 class settingController extends Controller
@@ -90,10 +94,16 @@ public function settings(){
         return view ('webtech.setting',['data'=>$data]);
     }
 
-    public function viewInvoice(){
-      
+    public function viewInvoice($id){
+        $data = companyservice::with('account','service.parent')->where('account_id',$id)->get();
+        if($data == NULL){
+            return redirect('all-account');
+        }
+        $sum = companyservice::with('account','service.parent')->where('account_id',$id)->sum('amountafterdiscount');
+        return view ('webtech.invoice',['data'=>$data,'sum'=>$sum]);
+        
        
-            return view ('webtech.invoice');
+          
         }
 
 }

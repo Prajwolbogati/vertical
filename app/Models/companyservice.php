@@ -14,7 +14,7 @@ class companyservice extends Model
     protected $primaryKey = 'compservice_id';
 
     protected $fillable = [
-        'compservice_id',
+        
         'status',
         'vat_amount',
         'active_date',

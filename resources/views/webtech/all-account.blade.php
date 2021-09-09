@@ -105,7 +105,7 @@
                                                     <li>
                                                         <hr class="dropdown-divider">
                                                     </li>
-                                                    <li><a class="dropdown-item" href="{{ url('viewinvoice') }}">Print Invoice</a>
+                                                    <li><a class="dropdown-item" href="{{url('viewinvoice')}}/{{$account->account_id}}">Print Invoice</a>
                                                     </li>
                                                    
                                                 </ul>
@@ -192,6 +192,7 @@ function format(values) {
 
   <script>
 //   $(document).ready(function () {
+
 				var a = [@foreach($datass as $k => $info)
    '{{ $info -> account -> account_id }}',
 @endforeach ]
