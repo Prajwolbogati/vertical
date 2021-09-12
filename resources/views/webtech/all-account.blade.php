@@ -193,6 +193,9 @@ function format(values) {
   <script>
 //   $(document).ready(function () {
 
+	
+
+
 				var a = [@foreach($datass as $k => $info)
    '{{ $info -> account -> account_id }}',
 @endforeach ]

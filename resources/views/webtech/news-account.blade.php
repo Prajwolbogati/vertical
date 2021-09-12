@@ -15,7 +15,7 @@
                 <form class="row g-3" method="post" action="{{url('addaccount')}}">
 				{{csrf_field()}}
                 <div class="row">
-                        <div class="col-xl-6 mx-auto">
+                        <div class="col-xl-5 mx-auto">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -27,54 +27,55 @@
                                     </div>
                                     <hr/>
                                    
-                       <div class="row">
-                                        <div class="col-md-6">
+                       
+                                        <div class="col-md-12">
                                             <label for="domainname"  class="form-label">Domain Name</label>
                                             <input type="text" class="form-control" name="domainname" placeholder="Domain Name">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="hostingquota" class="form-label">Hosting Quota</label>
                                             <input type="text" class="form-control" name="hostingquota" placeholder="Hosting Quota">
                                         </div>
                                    
-</div>
-<div class="row">      
-                                        <div class="col-md-6">
+
+                                      
+                                        <div class="col-md-12">
                                             <label for="fullname" class="form-label">Full Name</label>
                                             <input type="text" class="form-control" name="fullname" placeholder="Full Name">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="companyname" class="form-label">Company Name</label>
                                             <input type="text" class="form-control" name="companyname" placeholder="Company Name">
                                         </div>
-</div>
-<div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-12">
                                             <label for="companyaddress" class="form-label">Company Address</label>
                                             <input type="text" class="form-control" name="companyaddress" placeholder="Company Address">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-12">
                                             <label for="phone_num" class="form-label">Company Number</label>
                                             <input type="text" class="form-control" name="phone_num" placeholder="Company Number">
                                         </div>
-
-</div>
-<div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="email" class="form-label">Company Email</label>
                                             <input type="email" class="form-control" name="email" placeholder="Company Email">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="marketby" class="form-label">Market By</label>
                                             <input type="text" class="form-control" name="marketby" placeholder="Market By">
                                         </div>
+                                     
 
+                                </div>
 </div>
-<hr>
-<div class="row">
-<div class="col-md-12">
-<div class="border p-4 rounded">
-<div class="card-title d-flex align-items-center">
+</div>
+</div>
+
+<div class="col-xl-5 mx-auto">
+                           
+                            <div class="card border-top border-0 border-4 border-primary">
+                                <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                         </div>
                                         <h5 class="mb-0 text-primary">General Info</h5>
@@ -83,15 +84,16 @@
                                     <div class="row g-3">
                                 <textarea id="mytextareas" name="detail">Hello, World!</textarea>
 </div>
+                           
 </div>
-</div>                                 
+</div>
+</div>
 </div>
 
-<hr>
-<div class= "row">
-<div class="col-md-12">
+<div class="col-xl-5 mxr-auto">
                            
-                         
+                            <div class="card border-top border-0 border-4 border-primary">
+                                <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
@@ -101,7 +103,7 @@
                                     <hr/>
                                     <div class="row g-3">
                                     @foreach($services as $key=>$ser)
-                                    <div class="col-md-4 form-check form-switch">
+                                    <div class="form-check form-switch">
                                   
                                         <label class="form-check-label" for="vat_amount">{{$ser->stype_name}}</label>
                                         <input class="form-check-input" type="checkbox" data-serviceName="{{$ser->stype_name}}" onclick="checkMe(this)"/>
@@ -113,17 +115,16 @@
 </div>
 </div>
 </div>
-                              
 </div>
+              
 </div>
-</div>
-</div>                        
+                            
 
- <div class=" col-xl-6 serviceForm" id="serfrm" style="justify-content: flex-start">
+                          
+
+ <div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 @foreach($services as $key=>$ser)
-@if($key >= 0 && $key < 3)
-
-                        <div class="col-xl-12" id="{{$ser->stype_name}}" style="display: none">
+                        <div class="col-xl-4" id="{{$ser->stype_name}}" style="display: none">
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
@@ -144,15 +145,15 @@
                                             <label for="exp_date" class="form-label">Expiry Date</label>
                                             <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date">
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-12">
                                             <label for="amount" class="form-label">Amount</label>
                                             <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount">
                                         </div>
-                                        <div class="col-md-3">
-                                            <label for="discount" class="form-label">Discount</label>
+                                        <div class="col-md-12">
+                                            <label for="discount" class="form-label">Discount Amount</label>
                                             <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                        
                                             <label for="stype_id" class="form-label">Choose {{$ser->stype_name}}</label>
                                             <select class="form-select" name="service_id[{{$key}}]">
@@ -176,69 +177,6 @@
 
 
 </div>
-@endif
-@endforeach
-</div>
-</div>
-
-
-<div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
-@foreach($services as $key=>$ser)
-@if($key >= 3)
-                        <div class="col-xl-6" id="{{$ser->stype_name}}" style="display: none">
-                           
-                            <div class="card border-top border-0 border-4 border-primary">
-                                <div class="card-body">
-                                <div class="border p-4 rounded">
-                                    <div class="card-title d-flex align-items-center">
-                                        <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
-                                        </div>
-                                        <h5 class="mb-0 text-primary">{{$ser->stype_name}}</h5>
-                                     
-                                    </div>
-                                    <hr/>
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <label for="active_date" class="form-label">Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="exp_date" class="form-label">Expiry Date</label>
-                                            <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="amount" class="form-label">Amount</label>
-                                            <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="discount" class="form-label">Discount</label>
-                                            <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount">
-                                        </div>
-                                        <div class="col-md-6">
-                                       
-                                            <label for="stype_id" class="form-label">Choose {{$ser->stype_name}}</label>
-                                            <select class="form-select" name="service_id[{{$key}}]">
-                                         
-                                            <option value="">Choose ...</option>
-                                            @foreach($ser->child as $servic)
-                                            <option value="{{$servic->service_id}}">{{$servic->service_name}}</option>
-                                            @endforeach
-                                           
-                                        </select>
-                                       
-                                        </div>
-                                    
-</div> 
-                                      
-                                  
-                                </div>
-</div>
-
-</div>
-
-
-</div>
-@endif
 @endforeach
 </div>
 
@@ -253,6 +191,9 @@
                                         </div>
                                         <div class="col">
                                             <button type="button" class="btn btn-danger px-4">Cancel</button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-secondary px-4">Print Invoice</button>
                                         </div>
                                         
                                     </div>
@@ -287,7 +228,7 @@
 	<script>
         	
             function checkMe(x){
-              
+                debugger
                
                 var id = x.dataset.servicename;
                 var form = document.getElementById(id);
