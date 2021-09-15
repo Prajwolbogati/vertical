@@ -220,7 +220,7 @@ $arr[] = $single->service->parent->stype_id;
 
 
 
-<div class="col-xl-6 serviceForm" id="serfrm" style="justify-content: flex-start">
+<div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 
 <!-- @php
 $arr = []
@@ -233,7 +233,7 @@ $arr[] = $single->service->parent->stype_id;
 @endphp
 
 <input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
-                        <div class="col-xl-12" id="{{$single->service->parent->stype_name}}" >
+                        <div class="col-md-6" id="{{$single->service->parent->stype_name}}" >
                            
                             <div class="card border-top border-0 border-4 border-primary">
                                 <div class="card-body">
