@@ -102,6 +102,10 @@ Route::post('delete/{id}', [accountController::class, 'Delete']);
 
 Route::get('delete/{id}', [clientController::class, 'deleteClient']);
 
+Route::get('delete/{id}', [accountController::class, 'delete']);
+
+Route::get('delete/{id}', [companyserviceController::class, 'delete']);
+
 Route::get('exp-15', [accountController::class, 'Exp15']);
 
 Route::get('exp-7', [accountController::class, 'Exp7']);

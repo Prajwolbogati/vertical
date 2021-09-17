@@ -66,7 +66,7 @@ public function Deleted($stype_id){
     
    
 
-    return view ('webtech.status',['data'=>$data]);
+    return view ('webtech.deletestatus',['data'=>$data]);
     
 }
 public function Suspend($stype_id){
@@ -80,6 +80,15 @@ public function Suspend($stype_id){
     return view ('webtech.status',['data'=>$data]);
     
 }
+
+public function delete($id){
+    $comp = companyservice::find($id);
+    $comp->delete();
+    session::flash('message','Data deleted successfully');
+    return redirect()->back();
+    
+    return redirect()->back();
+        }
 
 
 

@@ -197,6 +197,15 @@ $companyservice->save();
         
         }
 
+        public function delete($id){
+            $comp = companyservice::find($id);
+            $comp->delete();
+            session::flash('message','Data deleted successfully');
+            return redirect()->back();
+            
+            return redirect()->back();
+                }
+
 
         public function Exp15(){
             $data = companyservice::with('account','service.parent')
@@ -233,7 +242,7 @@ $companyservice->save();
             
            
         
-            return view ('webtech.accountview',['data'=>$data]);
+            return view ('webtech.deleteaccount',['data'=>$data]);
             
         }
         public function Suspend(){

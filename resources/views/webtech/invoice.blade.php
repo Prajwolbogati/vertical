@@ -91,8 +91,8 @@
                                                 <tr id="{{$invoice->service->parent->stype_name}}">
 												<td class="no"> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
                             <td class="text-left">{{$invoice->service->parent->stype_name}}</td>
-                            <td class="unit">$0.00</td>
-                                                    <td class="qty">100</td>
+                            <td class="unit"></td>
+                                                    <td class="qty"></td>
                             <td class="total amount" id="sexy"value="{{$invoice->amountafterdiscount}}">{{$invoice->amountafterdiscount}}</td>
                                                 </tr>
 												@endforeach 
@@ -105,7 +105,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"></td>
-                                                    <td colspan="2">TAX 25%</td>
+                                                    <td colspan="2">TAX 13%</td>
                                                     <td id="vat"  value="13"></td>
                                                 </tr>
                                                 <tr>
