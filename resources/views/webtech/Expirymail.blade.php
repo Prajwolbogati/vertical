@@ -9,11 +9,11 @@
 <body>
     @foreach($remainder as $remind)
   
-{{$remind['exp_date']}}
 
-{{$remind['account']['domainname']}}
 
-<p>Dear, sir your domain is expiring soon. Please, renew it soon.</p>
+
+
+<p>Dear, {{$remind['account']['fullname']}} sir your domain {{$remind['account']['domainname']}} for your company {{$remind['account']['companyname']}} is expiring on {{$remind['exp_date']}}. Please, renew it soon.</p>
 
 
     @endforeach

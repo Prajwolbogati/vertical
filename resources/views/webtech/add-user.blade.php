@@ -64,6 +64,7 @@
                                             <label for="role" class="col-sm-3 col-form-label">Choose Role</label>
                                             <div class="col-sm-9">
                                             <select class="form-select mb-3"  name="role">
+                                            <option value=""> Choose role</option>
                                                 <option value="admin">Admin</option>
                                                 <option value="user">User</option>
                                                 <option value="sales">Sales</option>
@@ -72,18 +73,7 @@
                                             </div>
                                         </div>
                                     
-                                        <div class="row mb-3">
-                                            <label for="permissions" class="col-sm-3 col-form-label">Choose Permissions</label>
-                                            <div class="col-sm-9">
-                                               <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple" name="permissions[]">
-                                                <option value="create account">Create</option>
-                                                <option value="edit account">Edit</option>
-                                                <option value="delete account">Delete</option>
-                                                <option value="view account">View</option>
-                                               
-</select>
-                                            </div>
-                                        </div>
+                                       
                                     
                                       
                                        

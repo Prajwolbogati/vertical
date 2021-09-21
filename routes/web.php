@@ -118,7 +118,12 @@ Route::get('suspend', [accountController::class, 'Suspend']);
 
 Route::get('viewrole', [roleController::class, 'viewRole']);
 
+
+Route::get('viewuser', [roleController::class, 'viewUser']);
+
 Route::get('addrole', [roleController::class, 'addRole']);
+
+Route::get('profileupdate', [roleController::class, 'profileupdate']);
 
 
 Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);

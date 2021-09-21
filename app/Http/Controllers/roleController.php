@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -22,6 +23,18 @@ class RoleController extends Controller
         return view('webtech.role', ['roles' => $roles]);
     }
 
+
+    public function viewUser()
+    {
+       $data=User::latest()->get();
+       $data->transform(function($data){
+        $data->role = $data->getRoleNames()->first();
+        $data->userPermissions = $data->getPermissionNames();
+        return $data;
+    });
+        return view('webtech.viewuser',['data' => $data]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,6 +43,12 @@ class RoleController extends Controller
     public function addRole()
     {
         return view('webtech.addrole');
+    }
+
+
+    public function profileupdate()
+    {
+        return view('webtech.profile-update');
     }
 
     /**

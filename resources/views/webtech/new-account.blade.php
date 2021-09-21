@@ -91,21 +91,7 @@
                                 <textarea id="mytextareas" name="detail">Hello, World!</textarea>
 </div>
 <hr>
-                           
 
-
-
-
-
-                           
-                           
-
-
-
-
-                           
-                               
-                               
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                         </div>

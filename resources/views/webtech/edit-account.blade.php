@@ -1,3 +1,4 @@
+
 @extends("layouts.app")
 
 @section("style")
@@ -16,11 +17,12 @@
 				{{csrf_field()}}
                 <input type="hidden" name="account_id" value="{{$singledata->account_id}}">
             
-                <div class="row">
-                        <div class="col-xl-5 mx-auto">
+                
+                        <div class="add">
                            
                             <div class="card border-top border-0 border-4 border-primary">
-                                <div class="card-body">
+                            <div class="row">
+                            <div class="col-xl-6 card-body">
                                 <div class="border p-4 rounded">
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
@@ -29,50 +31,55 @@
                                     </div>
                                     <hr/>
                                    
-                              
-                                        <div class="col-md-12">
+                              <div class="row">
+                                        <div class="col-md-6">
                                             <label for="domainname"  class="form-label">Domain Name</label>
                                             <input type="text" class="form-control" name="domainname" placeholder="Domain Name" value="{{$singledata->domainname}}">
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="hostingquota" class="form-label">Hosting Quota</label>
                                             <input type="text" class="form-control" name="hostingquota" placeholder="Hosting Quota" value="{{$singledata->hostingquota}}">
                                         </div>
-                                        <div class="col-md-12">
+</div>
+<div class="row">
+                                        <div class="col-md-6">
                                             <label for="fullname" class="form-label">Full Name</label>
                                             <input type="text" class="form-control" name="fullname" placeholder="Full Name" value="{{$singledata->fullname}}">
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="companyname" class="form-label">Company Name</label>
                                             <input type="text" class="form-control" name="companyname" placeholder="Company Name" value="{{$singledata->companyname}}">
                                         </div>
-                                        <div class="col-12">
+</div>
+<div class="row">
+                                        <div class="col-6">
                                             <label for="companyaddress" class="form-label">Company Address</label>
                                             <input type="text" class="form-control" name="companyaddress" placeholder="Company Address" value="{{$singledata->companyaddress}}">
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <label for="phone_num" class="form-label">Company Number</label>
                                             <input type="text" class="form-control" name="phone_num" placeholder="Company Number" value="{{$singledata->phone_num}}">
                                         </div>
-                                        <div class="col-md-12">
+</div>
+<div class="row">
+                                        <div class="col-md-6">
                                             <label for="email" class="form-label">Company Email</label>
                                             <input type="email" class="form-control" name="email" placeholder="Company Email" value="{{$singledata->email}}">
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="marketby" class="form-label">Market By</label>
                                             <input type="text" class="form-control" name="marketby" placeholder="Market By" value="{{$singledata->marketby}}">
                                         </div>
-                                     
+</div>
+</div>
+</div>                                  
 
-                                </div>
-</div>
-</div>
-</div>
+                              
 
-<div class="col-xl-5 mx-auto">
+
+<div class="col-xl-5 card-body">
                            
-                            <div class="card border-top border-0 border-4 border-primary">
-                                <div class="card-body">
+                           
                                 <div class="border p-4 rounded">
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
@@ -83,17 +90,8 @@
                                     <div class="row g-3">
                                 <textarea id="mytextareas" name="detail"  >{{$singledata->detail}}</textarea>
 </div>
-                           
-</div>
-</div>
-</div>
-</div>
+<hr>                        
 
-<div class="col-xl-5 mxr-auto">
-                           
-                            <div class="card border-top border-0 border-4 border-primary">
-                                <div class="card-body">
-                                <div class="border p-4 rounded">
                                     <div class="card-title d-flex align-items-center">
                                         <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                         </div>
@@ -102,14 +100,14 @@
                                     <hr/>
                                     <div class="row g-3">
                                     @foreach($services as $key=>$ser)
-                                    <div class="form-check form-switch">
+                                    <div class=" col-md-4 form-check form-switch">
                                   
                                         <label class="form-check-label" >{{$ser->stype_name}}</label>
                                         <input class="form-check-input" type="checkbox" data-serviceName="{{$ser->stype_name}}" onclick="checkMe(this)" />
                                       
                                     </div> 
                                     @endforeach
-</div>
+
                        
 </div>
 </div>
@@ -117,13 +115,11 @@
 </div>
               
 </div>
-                            
+</div>
 
-                          
-
-
-
-<div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
+              
+             
+              <div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 
 <!-- @php
 $arr = []
@@ -361,3 +357,9 @@ $arr[] = $single->service->parent->stype_id;
 	@endsection
 
   
+                                               
+
+                
+
+
+

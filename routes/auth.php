@@ -11,10 +11,14 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerController;
 
-Route::get('/adduser', [registerController::class, 'addUser']);
+Route::get('/adduser', [registerController::class, 'addUser'])
+->middleware('auth')
+->name('register');
               
 
-Route::post('/register', [registerController::class, 'store']);
+Route::post('/register', [registerController::class, 'store'])
+->middleware('auth');
+
                
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
