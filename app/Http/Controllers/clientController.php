@@ -105,7 +105,7 @@ public function editClient($id){
             session::flash('message','Data deleted successfully');
             return redirect()->back();
             
-            return redirect()->back();
+            
                 }
         
         

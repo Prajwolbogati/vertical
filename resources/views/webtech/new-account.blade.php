@@ -224,7 +224,7 @@
 	<script>
         	
             function checkMe(x){
-                debugger
+                
                
                 var id = x.dataset.servicename;
                 var form = document.getElementById(id);

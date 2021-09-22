@@ -100,7 +100,7 @@
                                     <hr/>
                                     <div class="row g-3">
                                     @foreach($services as $key=>$ser)
-                                    <div class=" col-md-4 form-check form-switch">
+                                    <div class=" col-md-3 form-check form-switch">
                                   
                                         <label class="form-check-label" >{{$ser->stype_name}}</label>
                                         <input class="form-check-input" type="checkbox" data-serviceName="{{$ser->stype_name}}" onclick="checkMe(this)" />

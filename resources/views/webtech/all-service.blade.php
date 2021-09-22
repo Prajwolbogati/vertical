@@ -43,9 +43,26 @@
                             @foreach($data as $service)
                                 <tr>
                                 <td>{{$service->service_name}}</td>
-                               <td> <a href="{{url('edit-servicetype')}}/{{$service->parent->stype_id}}">{{$service->parent->stype_name}}</a>
-                            
-                               <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                               <td>
+                               <div class="d-flex order-actions justify-content-between">
+                                   <div class="service">
+                               {{$service->parent->stype_name}}
+</div>
+                               <div class=" button d-flex order-actions">
+												<a href="{{url('edit-servicetype')}}/{{$service->parent->stype_id}}" class=""><i class='bx bxs-edit'></i></a>
+												<!-- <a href="javascript:;" class="ms-3"><i class='bx bxs-trash'></i></a> -->
+                                                
+                                                <form action="{{url('deletestype')}}/{{$service->parent->stype_id}} ">
+                      
+                        @csrf
+                      
+                        <button class="dropdown-item btn btn-xs btn-danger"><i class='bx bxs-trash'></i></button>
+                    </form>
+                                                
+
+</div>
+											</div>
+                              
                             </td>
                               
                                <td>
@@ -58,7 +75,13 @@
                                                 <li><a class="dropdown-item" href="{{url('edit-service')}}/{{$service->service_id}}">Edit</a>
                                                 </li>
                                                 
-                                                <li><a class="dropdown-item" href="">Delete</a>
+                                                <li>
+                                                <form action="{{url('deleteservice')}}/{{$service->service_id}} ">
+                      
+                        @csrf
+                      
+                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                    </form>
                                                 </li>
                                      
                                                

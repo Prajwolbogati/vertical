@@ -67,7 +67,8 @@
 
 
                                                         <li>
-                                                            <form action="{{ url('update/' . $account->compservice_id) }} "
+                                                            <form
+                                                                action="{{ url('update/' . $account->compservice_id) }} "
                                                                 method="post">
 
                                                                 @csrf
@@ -80,10 +81,11 @@
 
                                                         <li>
                                                             <form
-                                                                action="{{ url('delete') }}/{{ $account->compservice_id }} ">
+                                                                action="{{ url('update/' . $account->compservice_id) }} "
+                                                                method="post">
 
                                                                 @csrf
-
+                                                                <input type="hidden" name="status" value="delete">
                                                                 <button
                                                                     class="dropdown-item btn btn-xs btn-danger">Delete</button>
                                                             </form>

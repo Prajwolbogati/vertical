@@ -19,11 +19,28 @@ Route::get('/adduser', [registerController::class, 'addUser'])
 Route::post('/register', [registerController::class, 'store'])
 ->middleware('auth');
 
-               
+Route::post('update', [registerController::class, 'postProfile'])
+->middleware('auth');  
+
+
+Route::post('updateuser/{id}', [registerController::class, 'updateUser'])
+->middleware('auth'); 
+
+Route::get('deleteuser/{id}', [registerController::class, 'deleteUser'])
+->middleware('auth'); 
+
+Route::get('edituser/{id}', [registerController::class, 'editUser'])
+->middleware('auth');  
+
+Route::post('change', [registerController::class, 'Change'])
+->middleware('auth');
+
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 ->middleware('guest')
 ->name('login');
+
+
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 

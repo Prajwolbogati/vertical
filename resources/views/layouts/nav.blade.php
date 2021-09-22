@@ -122,6 +122,8 @@
                         <div class="menu-title">{{$ser->stype_name}}</div>
                     </a>
                     <ul>
+                    <li> <a href="{{url('all')}}/{{$ser->stype_id}}"><i class="bx bx-right-arrow-alt"></i>View All</a>
+                        </li>
                         <li> <a href="{{url('exp-15')}}/{{$ser->stype_id}}"><i class="bx bx-right-arrow-alt"></i>Expire in 15 days</a>
                         </li>
                         <li> <a href="{{ url('exp-7') }}/{{$ser->stype_id}}"><i class="bx bx-right-arrow-alt"></i>Expire in 7 days</a>

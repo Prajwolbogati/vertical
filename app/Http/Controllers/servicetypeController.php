@@ -63,6 +63,14 @@ $service->stype_name=$req->stype_name;
         
                 return view ('webtech.edit-servicetype',['data'=>$data]);
             }
-
+            public function deleteStype($id){
+                $stype = servicetype::find($id);
+                $stype->delete();
+                session::flash('message','Data deleted successfully');
+                return redirect()->back();
+                
+              
+                    }
+            
 
 }

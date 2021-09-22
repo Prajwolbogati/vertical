@@ -30,7 +30,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="tab-icon"><i class='fadeIn animated bx bx-chevron-down-circle font-18 me-1'></i>
                                                     </div>
-                                                    <div class="tab-title">Add Services</div>
+                                                    <div class="tab-title">Add Service Type</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -39,7 +39,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="tab-icon"><i class='fadeIn animated bx bx-chevron-down-circle font-18 me-1'></i>
                                                     </div>
-                                                    <div class="tab-title">Add Service Type</div>
+                                                    <div class="tab-title">Add Services</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -58,7 +58,7 @@
                                        <div class="card-title d-flex align-items-center">
                                            <div><i class="bx bxs-user me-1 font-22 text-info"></i>
                                            </div>
-                                           <h5 class="mb-0 text-info">Add Services</h5>
+                                           <h5 class="mb-0 text-info">Add Service Type</h5>
                                        </div>
                                        <form class="row g-3" method="post" action="{{url('addservice')}}">
                {{csrf_field()}}
@@ -113,7 +113,7 @@
                                        <div class="card-title d-flex align-items-center">
                                            <div><i class="bx bxs-user me-1 font-22 text-info"></i>
                                            </div>
-                                           <h5 class="mb-0 text-info">Add Service Type</h5>
+                                           <h5 class="mb-0 text-info">Add Services</h5>
                                        </div>
                                        <form class="row g-3" method="post" action="{{url('addservicetype')}}">
                {{csrf_field()}}

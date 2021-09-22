@@ -49,7 +49,7 @@ class settingController extends Controller
         $setting->companyaddress=$req->companyaddress;
         $setting->companyphone=$req->companyphone;
         $setting->companyemail=$req->companyemail;
-        $setting->image=$req->file('image');
+        $setting->image=$req->image;
        
      
     
@@ -61,6 +61,7 @@ class settingController extends Controller
      
         
         $setting['created_at'] = date('Y-m-d H:i:s');
+       
         $setting->save();
         session::flash('message','Data updated successfully');
         return redirect()->back();

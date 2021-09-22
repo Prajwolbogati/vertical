@@ -107,6 +107,23 @@ a {
 }
 
 
+.button {
+
+	margin-left: 25px;
+}
+
+.label {
+	margin-top: -15px;
+	margin-bottom: -10px;
+	
+}
+
+.infos {
+	margin-top: -15px;
+	
+}
+
+
 
 .page-content {
 	padding: 1.5rem 1.5rem 0.7rem 0.5rem

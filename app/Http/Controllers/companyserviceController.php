@@ -15,7 +15,16 @@ class companyserviceController extends Controller
 
 
 
-
+    public function all($stype_id){
+        $data = companyservice::with(['account','service.parent'])
+        ->whereHas('service.parent', function($q) use($stype_id) {
+            $q->where('stype_id', '=', $stype_id);
+        })
+        ->get();
+       
+        return view ('webtech.all',['data'=>$data]);
+        
+    }
 
 
 

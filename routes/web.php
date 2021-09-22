@@ -48,6 +48,8 @@ Route::get('allAccount', [accountController::class, 'allAccount']);
 
 Route::get('exp-15/{stype_id}', [companyserviceController::class, 'Exp15']);
 
+Route::get('all/{stype_id}', [companyserviceController::class, 'all']);
+
 Route::get('exp-7/{stype_id}', [companyserviceController::class, 'Exp7']);
 
 Route::get('expired/{stype_id}', [companyserviceController::class, 'Expired']);
@@ -71,6 +73,8 @@ Route::post('addservice', [serviceController::class, 'insertdata'])->middleware(
 Route::get('allClient', [clientController::class, 'allClient']);
 
 Route::get('edit-client/{id}', [clientController::class, 'editClient']);
+
+
 
 Route::post('updateclient', [clientController::class, 'updateData']);
 
@@ -102,6 +106,10 @@ Route::post('delete/{id}', [accountController::class, 'Delete']);
 
 Route::get('delete/{id}', [clientController::class, 'deleteClient']);
 
+Route::get('deleteservice/{id}', [serviceController::class, 'deleteService']);
+
+Route::get('deletestype/{id}', [servicetypeController::class, 'deleteStype']);
+
 Route::get('delete/{id}', [accountController::class, 'delete']);
 
 Route::get('delete/{id}', [companyserviceController::class, 'delete']);
@@ -129,6 +137,10 @@ Route::get('profileupdate', [roleController::class, 'profileupdate']);
 Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);
 
 Route::post('postRole', [roleController::class, 'store']);
+
+
+
+
 
 // Route::get('send-email', [MailController::class, 'sendEmail']);
 

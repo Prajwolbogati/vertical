@@ -52,8 +52,8 @@
 
                                <td>{{$user->role}}</td>
 
-                               <td></td>
-                               <td></td>
+                               <td>{{$user->phone}}</td>
+                               <td>{{$user->address}}</td>
                                <td>
                                     <div class="col">
                                         <div class="btn-group">
@@ -61,49 +61,18 @@
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="">Edit</a>
+                                                <li><a class="dropdown-item" href="{{url('edituser')}}/{{$user->id}}">Edit</a>
                                                 </li>
                                                 
                                      
-                                                <li>
-                                                <form action=" " method="post">
-                        
-                        @csrf
-                        <input type="hidden" name="clientstatus" value="Successed">
-                        <button class="dropdown-item btn btn-xs btn-danger">Successed</button>
-                    </form>
-                    
-                                                </li>
+
+                                               
+
+
+                                              
 
                                                 <li>
-                                                <form action=" " method="post">
-                      
-                        @csrf
-                        <input type="hidden" name="clientstatus" value="Call Back">
-                        <button class="dropdown-item btn btn-xs btn-danger">Call Back</button>
-                    </form>
-                                                </li>
-
-                                                <li>
-                                                <form action=" " method="post">
-                      
-                        @csrf
-                        <input type="hidden" name="clientstatus" value="Interested">
-                        <button class="dropdown-item btn btn-xs btn-danger">Interested</button>
-                    </form>
-                                                </li>
-
-                                                <li>
-                                                <form action=" " method="post">
-                      
-                        @csrf
-                        <input type="hidden" name="clientstatus" value="Not Interested">
-                        <button class="dropdown-item btn btn-xs btn-danger">Not Interested</button>
-                    </form>
-                                                </li>
-
-                                                <li>
-                                                <form action="">
+                                                <form action="{{url('deleteuser')}}/{{$user->id}}">
                       
                         @csrf
                       

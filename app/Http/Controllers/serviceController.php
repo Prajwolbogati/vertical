@@ -63,4 +63,15 @@ public function editService($id){
             return view ('webtech.edit-service',['singledata'=>$singledata,'data'=>$data]);
         }
 
+        
+        public function deleteService($id){
+            $service = service::find($id);
+            $service->delete();
+            session::flash('message','Data deleted successfully');
+            return redirect()->back();
+            
+          
+                }
+        
+
 }
