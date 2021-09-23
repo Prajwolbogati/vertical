@@ -97,20 +97,30 @@ class RoleController extends Controller
 
 
 
-    public function updateRole(Request $request)
+    public function updateRole(Request $request, $id)
 
 
     {
+      
+
         $this->validate($request, [
-            'name' => 'string|unique:roles',
             
+
+            'name' => 'string|unique:roles,name,'.$id
         ]);
 
-        $role = $this->role::find($request->id);
+        $role = $this->role::findOrFail($id);
         $role->name=$request->name;   
        
 
-        if($request->has("permissions")){
+      
+
+
+        if($request->has('permissions')){
+            foreach($role->permissions as $permssion){
+                $role->revokePermissionTo($permssion);
+            }
+
             $role->givePermissionTo($request->permissions);
         }
 $role->save();

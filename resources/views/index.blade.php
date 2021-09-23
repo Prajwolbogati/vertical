@@ -1,20 +1,21 @@
 @extends("layouts.app")
 @section("style")
     <link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+    <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section("wrapper")
     <div class="page-wrapper">
         <div class="page-content">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5">
                 <div class="col">
                     <div class="card radius-10 border-start border-0 border-3 border-info">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Orders</p>
-                                    <h4 class="my-1 text-info">4805</h4>
-                                    <p class="mb-0 font-13">+2.5% from last week</p>
+                                    <p class="mb-0 text-secondary">Exp in 15 days</p>
+                                    <h4 class="my-1 text-info">{{$fifteen}}</h4>
+                                    
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
                                 </div>
@@ -27,9 +28,9 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Revenue</p>
-                                    <h4 class="my-1 text-danger">$84,245</h4>
-                                    <p class="mb-0 font-13">+5.4% from last week</p>
+                                    <p class="mb-0 text-secondary">Exp in 7 days</p>
+                                    <h4 class="my-1 text-danger">{{$seven}}</h4>
+                                  
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
                                 </div>
@@ -42,9 +43,25 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Bounce Rate</p>
-                                    <h4 class="my-1 text-success">34.6%</h4>
-                                    <p class="mb-0 font-13">-4.5% from last week</p>
+                                    <p class="mb-0 text-secondary">Expired</p>
+                                    <h4 class="my-1 text-success">{{$expired}}</h4>
+                                 
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Suspended</p>
+                                    <h4 class="my-1 text-success">{{$suspend}}</h4>
+                                  
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
                                 </div>
@@ -57,9 +74,9 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Customers</p>
-                                    <h4 class="my-1 text-warning">8.4K</h4>
-                                    <p class="mb-0 font-13">+8.4% from last week</p>
+                                    <p class="mb-0 text-secondary">Deleted</p>
+                                    <h4 class="my-1 text-warning">{{$delete}}</h4>
+                                  
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
                                 </div>
@@ -67,98 +84,107 @@
                         </div>
                     </div>
                 </div>
-            </div><!--end row-->
-<!-- 
+            </div>
+ 
             <div class="row">
-                <div class="col-md-12 col-lg-8">
-                    <div class="card radius-10">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Sales Overview</h6>
-                                </div>
-                                <div class="dropdown ms-auto">
-                                    <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="javascript:;">Action</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                <div class="col-xl-12 indexview">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-center">
+                            <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                             </div>
-                            <div class="d-flex align-items-center ms-auto font-13 gap-2 my-3">
-                                <span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1" style="color: #14abef"></i>Sales</span>
-                                <span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1" style="color: #ffc107"></i>Visits</span>
-                            </div>
-                            <div class="chart-container-1">
-                                <canvas id="chart1"></canvas>
-                            </div>
+                            <h5 class="mb-0 text-primary">Expire In 7 Days</h5>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3 g-0 row-group text-center border-top">
-                            <div class="col">
-                                <div class="p-3">
-                                    <h5 class="mb-0">24.15M</h5>
-                                    <small class="mb-0">Overall Visitor <span> <i class="bx bx-up-arrow-alt align-middle"></i> 2.43%</span></small>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-3">
-                                    <h5 class="mb-0">12:38</h5>
-                                    <small class="mb-0">Visitor Duration <span> <i class="bx bx-up-arrow-alt align-middle"></i> 12.65%</span></small>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="p-3">
-                                    <h5 class="mb-0">639.82</h5>
-                                    <small class="mb-0">Pages/Visit <span> <i class="bx bx-up-arrow-alt align-middle"></i> 5.62%</span></small>
-                                </div>
-                            </div>
+                        <hr/>
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped table-bordered display nowrap" style="width:100%">
+                                <thead>
+                               
+                                    <tr>
+                                <th></th>
+                                        <th>Domain Name</th>
+                                        
+                                        <th>Days Left</th>
+                                     
+                                        <th>End Date</th>
+                                        <th>Service Type</th>
+                                      
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+    
+                            
+    
+                                @foreach($data as $key=>$account)
+    
+    <tr class="{{$account->account->account_id}}" id="{{$account->account_id}}">
+                                
+                                <td class="text-center"> 
+                                    <button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
+                                    <!-- <input class="form-check-input" type="checkbox" data-serviceName="{{$account->account->account_id}}" onclick="checkMe(this)"/> -->
+                                </td>
+                                    <td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
+                                  
+                                   <td>{{$account->remaining_days}}</td>
+                                 
+                                   <td>{{$account->exp_date}}</td>
+                                   <td>{{$account->service->parent->stype_name}}</td>
+                                  
+                                  
+                                   <td>
+                                        <div class="col">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success">Action</button>
+                                                <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
+                                                    </li>
+                                                    
+                                                    
+                                                    <li>
+                                                    <form action="{{url('update/'.$account->compservice_id)}} " method="post">
+                            
+                            @csrf
+                            <input type="hidden" name="status" value="suspend">
+                            <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
+                        </form>
+                        
+                                                    </li>
+    
+                                                    <li>
+                                                    <form action="{{url('update/'.$account->compservice_id)}} " method="post">
+                          
+                            @csrf
+                            <input type="hidden" name="status" value="delete">
+                            <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="{{url('viewinvoice')}}/{{$account->account_id}}">Print Invoice</a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    
+                            
+                                @endforeach
+    
+                                
+                                </tbody>
+                            
+                            </table>
                         </div>
                     </div>
                 </div>
-              
-                           
-                         
-                            <div class="chart-container-2 mt-4">
-                                <canvas id="chart2"></canvas>
-                            </div>
-                     
-          
-
-           
-
-
-  
-
-
-            <div class="row row-cols-1 row-cols-lg-3">
-                <div class="col d-flex">
-                    <div class="card radius-10 w-100">
-                        <div class="card-body">
-                            <p class="font-weight-bold mb-1 text-secondary">Weekly Revenue</p>
-                            <div class="d-flex align-items-center mb-4">
-                                <div>
-                                    <h4 class="mb-0">$89,540</h4>
-                                </div>
-                                <div class="">
-                                    <p class="mb-0 align-self-center font-weight-bold text-success ms-2">4.4% <i class="bx bxs-up-arrow-alt mr-2"></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="chart-container-0">
-                                <canvas id="chart3"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
+                </div>
+            </div>
     
 
         </div>
@@ -172,4 +198,126 @@
     <script src="assets/plugins/chartjs/js/Chart.extension.js"></script>
     <script src="assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
     <script src="assets/js/index.js"></script>
+
+
+<script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+      } );
+</script>
+<!-- <script>
+    $(document).ready(function() {
+        var table = $('#example2').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'print']
+        } );
+     
+        table.buttons().container()
+            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+    } );
+</script> -->
+
+
+<!-- <script>
+function format(values) {
+  return '' + values + '' ;
+}
+$(document).ready(function () {
+  var table = $('#example').DataTable({
+  rowGroup: true
+});
+
+  // Add event listener for opening and closing details
+  $('#example').on('click', 'td.details-control', function () {
+      var tr = $(this).closest('tr');
+      var row = table.row(tr);
+
+      if (row.child.isShown()) {
+          // This row is already open - close it
+          row.child.hide();
+          tr.removeClass('shown');
+      } else {
+          // Open this row
+          row.child(format(tr.data('child-value'))).show();
+          tr.addClass('shown');
+      }
+  });
+});
+</script> -->
+
+<script>
+//   $(document).ready(function () {
+
+
+
+
+            var a = [@foreach($data as $k => $info)
+'{{ $info -> account -> account_id }}',
+@endforeach ]
+var uniqueAndSorted = [...new Set(a)].sort() 
+
+uniqueAndSorted.forEach(element => {
+var x = document.getElementsByClassName(element);
+console.log(x);
+if (x.length <= 1) {
+    // x[0].firstElementChild.style.visibility="hidden";
+    // debugger
+                x[0].firstElementChild.firstElementChild.disabled = true;
+                x[0].firstElementChild.firstElementChild.classList.remove("btn-success");
+                x[0].firstElementChild.firstElementChild.classList.add("btn-secondary");
+}
+for (let i = 0; i < x.length; i++) {
+    if (i != 0) {
+        x[i].classList.add("d-none");
+        // x[i].firstElementChild.style.visibility="hidden";
+        // x[i].firstChild
+    }
+}
+// });
+
+
+
+});
+
+        function checkMe(x){
+            var haha = x.dataset.servicename;
+        
+        var rows = document.getElementsByClassName(haha);
+        if (rows[1]) {
+            
+        if (rows[1].classList.contains("d-none")) {
+        
+        for (let i = 0; i < rows			.length; i++) {
+            if (i != 0) {
+            
+                rows[i].firstElementChild.firstElementChild.classList.remove("btn-success");
+                rows[i].firstElementChild.firstElementChild.innerHTML = ""
+        }
+                rows[i].classList.remove("d-none");
+                
+                rows[0].firstElementChild.firstElementChild.innerHTML = "-"
+        }
+        // rows[0].firstElementChild.firstElementChild.innerHTML = "-"		//change it later
+
+        }
+        else{
+            // rows[0].firstElementChild.firstElementChild.innerHTML = "+"
+        
+for (let i = 0; i < rows			.length; i++) {
+        if (i != 0) {
+            
+            rows[i].classList.add("d-none");
+        }
+            rows[0].firstElementChild.firstElementChild.innerHTML = "+"
+}
+        }
+        }
+        else{}
+            
+
+}
+</script>
+
 @endsection

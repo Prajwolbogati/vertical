@@ -40,6 +40,7 @@ Route::get('/', [accountController::class, 'index']);
 
 Route::get('/index', [accountController::class, 'index']);
 
+
 Route::get('newaccount', [accountController::class, 'newAccount']);
 
 Route::post('addaccount', [accountController::class, 'insertdata']);
@@ -102,7 +103,7 @@ Route::get('detail/{id}', [accountController::class, 'detailAccount']);
 
 Route::post('updateservice', [serviceController::class, 'updateData']);
 
-Route::post('updaterole', [roleController::class, 'updateRole']);
+Route::post('updaterole/{id}', [roleController::class, 'updateRole']);
 
 Route::post('updateservicetype', [servicetypeController::class, 'updateData']);
 

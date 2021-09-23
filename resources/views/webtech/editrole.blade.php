@@ -22,7 +22,7 @@
                                             </div>
                                             <h5 class="mb-0 text-info">Add Role</h5>
                                         </div>
-                                        <form class="row g-3" method="post" action="{{url('updaterole')}}">
+                                        <form class="row g-3" method="post" action="{{url('updaterole/'.$singledata->id)}}">
                {{csrf_field()}}
                <input type="hidden" name="id" value="{{$singledata->id}}">
     

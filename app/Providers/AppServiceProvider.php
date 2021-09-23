@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\servicetype;
+use App\Models\companyservice;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,13 +27,25 @@ class AppServiceProvider extends ServiceProvider
     {
       
  $services = servicetype::with('child')->get();
+ $dataexp = companyservice::with('account','service.parent')->where('status' , 'expired')->get();
+ $dataexpcount = companyservice::with('account','service.parent')->where('status' , 'expired')->count();
       
          view()->share([
-             'services'=>$services
+             'services'=>$services,
+             'dataexp'=>$dataexp,
+             'dataexpcount'=>$dataexpcount
        
           
 
        ]);
+
+     
+            
+     
+    
+       
+        
+    
 
     
     }

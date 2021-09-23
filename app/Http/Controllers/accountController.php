@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use View;
 use App\Models\account;
 use App\Models\companyservice;
 use App\Models\service;
@@ -14,16 +15,7 @@ use Carbon\Carbon;
 class accountController extends Controller
 {
 
-//  public function _construct(){
-//     $services = service::with('child')->whereNull('service_id')->get();
-      
-//         view()->share([
-//             'services'=>$services
-       
-          
 
-//        ]);
-//    }
     
 
     public function newAccount(){
@@ -35,8 +27,32 @@ class accountController extends Controller
 
 
     public function index(){
+
+
+        $data = companyservice::with('account','service.parent')    
+        ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
+        $seven = companyservice::with('account','service.parent')    
+        ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->count();
+        $fifteen = companyservice::with('account','service.parent')    
+        ->whereRaw('DATEDIFF(exp_date,now())<=15')-> orderBy('account_id', 'asc')->count();
+        $expired = companyservice::with('account','service.parent')
+        ->where('status' , 'expired')-> orderBy('account_id', 'asc')->count();
+        $suspend = companyservice::with('account','service.parent') 
+        ->where('status' , 'suspend')-> orderBy('account_id', 'asc')->count();
+        $delete = companyservice::with('account','service.parent')
+        ->where('status' , 'delete')-> orderBy('account_id', 'asc')->count();
+    
+        return view ('index',[
+            'data'=>$data,
+            'seven'=>$seven,
+            'fifteen'=>$fifteen,
+            'expired'=>$expired,
+            'suspend'=>$suspend,
+            'delete'=>$delete,
+        
+        
+        ]);
        
-        return view ('index');
     }
 
 public function insertdata(Request $req)
@@ -209,7 +225,7 @@ $companyservice->save();
 
         public function Exp15(){
             $data = companyservice::with('account','service.parent')
-            ->whereRaw('DATEDIFF(exp_date,now())<=15')->get();
+            ->whereRaw('DATEDIFF(exp_date,now())<=15')-> orderBy('account_id', 'asc')->get();
            
             return view ('webtech.accountview',['data'=>$data]);
             
@@ -218,7 +234,7 @@ $companyservice->save();
         public function Exp7(){
             $data = companyservice::with('account','service.parent')
            
-            ->whereRaw('DATEDIFF(exp_date,now())<=7')->get();
+            ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
         
             return view ('webtech.accountview',['data'=>$data]);
             
@@ -229,7 +245,7 @@ $companyservice->save();
             
             
             
-            ->where('status' , 'expired')->get();
+            ->where('status' , 'expired')-> orderBy('account_id', 'asc')->get();
         
             return view ('webtech.accountview',['data'=>$data]);
             
@@ -238,7 +254,7 @@ $companyservice->save();
             $data = companyservice::with('account','service.parent')
            
             
-            ->where('status' , 'delete')->get();
+            ->where('status' , 'delete')-> orderBy('account_id', 'asc')->get();
             
            
         
@@ -250,12 +266,12 @@ $companyservice->save();
             $data = companyservice::with('account','service.parent')
             
           
-            ->where('status' , 'suspend')->get();
+            ->where('status' , 'suspend')-> orderBy('account_id', 'asc')->get();
             return view ('webtech.accountview',['data'=>$data]);
             
         }
         
-        
+   
 
 
 }
