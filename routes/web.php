@@ -94,17 +94,23 @@ Route::get('allservices', [serviceController::class, 'allService']);
 
 Route::get('edit-service/{id}', [serviceController::class, 'editService']);
 
+Route::get('editrole/{id}', [roleController::class, 'editRole']);
+
 Route::get('edit-servicetype/{id}', [servicetypeController::class, 'editServiceType']);
 
 Route::get('detail/{id}', [accountController::class, 'detailAccount']);
 
 Route::post('updateservice', [serviceController::class, 'updateData']);
 
+Route::post('updaterole', [roleController::class, 'updateRole']);
+
 Route::post('updateservicetype', [servicetypeController::class, 'updateData']);
 
 Route::post('delete/{id}', [accountController::class, 'Delete']);
 
 Route::get('delete/{id}', [clientController::class, 'deleteClient']);
+
+Route::get('deleterole/{id}', [roleController::class, 'deleteRole']);
 
 Route::get('deleteservice/{id}', [serviceController::class, 'deleteService']);
 

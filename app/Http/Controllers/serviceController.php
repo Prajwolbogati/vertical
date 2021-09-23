@@ -48,8 +48,9 @@ $service->service_name=$req->service_name;
 
 public function allService(){
     $data =  service::with('parent')->get();
+    $datas= servicetype::get();
 
-    return view ('webtech.all-service',['data'=>$data]);
+    return view ('webtech.all-service',['data'=>$data,'datas'=>$datas]);
     
 }
 

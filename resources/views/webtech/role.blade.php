@@ -59,10 +59,17 @@
                                             <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="">Edit</a>
+                                                <li><a class="dropdown-item" href="{{url('editrole')}}/{{$role->id}}">Edit</a>
                                                 </li>
                                                 
-                                                <li><a class="dropdown-item" href="">Delete</a>
+                                                
+                                                <li>
+                                                    <form
+                                                        action="{{ url('deleterole') }}/{{ $role->id }} ">
+                                                        @csrf
+                                                        <button
+                                                            class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                                                    </form>
                                                 </li>
                                      
                                                

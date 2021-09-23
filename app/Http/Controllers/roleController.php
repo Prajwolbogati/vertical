@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use Session;
 
 class RoleController extends Controller
 {
@@ -87,12 +88,54 @@ class RoleController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * 
+     * 
+     * 
+     * 
      */
+
+
+
+    public function updateRole(Request $request)
+
+
+    {
+        $this->validate($request, [
+            'name' => 'string|unique:roles',
+            
+        ]);
+
+        $role = $this->role::find($request->id);
+        $role->name=$request->name;   
+       
+
+        if($request->has("permissions")){
+            $role->givePermissionTo($request->permissions);
+        }
+$role->save();
+        return redirect()->back();
+    }
+    
     public function show($id)
     {
         //
     }
+    public function editRole($id){
+        $singledata = $this->role->where('id',$id)->first();
+        // $singledata->transform(function($singledata){
+        //     $singledata->role = $singledata->getRoleNames()->first();
+        //     $singledata->userPermissions = $singledata->getPermissionNames();
+        //     return $singledata;
+        // });
+        if($singledata == NULL){
+            return redirect('viewuser');
+        }
 
+      
+        
+                return view ('webtech.editrole',['singledata'=>$singledata]);
+            }
     /**
      * Show the form for editing the specified resource.
      *
@@ -126,4 +169,14 @@ class RoleController extends Controller
     {
         //
     }
+
+
+    public function deleteRole($id){
+        $role = $this->role::find($id);
+        $role->delete();
+        session::flash('message','Data deleted successfully');
+        return redirect()->back();
+        
+        
+            }
 }
