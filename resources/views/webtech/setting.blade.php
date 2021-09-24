@@ -111,7 +111,7 @@
 </div>
 
 <div class=" row mb-3">
-@if(!empty($data->image))
+    @if($data->image != '')	
 
 <p><label for="file" style="cursor: pointer;" class="col-sm-3 col-form-label" >Replace Image</label></p>
 <div class="col-sm-9">

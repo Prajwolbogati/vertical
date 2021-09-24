@@ -23,14 +23,17 @@ class settingController extends Controller
     $setting->companyaddress=$req->companyaddress;
     $setting->companyphone=$req->companyphone;
     $setting->companyemail=$req->companyemail;
-    $setting->image=$req->file('image');
+    
    
  
 
       if($req->hasFile('image')){
-        $setting['image'] = $this->uploadimage($setting['image']);
-      
+        
+        $setting['image'] = $this->uploadimage($req->image);
+     
          }
+
+         
     $setting['created_at'] = date('Y-m-d H:i:s');
     $setting->save();
     session::flash('message','Data inserted successfully');
@@ -49,16 +52,18 @@ class settingController extends Controller
         $setting->companyaddress=$req->companyaddress;
         $setting->companyphone=$req->companyphone;
         $setting->companyemail=$req->companyemail;
-        $setting->image=$req->image;
-       
      
-    
-          if($req->hasFile('image')){
-            $setting['image'] = $this->uploadimage($setting['image']);
+
+        
+        
+        
+        if($req->hasFile('image')){
+            
+            $setting['image'] = $this->uploadimage($req->image);
           
              }
-    
-     
+
+          
         
         $setting['created_at'] = date('Y-m-d H:i:s');
        

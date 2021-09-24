@@ -47,7 +47,7 @@
                                                 <option value="delete account">Delete</option>
                                                 <option value="view account">View</option>
 @foreach ($singledata->permissions as $permission)
-                                                <option value="{{$permission->name  }}" selected></option>
+                                                <option value="{{$permission->name  }}" selected>{{$permission->name  }}</option>
                                               @endforeach
                                                
                                               

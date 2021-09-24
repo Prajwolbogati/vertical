@@ -131,7 +131,7 @@ $arr = []
 $arr[] = $single->service->parent->stype_id;
 @endphp
 
-<input type="hidden" name="compservice_id[{{$key}}]" value="{{$single->compservice_id}}">
+<input type="hidden" name="compservice_id[]" value="{{$single->compservice_id}}">
                         <div class="col-xl-4" id="{{$single->service->parent->stype_name}}" >
                            
                             <div class="card border-top border-0 border-4 border-primary">
@@ -149,25 +149,25 @@ $arr[] = $single->service->parent->stype_id;
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="active_date" class="form-label">Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date"  value="{{$single->active_date}}">
+                                            <input type="date" class="form-control datepicker" name="active_date[]" placeholder="Active Date"  value="{{$single->active_date}}">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exp_date" class="form-label">Expiry Date</label>
-                                            <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date"  value="{{$single->exp_date}}">
+                                            <input type="date" class="form-control datepicker" name="exp_date[]" placeholder="Expiry Date"  value="{{$single->exp_date}}">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="amount" class="form-label">Amount</label>
-                                            <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount"  value="{{$single->amount}}">
+                                            <input type="text" class="form-control" name="amount[]" placeholder="Amount"  value="{{$single->amount}}">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="discount" class="form-label">Discount Amount</label>
-                                            <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount"  value="{{$single->discount}}">
+                                            <input type="text" class="form-control" name="discount[]" placeholder="Discount Amount"  value="{{$single->discount}}">
                                         </div>
                                      
                                         <div class="col-md-12">
                                        
                                             <label for="stype_id" class="form-label">Choose {{$single->service->parent->stype_name}}</label>
-                                            <select class="form-select" name="service_id[{{$key}}]">
+                                            <select class="form-select" name="service_id[]">
                                          
                                             <option value="{{$single->service_id}}">"{{$single->service->service_name}}"</option>
                                            
@@ -223,24 +223,24 @@ $arr[] = $single->service->parent->stype_id;
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="active_date" class="form-label">Active Date</label>
-                                            <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date" >
+                                            <input type="date" class="form-control datepicker" name="active_date[]" placeholder="Active Date" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exp_date" class="form-label">Expiry Date</label>
-                                            <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date">
+                                            <input type="date" class="form-control datepicker" name="exp_date[]" placeholder="Expiry Date">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="amount" class="form-label">Amount</label>
-                                            <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount">
+                                            <input type="text" class="form-control" name="amount[]" placeholder="Amount">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="discount" class="form-label">Discount Amount</label>
-                                            <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount">
+                                            <input type="text" class="form-control" name="discount[]" placeholder="Discount Amount">
                                         </div>
                                         <div class="col-md-12">
                                        
                                             <label for="stype_id" class="form-label">Choose {{$ser->stype_name}}</label>
-                                            <select class="form-select" name="service_id[{{$key}}]">
+                                            <select class="form-select" name="service_id[]">
                                          
                                             <option value="">Choose ...</option>
                                             @foreach($ser->child as $servic)

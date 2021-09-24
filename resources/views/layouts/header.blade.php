@@ -94,7 +94,12 @@
                     </div>
                     <div class="user-box dropdown">
                         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{asset('user')}}/{{Auth::user()->image}}" class="user-img" alt="user avatar">
+                            @if(!empty(Auth::user()->image))
+                            <img src="{{asset('user')}}/{{Auth::user()->image}}" class="user-img"  alt="user avatar">
+
+@else
+                            <img src="assets/images/avatars/avatar-2.png" class="user-img"  alt="user avatar">
+                            @endif
                             <div class="user-info ps-3">
                                 <p class="user-name mb-0">{{Auth::user()->name }}</p>
                               

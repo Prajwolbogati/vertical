@@ -132,11 +132,12 @@ public function addUser(){
             $user->phone = $request->phone;
             $user->email = $request->email;
             $user->address = $request->address;
-            $user->image = $request->image;
+            
+        
 
 
             if($request->hasFile('image')){
-                $user['image'] = $this->uploadimage($user['image']);
+                $user['image'] = $this->uploadimage($request->image);
               
                  }
 
