@@ -71,7 +71,7 @@
                                                 </span></h6>
                                                     <p class="msg-info">{{$exp->service->parent->stype_name}} service expired</p>
                                                 </div>
-                                            </div>
+                                           
                                         </a>
                                         @endforeach
       
@@ -85,10 +85,7 @@
                                
                                
                                   
-                                    <div class="header-message-list">
-                                
-                                       
-                                </div>
+                               
                            
                         </ul>
                     </div>

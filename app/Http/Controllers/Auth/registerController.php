@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Session;
+use Spatie\Permission\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ class registerController extends Controller
     
 public function addUser(){
     
+$data= Role::all();
 
-
-    return view ('webtech.add-user');
+    return view ('webtech.add-user',['data'=>$data]);
     
 }
 
@@ -170,18 +171,14 @@ public function addUser(){
 
     public function editUser($id){
         $singledata = User::where('id',$id)->first();
-        // $singledata->transform(function($singledata){
-        //     $singledata->role = $singledata->getRoleNames()->first();
-        //     $singledata->userPermissions = $singledata->getPermissionNames();
-        //     return $singledata;
-        // });
+        $data= Role::all();
         if($singledata == NULL){
             return redirect('viewuser');
         }
 
       
         
-                return view ('webtech.edituser',['singledata'=>$singledata]);
+                return view ('webtech.edituser',['singledata'=>$singledata,'data'=>$data]);
             }
 
 

@@ -66,11 +66,19 @@
                                             <div class="col-sm-9">
                                             <select class="form-select mb-3"  name="role" >
                                                 @foreach($singledata->roles as $role)
+                                                @php
+                                                $arr[] = $role->name;
+                                                @endphp
+        
                                             <option> {{$role->name}}</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="user">User</option>
-                                                <option value="sales">Sales</option>
-                                                @endforeach
+                                            @endforeach
+                                            @foreach($data as $rol)
+                                            @if(in_array($rol->name, $arr))
+                                            @else
+                                            <option> {{$rol->name}}</option>
+                                            @endif
+                                            @endforeach
+                                               
                                                
 </select>
                                             </div>
@@ -93,6 +101,11 @@
                         </div>
                     </div>
                     <!--end row-->
+
+
+
+                   
+
                 </div>
             </div>
 		@endsection

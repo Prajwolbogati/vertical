@@ -2274,10 +2274,7 @@ input.search-control-2::placeholder {
 	border-bottom: 1px solid #ededed
 }
 
-.header-message-list {
-	position: relative;
-	height: 360px
-}
+
 
 .header-notifications-list {
 	position: relative;

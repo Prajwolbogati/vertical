@@ -23,7 +23,9 @@
                             <div id="invoice">
                                 <div class="toolbar hidden-print">
                                     <div class="text-end">
-                                        <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
+                                        <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Send Mail</button>
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                                         <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                                     </div>
                                     <hr/>

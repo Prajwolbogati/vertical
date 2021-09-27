@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use Session;
 
@@ -43,7 +44,9 @@ class RoleController extends Controller
      */
     public function addRole()
     {
-        return view('webtech.addrole');
+        $permission= Permission::all();
+      
+        return view('webtech.addrole',['permission' => $permission]);
     }
 
 
@@ -142,9 +145,9 @@ $role->save();
             return redirect('viewuser');
         }
 
-      
+        $permissio= Permission::all();
         
-                return view ('webtech.editrole',['singledata'=>$singledata]);
+                return view ('webtech.editrole',['singledata'=>$singledata,'permissio'=>$permissio]);
             }
     /**
      * Show the form for editing the specified resource.

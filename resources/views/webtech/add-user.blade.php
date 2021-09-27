@@ -65,10 +65,9 @@
                                             <div class="col-sm-9">
                                             <select class="form-select mb-3"  name="role">
                                             <option value=""> Choose role</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="user">User</option>
-                                                <option value="sales">Sales</option>
-                                               
+                                            @foreach ($data as $rol)
+                                            <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                                               @endforeach
 </select>
                                             </div>
                                         </div>

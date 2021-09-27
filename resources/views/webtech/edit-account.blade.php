@@ -121,9 +121,7 @@
              
               <div class="row serviceForm" id="serfrm" style="justify-content: flex-start">
 
-<!-- @php
-$arr = []
-@endphp -->
+
 
 @foreach($singledata->compservice as $key=>$single)
 

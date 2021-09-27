@@ -42,14 +42,20 @@
                                             <label for="permissions" class="col-sm-3 col-form-label">Choose Permissions</label>
                                             <div class="col-sm-9">
                                                <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple" name="permissions[]">
-                                                <option value="create account">Create</option>
-                                                <option value="edit account">Edit</option>
-                                                <option value="delete account">Delete</option>
-                                                <option value="view account">View</option>
+                                               
+                                               
 @foreach ($singledata->permissions as $permission)
+@php
+$arr[] = $permission->name;
+@endphp
                                                 <option value="{{$permission->name  }}" selected>{{$permission->name  }}</option>
                                               @endforeach
-                                               
+                                              @foreach($permissio as $per)
+                                              @if(in_array($per->name, $arr))
+                                              @else
+                                              <option value="{{ $per->name }}">{{ $per->name }}</option>
+                                              @endif
+                                              @endforeach   
                                               
                                                
 </select>

@@ -42,10 +42,10 @@
                                             <label for="permissions" class="col-sm-3 col-form-label">Choose Permissions</label>
                                             <div class="col-sm-9">
                                                <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple" name="permissions[]">
-                                                <option value="create account">Create</option>
-                                                <option value="edit account">Edit</option>
-                                                <option value="delete account">Delete</option>
-                                                <option value="view account">View</option>
+                                                   @foreach($permission as $per)
+                                                <option value="{{ $per->name }}">{{ $per->name }}</option>
+                                                @endforeach
+                                              
                                                
 </select>
                                             </div>
