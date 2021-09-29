@@ -12,6 +12,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,7 +146,9 @@ Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);
 
 Route::post('postRole', [roleController::class, 'store']);
 
+Route::get('send-email-pdf', [PDFController::class, 'pdf']);
 
+Route::get('send', [PDFController::class, 'pdfss']);
 
 
 

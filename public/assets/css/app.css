@@ -992,7 +992,6 @@ a {
 
 .invoice table th {
 	white-space: nowrap;
-	font-weight: 400;
 	font-size: 16px
 }
 
@@ -1036,21 +1035,27 @@ a {
 	text-align: right;
 	padding: 10px 20px;
 	font-size: 1.2em;
-	border-top: 1px solid #aaa
+	border-top: 1px solid #aaa;
+	border-width: 0.2;
 }
 
 .invoice table tfoot tr:first-child td {
 	border-top: none
+
 }
 
 .invoice table tfoot tr:last-child td {
 	color: #008cff;
 	font-size: 1.4em;
-	border-top: 1px solid #008cff
+	border-top: 1px solid #008cff;
+	border-width: 0.2;
 }
 
-.invoice table tfoot tr td:first-child {
+.invoice table tfoot tr td:first-child,
+.invoice table tfoot tr td:nth-child(2) 
+{
 	border: none
+
 }
 
 .invoice footer {

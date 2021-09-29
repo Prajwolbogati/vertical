@@ -101,7 +101,7 @@ public function settings(){
     }
 
     public function viewInvoice($id){
-        $data = companyservice::with('account','service.parent')->where('account_id',$id)->get();
+        $data = account::with('compservice.service.parent')->where('account_id',$id)->first();
         if($data == NULL){
             return redirect('all-account');
         }

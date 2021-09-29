@@ -20,16 +20,25 @@
                     <!--end breadcrumb-->
                     <div class="card">
                         <div class="card-body">
-                            <div id="invoice">
+                           
                                 <div class="toolbar hidden-print">
                                     <div class="text-end">
-                                        <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Send Mail</button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+
+
+                                        <form class="row g-3" method="post" action="{{url('send-email-pdf')}}">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="account_id" value="{{$data->account_id}}">
+
+
+                                        <button type="submit" class="btn btn-dark"><i class="fa fa-print"></i> Send Mail</button>
+                                        </form>
+                                        {{-- <button type="button" class="btn btn-dark"><a href="{{url('send-email-pdf')}}/{{$data->account_id}}"><i class="fa fa-print"></i> Send Mail</a></button> --}}
+                                        <button class="btn btn-success" onclick="printme()"><i class="fa fa-print"></i> Print</button>
+                                        <button type="button" class="btn btn-danger" id="download"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                                     </div>
                                     <hr/>
                                 </div>
+                                <div id="invoic">
                                 <div class="invoice overflow-auto">
                                     <div style="min-width: 600px">
                                         <header>
@@ -66,51 +75,46 @@
                                                     <div class="date">Due Date: 30/10/2018</div>
                                                 </div>
                                             </div>
-                                            <table>
+                                            <table style="width:100%">
                                                 <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th class="text-left">Particulars</th>
-                                                    <th class="text-right">HOUR PRICE</th>
-                                                    <th class="text-right">HOURS</th>
-                                                    <th class="text-right">Amount</th>
+                                                    <th colspan="3">Particulars</th>
+                            
+                                                    <th class="text-center">Amount</th>
                                                     
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-												@foreach($data as $invoice)
+                                                    @foreach($data->compservice as $key=>$invoice)
                                                 <tr id="{{$invoice->service->parent->stype_name}}">
-												<td class="no"> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
-                            <td class="text-left">{{$invoice->service->parent->stype_name}}</td>
-                            <td class="unit"></td>
-                                                    <td class="qty"></td>
-                            <td class="total amount" id="sexy"value="{{$invoice->amountafterdiscount}}">{{$invoice->amountafterdiscount}}</td>
+												<td> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
+                            <td colspan="3">{{$invoice->service->parent->stype_name}}</td>
+                           
+                            <td class="amount text-center" value="{{$invoice->amountafterdiscount}}">{{$invoice->amountafterdiscount}}</td>
                                                 </tr>
-												@endforeach 
+											 @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">SUBTOTAL</td>
-                                                    <td  id="subtotal" value=""></td>
+                                                    <td   class="text-center" id="subtotal" value=""></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">TAX 13%</td>
-                                                    <td id="vat"  value="13"></td>
+                                                    <td class="text-center" id="vat"  value="13"></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">GRAND TOTAL</td>
-                                                    <td id="vatsubtotal"></td>
+                                                    <td class="text-center" id="vatsubtotal"></td>
                                                 </tr>
                                                 </tfoot>
                                             </table>
-                                            <div class="thanks">Thank you!</div>
-                                            <div class="notices">
-                                                <div>NOTICE:</div>
-                                                <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-                                            </div>
+                                            {{-- <div class="thanks">Thank you!</div> --}}
+                                           
                                         </main>
                                         <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
                                     </div>
@@ -118,6 +122,7 @@
                                     <div></div>
                                 </div>
                             </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -126,13 +131,14 @@
 		
 
 		@section("script")
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"> </script>
 <script>
 
 $(document).ready(function () {
 calculateSum();
 });
+
+
 // document.getElementsByClassName('amount')[2].style.color = "red";
 // $(this)[0].style.color = 'green';
 
@@ -193,5 +199,28 @@ calculateSum();
 
 
 </script>
+
+<script>
+function printme(){
+    window.print();
+}
+</script>
+<script>
+window.onload = function(){
+document.getElementById("download")
+.addEventListener("click",()=>{
+    const invoic = this.document.getElementById("invoic");
+    var opt = {
+  margin:       1,
+  filename:     'myfile.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+    html2pdf().from(invoic).set(opt).save();
+})
+}
+
+    </script>
 
 @endsection		
