@@ -24,7 +24,13 @@ class accountController extends Controller
         return view ('webtech.new-account');
         
     }
+    // public function Login(){
+    
 
+
+    //     return view ('webtech.login');
+        
+    // }
 
     public function index(){
 
@@ -219,7 +225,7 @@ $companyservice->save();
             session::flash('message','Data deleted successfully');
             return redirect()->back();
             
-            return redirect()->back();
+           
                 }
 
 

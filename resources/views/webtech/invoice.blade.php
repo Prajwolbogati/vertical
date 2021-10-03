@@ -25,14 +25,14 @@
                                     <div class="text-end">
 
 
-                                        <form class="row g-3" method="post" action="{{url('send-email-pdf')}}">
+                                        <form method="post" action="{{url('send-email-pdf')}}" enctype="multipart/form-data">
                                             {{csrf_field()}}
-                                            <input type="hidden" name="account_id" value="{{$data->account_id}}">
+                                           
 
 
                                         <button type="submit" class="btn btn-dark"><i class="fa fa-print"></i> Send Mail</button>
-                                        </form>
-                                        {{-- <button type="button" class="btn btn-dark"><a href="{{url('send-email-pdf')}}/{{$data->account_id}}"><i class="fa fa-print"></i> Send Mail</a></button> --}}
+                                       
+                                       
                                         <button class="btn btn-success" onclick="printme()"><i class="fa fa-print"></i> Print</button>
                                         <button type="button" class="btn btn-danger" id="download"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                                     </div>
@@ -42,37 +42,48 @@
                                 <div class="invoice overflow-auto">
                                     <div style="min-width: 600px">
                                         <header>
-                                            <div class="row">
+                                            <div class="row inv">
                                                 <div class="col">
                                                     <a href="javascript:;">
-                                                        <img src="assets/images/logo-icon.png" width="80" alt="" />
+                                                        <img src="{{ asset('assets/images/webtechlogo.svg') }}" width="100" alt="" />
                                                     </a>
-                                                </div>
+                                               
                                                 <div class="col company-details">
-                                                    <h2 class="name">
-                                                        <a target="_blank" href="javascript:;">
-                                                            Arboshiki
-                                                        </a>
-                                                    </h2>
-                                                    <div>455 Foggy Heights, AZ 85004, US</div>
-                                                    <div>(123) 456-789</div>
-                                                    <div>company@example.com</div>
+                                                    <h4 class="name">
+                                                       
+                                                        {{ $comp->companyname }}
+                                                            <input type="hidden" name="comname" value="{{$comp->companyname}}">
+                                                        
+                                                    </h4>
+                                                    <div>{{ $comp->companyaddress }}</div>
+                                                    <input type="hidden" name="comaddress" value="{{$comp->companyaddress}}">
+                                                    <div>{{$comp->companyemail}}</div>
+                                                    <input type="hidden" name="comemail" value="{{$comp->companyemail}}">
+                                                    <div>{{$comp->companyphone}}</div>
+                                                    <input type="hidden" name="comphone" value="{{$comp->companyphone}}">
+                                                  
                                                 </div>
+                                            </div>
                                             </div>
                                         </header>
                                         <main>
                                             <div class="row contacts">
                                                 <div class="col invoice-to">
-                                                    <div class="text-gray-light">INVOICE TO:</div>
-                                                    <h2 class="to">John Doe</h2>
-                                                    <div class="address">796 Silver Harbour, TX 79273, US</div>
-                                                    <div class="email"><a href="mailto:john@example.com">john@example.com</a>
+                                                    <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
+                                                    <h6 class="to">{{ $data->fullname }}</h6>
+                                                    <input type="hidden" name="names" value="{{ $data->fullname }}">
+                                                    <div class="company">{{ $data->companyname }}</div>
+                                                    <input type="hidden" name="company" value="{{$data->companyname}}">
+                                                    <div class="address">{{ $data->companyaddress }}</div>
+                                                    <input type="hidden" name="address" value="{{$data->companyaddress}}">
+                                                    <div class="email">{{ $data->email }}
+                                                        <input type="hidden" name="email" value="{{$data->email}}">
                                                     </div>
                                                 </div>
                                                 <div class="col invoice-details">
-                                                    <h1 class="invoice-id">INVOICE 3-2-1</h1>
+                                                    
                                                     <div class="date">Date of Invoice: 01/10/2018</div>
-                                                    <div class="date">Due Date: 30/10/2018</div>
+                                                   
                                                 </div>
                                             </div>
                                             <table style="width:100%">
@@ -90,8 +101,10 @@
                                                 <tr id="{{$invoice->service->parent->stype_name}}">
 												<td> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
                             <td colspan="3">{{$invoice->service->parent->stype_name}}</td>
+                            <input type="hidden" name="particular[]" value="{{$invoice->service->parent->stype_name}}">
                            
                             <td class="amount text-center" value="{{$invoice->amountafterdiscount}}">{{$invoice->amountafterdiscount}}</td>
+                            <input type="hidden" name="amount[]" value="{{$invoice->amountafterdiscount}}">
                                                 </tr>
 											 @endforeach
                                                 </tbody>
@@ -99,17 +112,20 @@
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">SUBTOTAL</td>
-                                                    <td   class="text-center" id="subtotal" value=""></td>
+                                                    <td   class="text-center" name="subtotal" id="subtotal" value=""></td>
+                                                    <input type="hidden" name="subtotal" id="subtotals" value="">
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">TAX 13%</td>
                                                     <td class="text-center" id="vat"  value="13"></td>
+                                                    <input type="hidden" name="vat" id="vats" value="13">
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"></td>
                                                     <td colspan="2">GRAND TOTAL</td>
                                                     <td class="text-center" id="vatsubtotal"></td>
+                                                    <input type="hidden" name="vatsubtotal" id="vatsubtotals" value="">
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -122,7 +138,7 @@
                                     <div></div>
                                 </div>
                             </div>
-                           
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -162,6 +178,7 @@ var value = $(this)[0].innerText;
 		});
 		//.toFixed() method will roundoff the final sum to 2 decimal places
 		$("#subtotal").html(sum);
+        $("#subtotals").val(sum);
 
       
 
@@ -170,11 +187,13 @@ var subtotal = $("#subtotal").html();
          var vatpaid = ((13*subtotal)/100);
          
          $('#vat').html(vatpaid);
+         $('#vats').val(vatpaid);
          
                
          
                var vstotal = (parseFloat(subtotal)+parseFloat(vatpaid)).toFixed(1);
                $('#vatsubtotal').html(vstotal);
+               $('#vatsubtotals').val(vstotal);
 
 }
 

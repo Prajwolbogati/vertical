@@ -925,12 +925,16 @@ a {
 }
 
 .invoice .company-details {
-	text-align: right
+	text-align: left
 }
 
 .invoice .company-details .name {
 	margin-top: 0;
 	margin-bottom: 0
+}
+
+.inv{
+	margin-top: -25px;
 }
 
 .invoice .contacts {

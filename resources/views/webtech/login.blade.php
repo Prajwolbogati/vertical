@@ -37,7 +37,7 @@
                                     </div>
                                     @if (Route::has('login'))
                                  @auth
-                                 <a href ="{{ url('index') }}">  </a>
+                                 <a href ="{{ url('verify-email') }}">  </a>
                                  @else
                                  <a href="{{url('login')}}"> </a>
                                  @endauth

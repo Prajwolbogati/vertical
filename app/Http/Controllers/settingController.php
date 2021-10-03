@@ -102,11 +102,12 @@ public function settings(){
 
     public function viewInvoice($id){
         $data = account::with('compservice.service.parent')->where('account_id',$id)->first();
+        $comp = setting::first();
         if($data == NULL){
             return redirect('all-account');
         }
         $sum = companyservice::with('account','service.parent')->where('account_id',$id)->sum('amountafterdiscount');
-        return view ('webtech.invoice',['data'=>$data,'sum'=>$sum]);
+        return view ('webtech.invoice',['data'=>$data,'sum'=>$sum,'comp'=>$comp]);
         
        
           

@@ -27,13 +27,7 @@ public function addUser(){
 }
 
 
-public function Login(){
-    
 
-
-    return view ('webtech.login');
-    
-}
 
 
 public function Forgot(){

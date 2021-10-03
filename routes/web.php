@@ -13,6 +13,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +32,15 @@ use App\Http\Controllers\PDFController;
 // });
 
 
-Route::group(['middleware'=>['auth']],function(){
+Route::group(['middleware'=>['auth','verified']],function(){
 
 
 
-Route::get('/', [accountController::class, 'index']);
-
+Route::get('/', [EmailVerificationPromptController::class, '__invoke']);
 
 
 Route::get('/index', [accountController::class, 'index']);
+
 
 
 Route::get('newaccount', [accountController::class, 'newAccount']);
@@ -146,7 +147,7 @@ Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);
 
 Route::post('postRole', [roleController::class, 'store']);
 
-Route::get('send-email-pdf', [PDFController::class, 'pdf']);
+Route::post('send-email-pdf', [PDFController::class, 'pdf']);
 
 Route::get('send', [PDFController::class, 'pdfss']);
 
