@@ -52,9 +52,15 @@ a {
 	background-clip: padding-box;
 	border-bottom: 1px solid #e4e4e4
 }
+.pw {
+
+
+	margin-bottom: -0.0rem;
+	
+}
 
 .logo-icon {
-	width: 45px
+	width: 95%;
 }
 
 .logo-text {

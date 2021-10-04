@@ -33,7 +33,7 @@
                                         <button type="submit" class="btn btn-dark"><i class="fa fa-print"></i> Send Mail</button>
                                        
                                        
-                                        <button class="btn btn-success" onclick="printme()"><i class="fa fa-print"></i> Print</button>
+                                        <button class="btn btn-success" onclick="printme('invoic')"><i class="fa fa-print"></i> Print</button>
                                         <button type="button" class="btn btn-danger" id="download"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                                     </div>
                                     <hr/>
@@ -82,11 +82,21 @@
                                                 </div>
                                                 <div class="col invoice-details">
                                                     
-                                                    <div class="date">Date of Invoice: 01/10/2018</div>
+                                                    <div class="date">Date of Invoice: {{ date('Y-m-d ') }}
+                                                    </div>
                                                    
                                                 </div>
                                             </div>
                                             <table style="width:100%">
+
+                                                <style>
+
+                                                    @media print {
+                                                        .hide{
+                                                            display: none;
+                                                        }
+                                                    }
+                                                    </style>
                                                 <thead>
                                                 <tr>
                                                     <th></th>
@@ -99,7 +109,9 @@
                                                 <tbody>
                                                     @foreach($data->compservice as $key=>$invoice)
                                                 <tr id="{{$invoice->service->parent->stype_name}}">
-												<td> <button class="btn btn-sm btn-secondary" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
+
+                                                    
+												<td> <button class="btn btn-sm btn-secondary hide" data-html2canvas-ignore="true" data-serviceName="{{$invoice->service->parent->stype_name}}" onclick="checkMe(this)">-</button></td>
                             <td colspan="3">{{$invoice->service->parent->stype_name}}</td>
                             <input type="hidden" name="particular[]" value="{{$invoice->service->parent->stype_name}}">
                            
@@ -107,6 +119,7 @@
                             <input type="hidden" name="amount[]" value="{{$invoice->amountafterdiscount}}">
                                                 </tr>
 											 @endforeach
+                                    
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>
@@ -137,12 +150,17 @@
                                     <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
                                     <div></div>
                                 </div>
+
+                              
+                              
                             </div>
                         </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+           
 		@endsection
 		
 
@@ -220,8 +238,13 @@ calculateSum();
 </script>
 
 <script>
-function printme(){
+function printme(paravalue){
+    var backup = document.body.innerHTML;
+    var divcontent = document.getElementById(paravalue).innerHTML;
+    document.body.innerHTML = divcontent;
     window.print();
+    document.body.innerHTML = backup;
+    location.reload();
 }
 </script>
 <script>
@@ -230,6 +253,7 @@ document.getElementById("download")
 .addEventListener("click",()=>{
     const invoic = this.document.getElementById("invoic");
     var opt = {
+        
   margin:       1,
   filename:     'myfile.pdf',
   image:        { type: 'jpeg', quality: 0.98 },

@@ -53,6 +53,12 @@
     width:50%;
 }
 
+
+.cols {
+    flex: 1 0 0%!important;
+    width:60%;
+}
+
 .inv {
     margin-top: -25px;
 } 
@@ -211,6 +217,9 @@ tfoot {
 .rows{
     margin-top: 90px;
 }
+.email{
+    width: 100%;
+}
 
 
   </style>
@@ -234,7 +243,7 @@ tfoot {
                                             <img src="{{ asset('assets/images/webtechlogo.svg') }}" width="100" alt="" />
                                         </a>
                                    
-                                    <div class="col company-details">
+                                    <div class="cols company-details">
                                         <h4 class="name">
                                            
                                             {{ $comname }}
@@ -267,7 +276,7 @@ tfoot {
                                     </div>
                                     <div class="col invoice-details">
                                         
-                                        <div class="date">Date of Invoice: 09/30/2021</div>
+                                        <div class="date">Date of Invoice: {{ date('Y-m-d ') }}</div>
                                        
                                     </div>
                                 </div>

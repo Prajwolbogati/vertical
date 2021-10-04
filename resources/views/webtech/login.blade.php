@@ -26,7 +26,7 @@
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
                     <div class="col mx-auto">
                         <div class="mb-4 text-center">
-                            <img src="assets/images/logo-img.png" width="180" alt="" />
+                            <img src="{{ asset('assets/images/webtech.svg') }}" width="80%" alt="" />
                         </div>
                         <div class="card">
                             <div class="card-body">
@@ -62,7 +62,7 @@
                                             <div class="col-12">
                                                 <label for="password" class="form-label">Enter Password</label>
                                                 <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-end-0" name="password"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                    <input type="password" class="form-control pw border-end-0" name="password"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 
                                                 </div>
                                             </div>
