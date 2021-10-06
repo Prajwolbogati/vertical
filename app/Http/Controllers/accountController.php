@@ -11,6 +11,7 @@ use App\Models\companyservice;
 use App\Models\service;
 use App\Models\servicetype;
 use Carbon\Carbon;
+use Response;
 
 class accountController extends Controller
 {
@@ -212,8 +213,9 @@ $companyservice->save();
             $comp->status=$req->status;
         
         $comp->save();
-        session::flash('message','Data inserted successfully');
-        return redirect()->back();
+     
+        session::flash('message','Data updated successfully');
+       
         
         
         
@@ -223,7 +225,7 @@ $companyservice->save();
             $comp = companyservice::find($id);
             $comp->delete();
             session::flash('message','Data deleted successfully');
-            return redirect()->back();
+           
             
            
                 }

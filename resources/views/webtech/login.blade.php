@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!--favicon-->
-		<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+		<link rel="icon" href="assets/images/webtechlogo.svg" type="image/svg" />
 		<!-- loader-->
 		<link href="assets/css/pace.min.css" rel="stylesheet" />
 		<script src="assets/js/pace.min.js"></script>
@@ -15,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 		<link href="assets/css/app.css" rel="stylesheet">
 		<link href="assets/css/icons.css" rel="stylesheet">
-		<title>Rocker - Multipurpose Bootstrap5 Admin Template</title>
+		<title>Webtech - Expiry Management System</title>
 	</head>
 
 <body class="bg-login">

@@ -59,7 +59,7 @@
 
 								@foreach($datass as $key=>$account)
 
-	<tr class="{{$account->account->account_id}}" id="{{$account->account_id}}">
+	<tr class="{{$account->account->account_id}}" id="cid{{$account->compservice_id}}">
 								
 								<td class="text-center"> 
 									<button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
@@ -85,22 +85,22 @@
 													
 													
                                                     <li>
-													<form action="{{url('update/'.$account->compservice_id)}} " method="post">
+													{{-- <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                             
 							@csrf
-							<input type="hidden" name="status" value="suspend">
-                            <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
-                        </form>
+							<input type="hidden" name="status" value="suspend"> --}}
+                            <button class="dropdown-item btn btn-xs btn-danger" onclick="updateAccount({{$account->compservice_id}})">Suspend</button>
+                        {{-- </form> --}}
 						
                                                     </li>
 
                                                     <li>
-													<form action="{{url('update/'.$account->compservice_id)}} " method="post">
+													{{-- <form action="{{url('update/'.$account->compservice_id)}} " method="post">
                           
 							@csrf
-							<input type="hidden" name="status" value="delete">
-                            <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                        </form>
+							<input type="hidden" name="status" value="delete"> --}}
+                            <button class="dropdown-item btn btn-xs btn-danger" onclick="deleteAccount({{$account->compservice_id}})">Delete</button>
+                        {{-- </form> --}}
                                                     </li>
                                                     <li>
                                                         <hr class="dropdown-divider">
@@ -262,5 +262,79 @@ uniqueAndSorted.forEach(element => {
     
 }
 </script>
+
+<script>
+function updateAccount(id)
+{
+
+debugger
+    var status = 'suspend';
+
+      $.ajax({
+        url: 'update/'+id,
+        type: 'post',
+        data: {
+         
+          status: status,
+         
+		  _token : $("input[name=_token]").val()
+        },
+	
+        success: function(response) {
+			
+
+			console.log('haha: '+response);
+			console.log('the value of myVar was: '+this.data.status);
+			// $("#cid" + id+" td:nth-child(8)").hide();
+
+			// $("#cid" + id+" td:nth-child(8)").val(response.status);
+                // $('#cid' + id +' td:nth-child(8)').text(response.status);
+	
+                }
+    
+  });
+
+	
+		
+}
+
+
+
+function deleteAccount(id)
+{
+debugger
+
+    var status = 'delete';
+
+      $.ajax({
+        url: 'update/'+id,
+        type: 'post',
+
+		
+        data: {
+        
+          status: status,
+         
+		  _token : $("input[name=_token]").val()
+        },
+		
+        success: function(response) {
+
+		
+			console.log('haha: '+response);
+			console.log('the value of myVar was: '+this.data.status);
+			// $("#cid" + id+" td:nth-child(8)").val(response.status);
+			// $("#cid" + id+" td:nth-child(8)").hide();
+                // $('#cid' + id +' td:nth-child(8)').text(response.status);
+	
+                }
+    
+  });
+
+	
+		
+}
+
+	</script>
 
 	@endsection

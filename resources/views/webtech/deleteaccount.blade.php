@@ -59,11 +59,11 @@
 
                             @foreach($data as $key=>$account)
 
-<tr class="{{$account->account->account_id}}" id="{{$account->account_id}}">
+<tr class="{{$account->account->account_id}}" id="cid{{$account->compservice_id}}">
                             
                             <td class="text-center"> 
                                 <button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
-                                <!-- <input class="form-check-input" type="checkbox" data-serviceName="{{$account->account->account_id}}" onclick="checkMe(this)"/> -->
+                             
                             </td>
                                 <td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
                                <td>{{$account->account->hostingquota}}</td>
@@ -95,12 +95,14 @@
                                                 </li>
 
                                                 <li>
-                                                <form action="{{url('delete/'.$account->compservice_id)}} " method="post">
+
+                                                    <a  href="javascript:void(0)" onclick="deleteAccount({{$account->compservice_id}})" class="dropdown-item">Delete</a>
+                                                {{-- <form action="{{url('delete/'.$account->compservice_id)}} " method="post">
                       
                         @csrf
                        
                         <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                    </form>
+                    </form> --}}
                                                 </li>
                                                 <li>
                                                     <hr class="dropdown-divider">
@@ -144,6 +146,7 @@ visibility: hidden;
 
 @section("script")
 <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> --}}
 <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
 <script>
     $(document).ready(function() {
@@ -261,6 +264,34 @@ for (let i = 0; i < rows			.length; i++) {
             
 
 }
+
+
+
 </script>
+
+<script>
+    function deleteAccount(id)
+    
+    {
+       
+        if(confirm("Do you really want to delete this record?"))
+        {
+            $.ajax({
+                url:'delete/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                $("#cid"+id).remove();
+                }
+
+            });
+        }
+    }
+
+
+    </script>
 
 @endsection

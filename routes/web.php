@@ -119,7 +119,7 @@ Route::get('deleteservice/{id}', [serviceController::class, 'deleteService']);
 
 Route::get('deletestype/{id}', [servicetypeController::class, 'deleteStype']);
 
-Route::get('delete/{id}', [accountController::class, 'delete']);
+Route::delete('delete/{id}', [accountController::class, 'delete']);
 
 Route::get('delete/{id}', [companyserviceController::class, 'delete']);
 

@@ -95,8 +95,7 @@ public function delete($id){
     $comp->delete();
     session::flash('message','Data deleted successfully');
     return redirect()->back();
-    
-    return redirect()->back();
+  
         }
 
 
