@@ -270,7 +270,7 @@ function updateAccount(id)
   var status = 'suspend';
 
       $.ajax({
-        url: 'update/'+id,
+        url: '/update/'+id,
         type: 'post',
         data: {
          
@@ -307,7 +307,7 @@ function deleteAccount(id)
     var status = 'delete';
 
       $.ajax({
-        url: 'update/'+id,
+        url: '/update/'+id,
         type: 'post',
 
 		

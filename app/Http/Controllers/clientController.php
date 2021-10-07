@@ -9,6 +9,15 @@ class clientController extends Controller
 {
     public function insertdata(Request $req)
     {
+        $req->validate([
+            'clientname' => 'required|string|max:255',
+            'clientstatus' => 'required|string|max:255',
+            'clientaddress' => 'required|string|max:255',
+            'clientphone' => 'required|string|max:255',
+            'requirement' => 'nullable|string',
+            'clientactive_date'      => 'required',
+            'clientemail' => 'required|string|email|max:255|unique:clients',
+        ]);
     $client = new client;
     $client->clientname=$req->clientname;
     $client->clientemail=$req->clientemail;
@@ -24,6 +33,15 @@ class clientController extends Controller
     }
     public function updateData(Request $req)
     {
+        $req->validate([
+            'clientname' => 'required|string|max:255',
+            'clientstatus' => 'required|string|max:255',
+            'clientaddress' => 'required|string|max:255',
+            'clientphone' => 'required|string|max:255',
+            'requirement' => 'nullable|string',
+            'clientactive_date'      => 'required',
+            'clientemail' => 'required|string|email|max:255|unique:clients',
+        ]);
         $client = client::find($req->client_id);
         $client->clientname=$req->clientname;
         $client->clientemail=$req->clientemail;

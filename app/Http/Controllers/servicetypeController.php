@@ -9,6 +9,10 @@ class servicetypeController extends Controller
 {
     public function insertdata(Request $req)
     {
+        $req->validate([
+            'stype_name' => 'required|string|max:255',
+          
+        ]);
     $servicetype = new servicetype;
     $servicetype->stype_name=$req->stype_name;
     $servicetype['created_at'] = date('Y-m-d H:i:s');
@@ -18,6 +22,10 @@ class servicetypeController extends Controller
     }
     public function updateData(Request $req)
 {
+    $req->validate([
+        'stype_name' => 'required|string|max:255',
+      
+    ]);
     $service = servicetype::find($req->stype_id);
 $service->stype_name=$req->stype_name;
     $service['updated_at'] = date('Y-m-d H:i:s');

@@ -82,8 +82,9 @@ $data= Role::all();
     public function postProfile(Request $request){
         $user = Auth()->user();
         $this->validate($request, [
-            'name' => 'required',
-            'phone' => 'required',
+            'name' => 'required|max:255|alpha',
+            'phone' => 'nullable|string|max:255',
+            'address'=>'nullable|string|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id
         ]);
         $user->name = $request->name;

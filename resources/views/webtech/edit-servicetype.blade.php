@@ -46,6 +46,9 @@
                                            <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Name</label>
                                            <div class="col-sm-9">
                                                <input type="text" class="form-control" name="stype_name" placeholder="Enter Your Name"  value="{{$data->stype_name}}">
+                                               @error('stype_name')
+                                               <div class="alert-danger">{{ $message }}</div>
+                                               @enderror
                                            </div>
                                        </div>
                                        

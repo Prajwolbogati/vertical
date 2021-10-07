@@ -45,18 +45,27 @@
                                             <label for="clientname" class="col-sm-3 col-form-label">Client Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientname" placeholder="Enter Name" value="{{$singledata->clientname}}">
+                                                @error('clientname')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="clientemail" class="col-sm-3 col-form-label">Client Email</label>
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" name="clientemail" placeholder="Email Address" value="{{$singledata->clientemail}}">
+                                                @error('clientemail')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="clientphone" class="col-sm-3 col-form-label">Client Phone</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientphone" placeholder="Phone No" value="{{$singledata->clientphone}}">
+                                                @error('clientphone')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                        
@@ -64,6 +73,9 @@
                                             <label for="clientaddress" class="col-sm-3 col-form-label">Client Address</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientaddress" placeholder="Address" value="{{$singledata->clientaddress}}">
+                                                @error('clientaddress')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -73,6 +85,9 @@
                                             <label for="requirement" class="col-sm-3 col-form-label">Client Requirement</label>
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" name="requirement" rows="3" placeholder="Add requirements">{{$singledata->requirement}}</textarea>
+                                                @error('requirement')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -80,6 +95,9 @@
                                             <label for="clientactive_date" class="col-sm-3 col-form-label">Active Date</label>
                                             <div class="col-sm-9">
                                             <input type="date" class="form-control datepicker" name="clientactive_date" placeholder="Active Date" value="{{$singledata->clientactive_date}}">
+                                            @error('clientactive_date')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 </div>
                                         <div class="row mb-3">
@@ -93,6 +111,9 @@
                                             <option >Interested</option>
                                             <option >Not Interested</option>
                                         </select>
+                                        @error('clientstatus')
+                                        <div class="alert-danger">{{ $message }}</div>
+                                        @enderror
                                             </div>
                                         </div>
                                         <div class="row">

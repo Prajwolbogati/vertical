@@ -70,6 +70,9 @@
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
                                                     <input type="text" class="form-control" name="name"   value="{{Auth::user()->name }}" />
+                                                    @error('name')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -78,6 +81,9 @@
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
                                                     <input type="text" class="form-control" name="email"  value="{{Auth::user()->email }}" />
+                                                    @error('email')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -86,6 +92,9 @@
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
                                                     <input type="text" class="form-control" name="phone"  value="{{Auth::user()->phone }}" />
+                                                    @error('phone')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
@@ -95,6 +104,9 @@
                                                 </div>
                                                 <div class="col-sm-9 text-secondary">
                                                     <input type="text" class="form-control" name="address"  value="{{Auth::user()->address }}" />
+                                                    @error('address')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -121,6 +133,9 @@
                                                 </div>
                                                 <div class="col-sm-9">
                                                 <input type="password" class="form-control" name="newpassword" placeholder="Choose Password">
+                                                @error('newpassword')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             </div>
                                             <div class="row mb-3">
@@ -129,6 +144,9 @@
                                                 </div>
                                                 <div class="col-sm-9">
                                                 <input type="password" class="form-control" name="newpassword_confirmation" placeholder="Confirm Password">
+                                                @error('newpassword_confirmation')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             </div>
 

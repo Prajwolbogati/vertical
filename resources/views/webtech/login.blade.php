@@ -46,24 +46,29 @@
                                     <form class="row g-3" method="post" action="{{url('login')}}">
                {{csrf_field()}}
 
-               @if (count($errors) > 0)
+               {{-- @if (count($errors) > 0)
         <ul>
             @foreach ($errors->all() as $error)
             <span class="text-danger">{{ $error }} </span>
            
             @endforeach
         </ul>
-    @endif
+    @endif --}}
                                             <div class="col-12">
                                                 <label name="email" class="form-label">Email Address</label>
                                                 <input type="email" class="form-control" name="email" placeholder="Email Address">
+                                                @error('email')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                               
                                             </div>
                                             <div class="col-12">
                                                 <label for="password" class="form-label">Enter Password</label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" class="form-control pw border-end-0" name="password"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
-
+                                                    @error('password')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

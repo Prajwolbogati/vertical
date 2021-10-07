@@ -65,7 +65,7 @@ Route::get('edit-account/{id}', [accountController::class, 'editAccount']);
 
 Route::post('updateaccount/{id?}', [accountController::class, 'updateData']);
 
-Route::post('update/{id}', [accountController::class, 'updateStatus']);
+Route::post('/update/{id}', [accountController::class, 'updateStatus']);
 
 Route::get('newclient', [clientController::class, 'addClient']);
 

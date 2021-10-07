@@ -33,17 +33,20 @@
                     <form method="POST" action= "{{url('forgot-password')}}">
                {{csrf_field()}}
 
-               @if (count($errors) > 0)
+               {{-- @if (count($errors) > 0)
         <ul>
             @foreach ($errors->all() as $error)
             <span class="text-danger">{{ $error }} </span>
            
             @endforeach
         </ul>
-    @endif
+    @endif --}}
                     <div class="my-4">
                         <label class="form-label">Email id</label>
                         <input type="email" class="form-control form-control-lg" name="email" placeholder="example@user.com" />
+                        @error('email')
+                        <div class="alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg">Send</button> <a href="{{ url('login') }}" class="btn btn-light btn-lg"><i class='bx bx-arrow-back me-1'></i>Back to Login</a>

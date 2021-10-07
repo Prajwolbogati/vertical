@@ -42,6 +42,17 @@ class accountController extends Controller
     }
 public function insertdata(Request $req)
 {
+    $req->validate([
+        'domainname' => 'required|string|max:255|unique:accounts',
+        'fullname' => 'required|string|max:255',
+        'hostingquota' => 'string|nullable|max:255',
+        'companyname' => 'required|string|max:255',
+        'companyaddress' => 'required|string|max:255',
+        'phone_num' => 'required|string|max:255',
+        'marketby' => 'string|nullable|max:255',
+        'detail' => 'string',
+        'email' => 'required|string|email|max:255|unique:accounts',
+    ]);
 $account = new account();
 $account->domainname=$req->domainname;
 $account->hostingquota=$req->hostingquota;
@@ -55,6 +66,18 @@ $account->detail=$req->detail;
 $account->save();
 foreach($req->service_id as $key=>$service_id){
 if($service_id){
+
+    // $req->validate([
+       
+    //     'status.*' => 'required|string|max:255',
+    //     'service_id.*' => 'nullable',
+    //     'vat_amount.*' => 'required|numeric|max:255',
+    //     'active_date.*'      => 'required|date|date_format:Y-m-d|after:yesterday',
+    //     'exp_date.*'        => 'required|date|date_format:Y-m-d|after:start_at',
+    //     'amount.*' => 'required|numeric|gt:0',
+    //     'discount.*' => 'numeric|nullable|gt:0',
+       
+    // ]);
 $companyservice = new companyservice();
 $companyservice->status='active';
 $companyservice->vat_amount= "13";
@@ -95,6 +118,18 @@ public function editAccount($id){
         }
         public function updateData(Request $req)
         {
+
+            $req->validate([
+                'domainname' => 'required|string|max:255|unique:accounts',
+                'fullname' => 'required|string|max:255',
+                'hostingquota' => 'string|nullable|max:255',
+                'companyname' => 'required|string|max:255',
+                'companyaddress' => 'required|string|max:255',
+                'phone_num' => 'required|string|max:255',
+                'marketby' => 'string|nullable|max:255',
+                'detail' => 'string',
+                'email' => 'required|string|email|max:255|unique:accounts',
+            ]);
             $account = account::find($req->account_id);
             $account->domainname=$req->domainname;
             $account->hostingquota=$req->hostingquota;

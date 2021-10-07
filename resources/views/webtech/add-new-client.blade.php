@@ -11,7 +11,7 @@
 @section('wrapper')
     <div class="page-wrapper">
         <div class="page-content">
-            @can('create account')
+            @can('create permission')
                 <!--breadcrumb-->
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3">Clients</div>
@@ -47,6 +47,9 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientname"
                                                     placeholder="Enter Name">
+                                                    @error('clientname')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -54,6 +57,9 @@
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" name="clientemail"
                                                     placeholder="Email Address">
+                                                    @error('clientemail')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -61,6 +67,9 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientphone"
                                                     placeholder="Phone No">
+                                                    @error('clientphone')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
 
@@ -69,6 +78,9 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientaddress"
                                                     placeholder="Address">
+                                                    @error('clientaddress')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
 
@@ -79,6 +91,9 @@
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" name="requirement" rows="3"
                                                     placeholder="Add requirements"></textarea>
+                                                    @error('requirement')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
 
@@ -87,6 +102,9 @@
                                             <div class="col-sm-9">
                                                 <input type="date" class="form-control datepicker" name="clientactive_date"
                                                     placeholder="Active Date">
+                                                    @error('clientactive_date')
+                                                    <div class="alert-danger">{{ $message }}</div>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -99,6 +117,9 @@
                                                     <option value="3">Interested</option>
                                                     <option value="3">Not Interested</option>
                                                 </select>
+                                                @error('clientstatus')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row">

@@ -9,6 +9,11 @@ class serviceController extends Controller
 {
 public function insertdata(Request $req)
 {
+    $req->validate([
+        'service_name' => 'required|string|max:255',
+        'stype_id' => 'required',
+      
+    ]);
 $service = new service;
 $service->stype_id=$req->stype_id;
 $service->service_name=$req->service_name;
@@ -19,6 +24,10 @@ return redirect()->back();
 }
 public function updateData(Request $req)
 {
+    $req->validate([
+        'service_name' => 'required|string|max:255',
+      
+    ]);
     $service = service::find($req->service_id);
     $service->stype_id=$req->stype_id;
 $service->service_name=$req->service_name;

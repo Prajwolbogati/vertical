@@ -33,6 +33,9 @@
                                             <label for="name" class="col-sm-3 col-form-label">Enter Role</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="name" placeholder="Enter Role">
+                                                @error('name')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                        

@@ -35,10 +35,16 @@
                                         <div class="col-md-6">
                                             <label for="domainname"  class="form-label">Domain Name</label>
                                             <input type="text" class="form-control" name="domainname" placeholder="Domain Name">
+                                            @error('domainname')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="hostingquota" class="form-label">Hosting Quota</label>
                                             <input type="text" class="form-control" name="hostingquota" placeholder="Hosting Quota">
+                                            @error('hostingquota')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 </div>
                                    
@@ -47,30 +53,48 @@
                                         <div class="col-md-6">
                                             <label for="fullname" class="form-label">Full Name</label>
                                             <input type="text" class="form-control" name="fullname" placeholder="Full Name">
+                                            @error('fullname')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="companyname" class="form-label">Company Name</label>
                                             <input type="text" class="form-control" name="companyname" placeholder="Company Name">
+                                            @error('companyname')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 </div>
 <div class="row">
                                         <div class="col-6">
                                             <label for="companyaddress" class="form-label">Company Address</label>
                                             <input type="text" class="form-control" name="companyaddress" placeholder="Company Address">
+                                            @error('companyaddress')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-6">
                                             <label for="phone_num" class="form-label">Company Number</label>
                                             <input type="text" class="form-control" name="phone_num" placeholder="Company Number">
+                                            @error('phone_num')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 </div>
 <div class="row">
                                         <div class="col-md-6">
                                             <label for="email" class="form-label">Company Email</label>
                                             <input type="email" class="form-control" name="email" placeholder="Company Email">
+                                            @error('email')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="marketby" class="form-label">Market By</label>
                                             <input type="text" class="form-control" name="marketby" placeholder="Market By">
+                                            @error('marketby')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 </div>
                                      
@@ -89,6 +113,9 @@
                                     <hr/>
                                     <div class="row g-3">
                                 <textarea id="mytextareas" name="detail">Hello, World!</textarea>
+                                @error('detail')
+                                <div class="alert-danger">{{ $message }}</div>
+                                @enderror
 </div>
 <hr>
 
@@ -138,18 +165,30 @@
                                         <div class="col-md-6">
                                             <label for="active_date" class="form-label">Active Date</label>
                                             <input type="date" class="form-control datepicker" name="active_date[{{$key}}]" placeholder="Active Date">
+                                            @error('active_date')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exp_date" class="form-label">Expiry Date</label>
                                             <input type="date" class="form-control datepicker" name="exp_date[{{$key}}]" placeholder="Expiry Date">
+                                            @error('exp_date')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12">
                                             <label for="amount" class="form-label">Amount</label>
                                             <input type="text" class="form-control" name="amount[{{$key}}]" placeholder="Amount">
+                                            @error('amount')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12">
                                             <label for="discount" class="form-label">Discount Amount</label>
                                             <input type="text" class="form-control" name="discount[{{$key}}]" placeholder="Discount Amount">
+                                            @error('discount')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12">
                                        

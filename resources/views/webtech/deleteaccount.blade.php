@@ -306,7 +306,7 @@ for (let i = 0; i < rows			.length; i++) {
        
         
             $.ajax({
-                url:'delete/'+id,
+                url:'/delete/'+id,
                 type:'DELETE',
                 data:{
                     _token : $("input[name=_token]").val()

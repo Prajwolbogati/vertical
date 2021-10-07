@@ -13,19 +13,19 @@ class companyservice extends Model
     protected $table = 'companyservices';
     protected $primaryKey = 'compservice_id';
 
-    protected $fillable = [
+    // protected $fillable = [
         
-        'status',
-        'vat_amount',
-        'active_date',
-        'exp_date',
-        'amount',
-        'discount',
-        'account_id',
-        'service_id',
-        'amountafterdiscount',
-        'finalamount'
-    ];
+    //     'status',
+    //     'vat_amount',
+    //     'active_date',
+    //     'exp_date',
+    //     'amount',
+    //     'discount',
+    //     'account_id',
+    //     'service_id',
+    //     'amountafterdiscount',
+    //     'finalamount'
+    // ];
 
     public function account(){
         return $this->belongsTo(account::class, 'account_id','account_id');

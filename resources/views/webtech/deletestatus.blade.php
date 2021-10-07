@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('style')
-    <link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('wrapper')
@@ -44,7 +44,7 @@
                             <tbody>
 
                                 @foreach ($data as $account)
-                                    <tr>
+                                    <tr id="cid{{$account->compservice_id}}">
                                         <td>{{ $account->account->domainname }}</td>
                                         <td>{{ $account->account->hostingquota }}</td>
                                         <td>{{ $account->remaining_days }}</td>
@@ -79,14 +79,14 @@
                                                         </li>
 
                                                         <li>
-                                                            <form
-                                                                action="{{ url('delete') }}/{{ $account->compservice_id }} ">
 
-                                                                @csrf
-
-                                                                <button
-                                                                    class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                                                            </form>
+                                                            <a  href="javascript:void(0)" onclick="deleteAccount({{$account->compservice_id}})" class="dropdown-item">Delete</a>
+                                                        {{-- <form action="{{url('delete/'.$account->compservice_id)}} " method="post">
+                              
+                                @csrf
+                               
+                                <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
+                            </form> --}}
                                                         </li>
                                                         <li>
                                                             <hr class="dropdown-divider">
@@ -117,14 +117,15 @@
 @endsection
 
 @section('script')
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var table = $('#example2').DataTable({
                 lengthChange: false,
@@ -134,5 +135,47 @@
             table.buttons().container()
                 .appendTo('#example2_wrapper .col-md-6:eq(0)');
         });
+    </script> --}}
+<script>
+    function deleteAccount(id)
+    
+    {
+
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this data!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your data has been deleted!", {
+      icon: "success",
+      timer: 1000, 
+    });
+       
+        
+            $.ajax({
+                url:'/delete/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                $("#cid"+id).remove();
+                }
+
+            });
+        } else {
+   swal("Your data is safe!");
+        }
+});
+
+    }
+
+
     </script>
+
 @endsection

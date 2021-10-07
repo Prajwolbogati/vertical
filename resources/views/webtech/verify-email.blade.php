@@ -25,14 +25,15 @@
 <!-- wrapper -->
 <div class="wrapper">
     <div class="authentication-forgot d-flex align-items-center justify-content-center">
-        @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            A new verification link has been sent to the email address you provided during registration.
-        </div>
-    @endif
+       
         <div class="card forgot-box">
             <div class="card-body">
                 <div class="p-4 rounded  border">
+                    @if (session('status') == 'verification-link-sent')
+               <div class="mb-4 font-medium text-sm text-green-600 text-success">
+                   Verification link has been sent.
+               </div>
+           @endif
                     <div class="text-center">
                         <img src="assets/images/icons/forgot-2.png" width="120" alt="" />
                     </div>
@@ -41,7 +42,10 @@
                     <form method="POST" action= "{{url('/email/verification-notification')}}">
                {{csrf_field()}}
 
-               @if (count($errors) > 0)
+               
+                    
+                    <div class="d-grid gap-2">
+                        @if (count($errors) > 0)
         <ul>
             @foreach ($errors->all() as $error)
             <span class="text-danger">{{ $error }} </span>
@@ -49,8 +53,6 @@
             @endforeach
         </ul>
     @endif
-                    
-                    <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg">Verify</button>
 
                     </form>

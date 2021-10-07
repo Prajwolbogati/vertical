@@ -25,14 +25,20 @@
                                         <div class="row mb-3">
                                             <label for="companyname" class="col-sm-3 col-form-label">Company Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="companyname" placeholder="Enter Your Name">
+                                                <input type="text" class="form-control" name="companyname" placeholder="Enter Company Name">
+                                                @error('companyname')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         
                                         <div class="row mb-3">
                                             <label for="companyaddress" class="col-sm-3 col-form-label">Company Address</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="companyaddress" placeholder="Phone No">
+                                                <input type="text" class="form-control" name="companyaddress" placeholder="Company Address">
+                                                @error('companyaddress')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -40,12 +46,18 @@
                                             <label for="companyphone" class="col-sm-3 col-form-label">Company Phone No</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="companyphone" placeholder="Phone No">
+                                                @error('companyphone')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="companyemail" class="col-sm-3 col-form-label">Company Email</label>
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" name="companyemail" placeholder="Email Address">
+                                                @error('companyemail')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
 </div>
 

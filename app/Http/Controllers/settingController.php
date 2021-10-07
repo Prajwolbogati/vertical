@@ -13,6 +13,14 @@ class settingController extends Controller
 {
     public function insertdata(Request $req)
     {
+        $req->validate([
+            'companyname' => 'required|string|max:255',
+'image' => 'required',
+            'companyaddress' => 'required|string|max:255',
+            'companyphone' => 'required|string|max:255',
+            
+            'companyemail' => 'required|string|email|max:255|unique:clients',
+        ]);
     $setting = new setting;
     $setting->companyname=$req->companyname;
     $setting->companyaddress=$req->companyaddress;
@@ -28,6 +36,14 @@ class settingController extends Controller
     }
     public function updateData(Request $req)
     {
+        $req->validate([
+            'companyname' => 'required|string|max:255',
+'image' => 'required',
+            'companyaddress' => 'required|string|max:255',
+            'companyphone' => 'required|string|max:255',
+            
+            'companyemail' => 'required|string|email|max:255|unique:clients',
+        ]);
         $setting = setting::find($req->setting_id);
         $setting->companyname=$req->companyname;
         $setting->companyaddress=$req->companyaddress;

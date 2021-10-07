@@ -41,24 +41,36 @@
                                             <label for="name" class="col-sm-3 col-form-label">Enter Your Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="name" placeholder="Enter Your Name" value="{{$singledata->name}}">
+                                                @error('name')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="email" class="col-sm-3 col-form-label">Email </label>
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" name="email" placeholder="Enter Email" value="{{$singledata->email}}">
+                                                @error('email')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="password" class="col-sm-3 col-form-label">Choose Password</label>
                                             <div class="col-sm-9">
                                                 <input type="password" class="form-control" name="password" placeholder="Choose Password">
+                                                @error('password')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="password_confirmation" class="col-sm-3 col-form-label">Confirm Password</label>
                                             <div class="col-sm-9">
                                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                                                @error('password_confirmation')
+                                                <div class="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -81,6 +93,9 @@
                                                
                                                
 </select>
+@error('role')
+<div class="alert-danger">{{ $message }}</div>
+@enderror
                                             </div>
                                         </div>
                                     
