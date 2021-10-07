@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateServicesTable extends Migration
 {
     /**
@@ -13,7 +11,6 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-     
         Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('service_id');
             $table->bigInteger('stype_id')->unsigned()->nullable();
@@ -22,7 +19,6 @@ class CreateServicesTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

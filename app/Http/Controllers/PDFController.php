@@ -1,7 +1,5 @@
 <?php
-  
 namespace App\Http\Controllers;
-  
 use PDF;
 use Mail;
 use App\Models\account;
@@ -9,8 +7,6 @@ use App\Models\hello;
 use App\Models\hellos;
 use App\Models\companyservice;
 use Illuminate\Http\Request;
-
-  
 class PDFController extends Controller
 {
     /**
@@ -36,7 +32,6 @@ class PDFController extends Controller
         $data["email"] = $req->email;
         $data["title"] = "From ItSolutionStuff.com";
         $data["body"] = "This is Demo";
-  
         $pdf = PDF::loadView('webtech.haha', $data)
         ->setOptions([
             'enable_remote' => true,
@@ -49,12 +44,5 @@ class PDFController extends Controller
         ]);
         });
         return redirect()->back();
-        
-
     }
-
-
-
-    
-
 }

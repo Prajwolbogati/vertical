@@ -148,6 +148,7 @@ visibility: hidden;
 <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> --}}
 <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
@@ -264,7 +265,22 @@ for (let i = 0; i < rows			.length; i++) {
             
 
 }
-
+// swal({
+//   title: "Are you sure?",
+//   text: "Once deleted, you will not be able to recover this imaginary file!",
+//   icon: "warning",
+//   buttons: true,
+//   dangerMode: true,
+// })
+// .then((willDelete) => {
+//   if (willDelete) {
+//     swal("Poof! Your imaginary file has been deleted!", {
+//       icon: "success",
+//     });
+//   } else {
+//     swal("Your imaginary file is safe!");
+//   }
+// });
 
 
 </script>
@@ -273,9 +289,22 @@ for (let i = 0; i < rows			.length; i++) {
     function deleteAccount(id)
     
     {
+
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this data!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your data has been deleted!", {
+      icon: "success",
+      timer: 1000, 
+    });
        
-        if(confirm("Do you really want to delete this record?"))
-        {
+        
             $.ajax({
                 url:'delete/'+id,
                 type:'DELETE',
@@ -288,7 +317,11 @@ for (let i = 0; i < rows			.length; i++) {
                 }
 
             });
+        } else {
+   swal("Your data is safe!");
         }
+});
+
     }
 
 

@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Console\Commands;
-
 use Illuminate\Console\Command;
 use DB;
-
 class daily extends Command
 {
     /**
@@ -13,14 +10,12 @@ class daily extends Command
      * @var string
      */
     protected $signature = 'daily:update';
-
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'This will update status automatically';
-
     /**
      * Create a new command instance.
      *
@@ -30,7 +25,6 @@ class daily extends Command
     {
         parent::__construct();
     }
-
     /**
      * Execute the console command.
      *

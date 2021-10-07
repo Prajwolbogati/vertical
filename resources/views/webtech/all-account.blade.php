@@ -145,6 +145,7 @@
 	@section("script")
 	<script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
@@ -266,9 +267,7 @@ uniqueAndSorted.forEach(element => {
 <script>
 function updateAccount(id)
 {
-
-debugger
-    var status = 'suspend';
+  var status = 'suspend';
 
       $.ajax({
         url: 'update/'+id,
@@ -278,18 +277,19 @@ debugger
           status: status,
          
 		  _token : $("input[name=_token]").val()
-        },
-	
+        },	
         success: function(response) {
-			
-
-			console.log('haha: '+response);
-			console.log('the value of myVar was: '+this.data.status);
-			// $("#cid" + id+" td:nth-child(8)").hide();
-
-			// $("#cid" + id+" td:nth-child(8)").val(response.status);
-                // $('#cid' + id +' td:nth-child(8)').text(response.status);
 	
+			$("#cid" + id+" td:nth-child(8)").html(response.status);
+			// swal("Status updated!", "", "success");
+
+			swal({
+    title: "Status Updated!",
+	icon: "success",
+    timer: 1000,
+    showConfirmButton: true
+  });
+
                 }
     
   });
@@ -302,7 +302,7 @@ debugger
 
 function deleteAccount(id)
 {
-debugger
+
 
     var status = 'delete';
 
@@ -320,12 +320,15 @@ debugger
 		
         success: function(response) {
 
+			$("#cid" + id+" td:nth-child(8)").html(response.status);
+			// swal("Status updated!", "", "success");
+			swal({
+    title: "Status Updated!",
+	icon: "success",
+    timer: 1000,
+    showConfirmButton: true
+  });
 		
-			console.log('haha: '+response);
-			console.log('the value of myVar was: '+this.data.status);
-			// $("#cid" + id+" td:nth-child(8)").val(response.status);
-			// $("#cid" + id+" td:nth-child(8)").hide();
-                // $('#cid' + id +' td:nth-child(8)').text(response.status);
 	
                 }
     

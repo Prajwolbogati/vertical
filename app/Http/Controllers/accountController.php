@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -12,30 +10,15 @@ use App\Models\service;
 use App\Models\servicetype;
 use Carbon\Carbon;
 use Response;
-
 class accountController extends Controller
 {
-
-
-    
-
     public function newAccount(){
-       
-
         return view ('webtech.new-account');
-        
     }
     // public function Login(){
-    
-
-
     //     return view ('webtech.login');
-        
     // }
-
     public function index(){
-
-
         $data = companyservice::with('account','service.parent')    
         ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
         $seven = companyservice::with('account','service.parent')    
@@ -48,7 +31,6 @@ class accountController extends Controller
         ->where('status' , 'suspend')-> orderBy('account_id', 'asc')->count();
         $delete = companyservice::with('account','service.parent')
         ->where('status' , 'delete')-> orderBy('account_id', 'asc')->count();
-    
         return view ('index',[
             'data'=>$data,
             'seven'=>$seven,
@@ -56,12 +38,8 @@ class accountController extends Controller
             'expired'=>$expired,
             'suspend'=>$suspend,
             'delete'=>$delete,
-        
-        
         ]);
-       
     }
-
 public function insertdata(Request $req)
 {
 $account = new account();
@@ -75,14 +53,10 @@ $account->email=$req->email;
 $account->marketby=$req->marketby;
 $account->detail=$req->detail;
 $account->save();
-
-
-
 foreach($req->service_id as $key=>$service_id){
 if($service_id){
 $companyservice = new companyservice();
 $companyservice->status='active';
-
 $companyservice->vat_amount= "13";
 $companyservice->service_id= $service_id;
 $companyservice->account_id=$account->account_id;
@@ -95,25 +69,14 @@ $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
 $companyservice->save();
 }
 }
-
-
 session::flash('message','Data inserted successfully');
 return redirect()->back();
-
-
-
 }
-
 public function allAccount(){
     $data = account::with(['compservice.service.parent'])->get();
-
     $datass = companyservice::with(['account','service.parent']) -> orderBy('account_id', 'asc')->get();
-
     return view ('webtech.all-account',['data'=>$data,'datass'=>$datass]);
-    
 }
-
-
 public function detailAccount($id){
     $data = companyservice::with('account','service.parent')->where('account_id',$id)->get();
     if($data == NULL){
@@ -121,9 +84,7 @@ public function detailAccount($id){
     }
     $sum = companyservice::with('account','service.parent')->where('account_id',$id)->sum('finalamount');
     return view ('webtech.detail',['data'=>$data,'sum'=>$sum]);
-    
 }
-
 public function editAccount($id){
     $singledata = account::with('compservice.service.parent')->where('account_id',$id)->first();
     if($singledata == NULL){
@@ -132,10 +93,8 @@ public function editAccount($id){
     $data = servicetype::with('child')->get();
             return view ('webtech.edit-account',['singledata'=>$singledata,'data'=>$data]);
         }
-
         public function updateData(Request $req)
         {
-    
             $account = account::find($req->account_id);
             $account->domainname=$req->domainname;
             $account->hostingquota=$req->hostingquota;
@@ -147,19 +106,11 @@ public function editAccount($id){
             $account->marketby=$req->marketby;
             $account->detail=$req->detail;
             $account->save();
-
-
-       
             foreach($req->service_id as $key=>$service_id){
                 if($service_id){
-                  
-                   
 if(isSet($req->compservice_id[$key])){
-
     $companyservice = companyservice::find($req->compservice_id[$key]);
-                    
     $companyservice->status='active';
-    
     $companyservice->vat_amount= "13";
     $companyservice->service_id= $service_id;
     $companyservice->account_id=$account->account_id;
@@ -169,16 +120,9 @@ if(isSet($req->compservice_id[$key])){
     $companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
     $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
     $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
-  
-              
-               
 }else{
-
- 
- 
     $companyservice = new companyservice();
     $companyservice->status='active';
-    
     $companyservice->vat_amount= "13";
     $companyservice->service_id= $service_id;
     $companyservice->account_id=$account->account_id;
@@ -188,98 +132,50 @@ if(isSet($req->compservice_id[$key])){
     $companyservice->amountafterdiscount=($req->amount[$key] - $req->discount[$key]);
     $companyservice->finalamount=($req->amount[$key] - $req->discount[$key]) * (13/100) + ($req->amount[$key] - $req->discount[$key]);
     $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
-    
-
 }
 $companyservice->save();
-
                 }
                 }    
-                        
-                      
         session::flash('message','Data updated successfully');
         return redirect()->back();
-        
-        
-        
         }
-
-
-
         public function updateStatus(Request $req, $id)
         {
             $comp = companyservice::find($id);
-           
             $comp->status=$req->status;
-        
         $comp->save();
-     
-        session::flash('message','Data updated successfully');
-       
-        
-        
-        
+        return Response::json($comp);
+        // return response()->json(['success'=>'Article updated successfully']);
+        // session::flash('message','Data updated successfully');
         }
-
         public function delete($id){
             $comp = companyservice::find($id);
             $comp->delete();
             session::flash('message','Data deleted successfully');
-           
-            
-           
                 }
-
-
         public function Exp15(){
             $data = companyservice::with('account','service.parent')
             ->whereRaw('DATEDIFF(exp_date,now())<=15')-> orderBy('account_id', 'asc')->get();
-           
             return view ('webtech.accountview',['data'=>$data]);
-            
         }
-        
         public function Exp7(){
             $data = companyservice::with('account','service.parent')
-           
             ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
-        
             return view ('webtech.accountview',['data'=>$data]);
-            
         }
         public function Expired(){
-            
             $data = companyservice::with('account','service.parent')
-            
-            
-            
             ->where('status' , 'expired')-> orderBy('account_id', 'asc')->get();
-        
             return view ('webtech.accountview',['data'=>$data]);
-            
         }
         public function Deleted(){
             $data = companyservice::with('account','service.parent')
-           
-            
             ->where('status' , 'delete')-> orderBy('account_id', 'asc')->get();
-            
-           
-        
             return view ('webtech.deleteaccount',['data'=>$data]);
-            
         }
         public function Suspend(){
-            
             $data = companyservice::with('account','service.parent')
-            
-          
             ->where('status' , 'suspend')-> orderBy('account_id', 'asc')->get();
             return view ('webtech.accountview',['data'=>$data]);
-            
         }
-        
-   
-
-
 }

@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateSettingsTable extends Migration
 {
     /**
@@ -18,12 +16,11 @@ class CreateSettingsTable extends Migration
             $table->string('companyname');
             $table->string('companyaddress');
             $table->string('companyphone');
-            $table->string('companyemail');
+            $table->string('companyemail')->unique();
             $table->string('image');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

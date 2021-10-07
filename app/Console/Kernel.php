@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Console;
-
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\sendRemainderEmail;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
 class Kernel extends ConsoleKernel
 {
     /**
@@ -16,7 +13,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         sendRemainderEmail::class,
     ];
-
     /**
      * Define the application's command schedule.
      *
@@ -27,7 +23,6 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('daily:update')->daily();
     }
-
     /**
      * Register the commands for the application.
      *
@@ -36,7 +31,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
         require base_path('routes/console.php');
     }
 }

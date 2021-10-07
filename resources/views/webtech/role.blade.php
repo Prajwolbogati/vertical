@@ -20,13 +20,16 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="ms-auto">
-                <button type="button" class="btn btn-primary"><a href="{{ url('addrole') }}">Add new Role</a></button>
-</div>
+               
             </div>
             <!--end breadcrumb-->
+            <div class=" d-sm-flex align-items-center">
             <h6 class="mb-0 text-uppercase">Total Accounts</h6>
-          
+            
+           <div class="ms-auto">
+                <button type="button" class="btn btn-primary role"><a href="{{ url('addrole') }}">Add new Role</a></button>
+</div>
+</div>
             <hr/>
             <div class="card">
                 <div class="card-body">
