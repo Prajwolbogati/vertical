@@ -53,6 +53,6 @@ public function editService($id){
             $service = service::find($id);
             $service->delete();
             session::flash('message','Data deleted successfully');
-            return redirect()->back();
+            // return redirect()->back();
                 }
 }

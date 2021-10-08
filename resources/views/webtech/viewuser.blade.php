@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("style")
-<link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 @endsection
 
     @section("wrapper")
@@ -45,7 +45,7 @@
                             <tbody>
 
                             @foreach($data as $user)
-                                <tr>
+                            <tr id="user{{$user->id}}">
                                 <td>{{$user->name}}</td>
                                <td>{{$user->email}}</td>
                               
@@ -72,12 +72,12 @@
                                               
 
                                                 <li>
-                                                <form action="{{url('deleteuser')}}/{{$user->id}}">
+                                                {{-- <form action="{{url('deleteuser')}}/{{$user->id}}">
                       
-                        @csrf
+                        @csrf --}}
                       
-                        <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                    </form>
+                        <button class="dropdown-item btn btn-xs btn-danger" onclick="deleteuser({{$user->id}})">Delete</button>
+                    {{-- </form> --}}
                                                 </li>
                                                
                                             </ul>
@@ -103,12 +103,13 @@
 @section("script")
 <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
       } );
 </script>
-<script>
+{{-- <script>
     $(document).ready(function() {
         var table = $('#example2').DataTable( {
             lengthChange: false,
@@ -118,7 +119,48 @@
         table.buttons().container()
             .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
     } );
-</script>
-
-
-@endsection
+</script> --}}
+<script>
+    function deleteuser(id)
+        {
+       
+    
+            swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your data has been deleted!", {
+          icon: "success",
+          timer: 1000, 
+        });
+           
+            
+                $.ajax({
+                    url:'/deleteuser/'+id,
+                    type:'DELETE',
+                    data:{
+                        _token : $("input[name=_token]").val()
+                    },
+                    success:function(response)
+                    {
+                    $("#user"+id).remove();
+                    }
+    
+                });
+            } else {
+       swal("Your data is safe!");
+            }
+    });
+    
+        }
+    
+        
+            </script>
+        
+            @endsection
+    

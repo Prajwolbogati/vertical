@@ -1,4 +1,5 @@
 @extends("layouts.app")
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		@section("wrapper")
             <div class="page-wrapper">
                 <div class="page-content">
@@ -20,7 +21,18 @@
                       <div class="row">
                     
                    
-                  
+                        @if(Session::has('message'))
+                        <script>
+                                                        swal({
+                                                            title: "Service updated successfully!",
+                                                            icon: "success",
+                                                            timer: 1000,
+                                                            showConfirmButton: true
+                                                          });
+                                                          </script>
+                                                    
+                                            @endif
+                          
                           
                             
                                        

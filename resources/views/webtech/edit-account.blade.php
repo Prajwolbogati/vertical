@@ -8,6 +8,7 @@
 	<link href="{{asset('assets/plugins/datetimepicker/css/classic.date.css')}}" rel="stylesheet" />
 	<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css')}}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	@endsection
 		@section("wrapper")
         <div class="page-wrapper">
@@ -19,7 +20,18 @@
             
                 
                         <div class="add">
-                           
+                            
+                                @if(Session::has('message'))
+<script>
+                                swal({
+                                    title: "Account updated successfully!",
+                                    icon: "success",
+                                    timer: 1000,
+                                    showConfirmButton: true
+                                  });
+                                  </script>
+                            
+                    @endif
                             <div class="card border-top border-0 border-4 border-primary">
                             <div class="row">
                             <div class="col-xl-6 card-body">

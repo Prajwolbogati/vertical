@@ -120,7 +120,7 @@ public function editAccount($id){
         {
 
             $req->validate([
-                'domainname' => 'required|string|max:255|unique:accounts',
+                'domainname' => 'required|string|max:255',
                 'fullname' => 'required|string|max:255',
                 'hostingquota' => 'string|nullable|max:255',
                 'companyname' => 'required|string|max:255',
@@ -128,7 +128,7 @@ public function editAccount($id){
                 'phone_num' => 'required|string|max:255',
                 'marketby' => 'string|nullable|max:255',
                 'detail' => 'string',
-                'email' => 'required|string|email|max:255|unique:accounts',
+                'email' => 'required|string|email|max:255',
             ]);
             $account = account::find($req->account_id);
             $account->domainname=$req->domainname;

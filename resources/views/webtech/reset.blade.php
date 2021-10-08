@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 		<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<title>Rocker - Multipurpose Bootstrap5 Admin Template</title>
 	</head>
 
@@ -29,6 +30,17 @@
                             <img src="assets/images/logo-img.png" width="180" alt="" />
                         </div>
                         <div class="card">
+                            @if(Session::has('message'))
+                            <script>
+                                                            swal({
+                                                                title: "Password reset successfully!",
+                                                                icon: "success",
+                                                                timer: 1000,
+                                                                showConfirmButton: true
+                                                              });
+                                                              </script>
+                                                        
+                                                @endif
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">

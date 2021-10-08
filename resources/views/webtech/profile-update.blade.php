@@ -1,4 +1,5 @@
 		@extends("layouts.app")
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		@section("wrapper")
             <div class="page-wrapper">
                 <div class="page-content">
@@ -22,6 +23,17 @@
                         <form class="row g-3" method="post" action="{{url('update')}}" enctype="multipart/form-data">
 				{{csrf_field()}}
                             <div class="row">
+                                @if(Session::has('message'))
+                        <script>
+                                                        swal({
+                                                            title: "Profile updated successfully!",
+                                                            icon: "success",
+                                                            timer: 1000,
+                                                            showConfirmButton: true
+                                                          });
+                                                          </script>
+                                                    
+                                            @endif
                                 <div class="col-lg-4">
                                     <div class="card">
                                         <div class="card-body">
@@ -39,7 +51,7 @@
 
 
 @else
-              <p><img src= "assets/images/avatars/avatar-2.png" id="output" alt="Admin"  class="rounded-circle p-1 bg-primary" height="200px" width="200px"></p>
+              <p><img src= "assets/images/webtechlogo.svg" id="output" alt="Admin"  class="rounded-circle p-1 bg-primary" height="200px" width="200px"></p>
               <input type="file"  accept="image/*" name="image" id="file" class="form-control"  onchange="loadFile(event)" style="display: none;">
 
               <p class="label"><label for="file" style="cursor: pointer;" class=" col-form-label" >Choose Image</label></p>
@@ -120,6 +132,17 @@
                                     </div>
                                     </form>
                                     <div class="row">
+                                        @if(Session::has('message'))
+                        <script>
+                                                        swal({
+                                                            title: "Password changed successfully!",
+                                                            icon: "success",
+                                                            timer: 1000,
+                                                            showConfirmButton: true
+                                                          });
+                                                          </script>
+                                                    
+                                            @endif
                                     <form class="form-horizontal" method="POST" action="{{url('change')}}">
                         @csrf
                                         <div class="col-sm-12">

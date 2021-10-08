@@ -71,7 +71,7 @@ Route::get('newclient', [clientController::class, 'addClient']);
 
 Route::get('newservice', [servicetypeController::class, 'addService']);
 
-Route::post('addservice', [serviceController::class, 'insertdata'])->middleware('role:sales|admin');
+Route::post('addservice', [serviceController::class, 'insertdata'])->middleware('role:sales|Admin');
 
 Route::get('allClient', [clientController::class, 'allClient']);
 
@@ -81,7 +81,7 @@ Route::get('edit-client/{id}', [clientController::class, 'editClient']);
 
 Route::post('updateclient', [clientController::class, 'updateData']);
 
-Route::post('updatecstatus/{id}', [clientController::class, 'updateclientStatus']);
+Route::post('/updatecstatus/{id}', [clientController::class, 'updateclientStatus']);
 
 Route::post('updatesetting', [settingController::class, 'updateData']);
 
@@ -89,7 +89,7 @@ Route::post('addsetting', [settingController::class, 'insertdata']);
 
 Route::post('addclient', [clientController::class, 'insertdata']);
 
-Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:create permission');;
+Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:Create');;
 
 Route::get('newsetting', [settingController::class, 'addSetting']);
 
@@ -111,15 +111,15 @@ Route::post('updateservicetype', [servicetypeController::class, 'updateData']);
 
 Route::post('delete/{id}', [accountController::class, 'Delete']);
 
-Route::get('delete/{id}', [clientController::class, 'deleteClient']);
+Route::delete('/deleted/{id}', [clientController::class, 'deleteClient']);
 
-Route::get('deleterole/{id}', [roleController::class, 'deleteRole']);
+Route::delete('/deleterole/{id}', [roleController::class, 'deleteRole']);
 
-Route::get('deleteservice/{id}', [serviceController::class, 'deleteService']);
+Route::delete('/deleteservice/{id}', [serviceController::class, 'deleteService']);
 
-Route::get('deletestype/{id}', [servicetypeController::class, 'deleteStype']);
+Route::delete('/deletestype/{id}', [servicetypeController::class, 'deleteStype']);
 
-Route::delete('delete/{id}', [accountController::class, 'delete']);
+Route::delete('/delete/{id}', [accountController::class, 'delete']);
 
 Route::get('delete/{id}', [companyserviceController::class, 'delete']);
 

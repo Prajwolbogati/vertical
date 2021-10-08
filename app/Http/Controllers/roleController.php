@@ -150,6 +150,6 @@ $role->save();
         $role = $this->role::find($id);
         $role->delete();
         session::flash('message','Data deleted successfully');
-        return redirect()->back();
+        // return redirect()->back();
             }
 }

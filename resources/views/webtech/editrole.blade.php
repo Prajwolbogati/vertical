@@ -4,6 +4,7 @@
 @section("style")
 	<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	@endsection
 
 		@section("wrapper")
@@ -13,6 +14,18 @@
 
                     <!--end row-->
                     <div class="row">
+                        @if(Session::has('message'))
+                        <script>
+                                                        swal({
+                                                            title: "Role updated successfully!",
+                                                            icon: "success",
+                                                            timer: 1000,
+                                                            showConfirmButton: true
+                                                          });
+                                                          </script>
+                                                    
+                                            @endif
+                          
                         <div class="col-xl-9 mx-auto">
                             <div class="card border-top border-0 border-4 border-info">
                                 <div class="card-body">

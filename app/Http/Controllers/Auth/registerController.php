@@ -77,7 +77,7 @@ $data= Role::all();
         $user = User::findOrFail($id);
         $user->delete();
         session::flash('message','Data deleted successfully');
-        return redirect()->back();
+        // return redirect()->back();
     }
     public function postProfile(Request $request){
         $user = Auth()->user();

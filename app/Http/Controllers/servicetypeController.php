@@ -45,6 +45,6 @@ $service->stype_name=$req->stype_name;
                 $stype = servicetype::find($id);
                 $stype->delete();
                 session::flash('message','Data deleted successfully');
-                return redirect()->back();
+                // return redirect()->back();
                     }
 }

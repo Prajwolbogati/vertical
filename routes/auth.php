@@ -26,7 +26,7 @@ Route::post('update', [registerController::class, 'postProfile'])
 Route::post('updateuser/{id}', [registerController::class, 'updateUser'])
 ->middleware('auth'); 
 
-Route::get('deleteuser/{id}', [registerController::class, 'deleteUser'])
+Route::delete('/deleteuser/{id}', [registerController::class, 'deleteUser'])
 ->middleware('auth'); 
 
 Route::get('edituser/{id}', [registerController::class, 'editUser'])

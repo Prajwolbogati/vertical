@@ -1,4 +1,5 @@
 @extends("layouts.app")
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		@section("wrapper")
             <div class="page-wrapper">
                 <div class="page-content">
@@ -7,6 +8,17 @@
                     <!--end breadcrumb-->
        
                     <div class="row">
+                        @if(Session::has('message'))
+                        <script>
+                                                        swal({
+                                                            title: "Setting updated successfully!",
+                                                            icon: "success",
+                                                            timer: 1000,
+                                                            showConfirmButton: true
+                                                          });
+                                                          </script>
+                                                    
+                                            @endif
                         <div class="col-xl-9 mx-auto">
                            
                             <div class="card border-top border-0 border-4 border-info">

@@ -5,6 +5,7 @@ use DB;
 use Session;
 use App\Models\client;
 use Carbon\Carbon;
+use Response;
 class clientController extends Controller
 {
     public function insertdata(Request $req)
@@ -40,7 +41,7 @@ class clientController extends Controller
             'clientphone' => 'required|string|max:255',
             'requirement' => 'nullable|string',
             'clientactive_date'      => 'required',
-            'clientemail' => 'required|string|email|max:255|unique:clients',
+            'clientemail' => 'required|string|email|max:255',
         ]);
         $client = client::find($req->client_id);
         $client->clientname=$req->clientname;
@@ -74,13 +75,14 @@ public function editClient($id){
             $comp = client::find($id);
             $comp->clientstatus=$req->clientstatus;
         $comp->save();
-        session::flash('message','Data updated successfully');
-        return redirect()->back();
+        return Response::json($comp);
+        // session::flash('message','Data updated successfully');
+        // return redirect()->back();
         }
         public function deleteClient($id){
             $client = client::find($id);
             $client->delete();
             session::flash('message','Data deleted successfully');
-            return redirect()->back();
+            // return redirect()->back();
                 }
 }

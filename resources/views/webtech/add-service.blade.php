@@ -1,4 +1,6 @@
 @extends("layouts.app")
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		@section("wrapper")
             <div class="page-wrapper">
                 <div class="page-content">
@@ -51,6 +53,17 @@
                                         <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
                                             
                                         <div class="col-xl-9 mx-auto">
+                                            @if(Session::has('message'))
+                                            <script>
+                                                                            swal({
+                                                                                title: "New service type added successfully!",
+                                                                                icon: "success",
+                                                                                timer: 1000,
+                                                                                showConfirmButton: true
+                                                                              });
+                                                                              </script>
+                                                                        
+                                                                @endif
                            
                            <div class="card border-top border-0 border-4 border-info">
                                <div class="card-body">
@@ -112,6 +125,17 @@
 
                                         <div class="tab-pane fade" id="primary-pills-profile" role="tabpanel">
                                         <div class="col-xl-9 mx-auto">
+                                            @if(Session::has('message'))
+                                            <script>
+                                                                            swal({
+                                                                                title: "New service added successfully!",
+                                                                                icon: "success",
+                                                                                timer: 1000,
+                                                                                showConfirmButton: true
+                                                                              });
+                                                                              </script>
+                                                                        
+                                                                @endif
                            
                            <div class="card border-top border-0 border-4 border-info">
                                <div class="card-body">

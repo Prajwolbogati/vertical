@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                 @forelse ($roles as $role )
-                    <tr>
+                <tr id="role{{$role->id}}">
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
                         <td>
@@ -67,12 +67,12 @@
                                                 
                                                 
                                                 <li>
-                                                    <form
+                                                    {{-- <form
                                                         action="{{ url('deleterole') }}/{{ $role->id }} ">
-                                                        @csrf
+                                                        @csrf --}}
                                                         <button
-                                                            class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                                                    </form>
+                                                            class="dropdown-item btn btn-xs btn-danger" onclick="deleterole({{$role->id}})">Delete</button>
+                                                    {{-- </form> --}}
                                                 </li>
                                      
                                                
@@ -103,12 +103,13 @@
 @section("script")
 <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
       } );
 </script>
-<script>
+{{-- <script>
     $(document).ready(function() {
         var table = $('#example2').DataTable( {
             lengthChange: false,
@@ -118,5 +119,47 @@
         table.buttons().container()
             .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
     } );
-</script>
-@endsection
+</script> --}}
+<script>
+function deleterole(id)
+    {
+       
+
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this data!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your data has been deleted!", {
+      icon: "success",
+      timer: 1000, 
+    });
+       
+        
+            $.ajax({
+                url:'/deleterole/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                $("#role"+id).remove();
+                }
+
+            });
+        } else {
+   swal("Your data is safe!");
+        }
+});
+
+    }
+
+    
+        </script>
+    
+        @endsection

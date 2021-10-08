@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @section('style')
-    <link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 @endsection
 @section('wrapper')
     <!--start page wrapper -->
@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $client)
-                                    <tr>
+                                <tr id="clientid{{$client->client_id}}">
                                         <td>{{ $client->clientname }}</td>
                                         <td>{{ $client->clientemail }}</td>
                                         <td>{{ $client->clientphone }}</td>
@@ -60,53 +60,53 @@
                                                                 href="{{ url('edit-client') }}/{{ $client->client_id }}">Edit</a>
                                                         </li>
                                                         <li>
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ url('updatecstatus/' . $client->client_id) }} "
                                                                 method="post">
                                                                 @csrf
-                                                                <input type="hidden" name="clientstatus" value="Successed">
+                                                                <input type="hidden" name="clientstatus" value="Successed"> --}}
                                                                 <button
-                                                                    class="dropdown-item btn btn-xs btn-danger">Successed</button>
-                                                            </form>
+                                                                    class="dropdown-item btn btn-xs btn-danger" onclick="updatesuccess({{$client->client_id}})">Successed</button>
+                                                            {{-- </form> --}}
                                                         </li>
                                                         <li>
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ url('updatecstatus/' . $client->client_id) }} "
                                                                 method="post">
                                                                 @csrf
-                                                                <input type="hidden" name="clientstatus" value="Call Back">
-                                                                <button class="dropdown-item btn btn-xs btn-danger">Call
+                                                                <input type="hidden" name="clientstatus" value="Call Back"> --}}
+                                                                <button class="dropdown-item btn btn-xs btn-danger" onclick="updatecall({{$client->client_id}})">Call
                                                                     Back</button>
-                                                            </form>
+                                                            {{-- </form> --}}
                                                         </li>
                                                         <li>
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ url('updatecstatus/' . $client->client_id) }} "
                                                                 method="post">
                                                                 @csrf
-                                                                <input type="hidden" name="clientstatus" value="Interested">
+                                                                <input type="hidden" name="clientstatus" value="Interested"> --}}
                                                                 <button
-                                                                    class="dropdown-item btn btn-xs btn-danger">Interested</button>
-                                                            </form>
+                                                                    class="dropdown-item btn btn-xs btn-danger" onclick="updateinterest({{$client->client_id}})">Interested</button>
+                                                            {{-- </form> --}}
                                                         </li>
                                                         <li>
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ url('updatecstatus/' . $client->client_id) }} "
                                                                 method="post">
                                                                 @csrf
                                                                 <input type="hidden" name="clientstatus"
-                                                                    value="Not Interested">
-                                                                <button class="dropdown-item btn btn-xs btn-danger">Not
+                                                                    value="Not Interested"> --}}
+                                                                <button class="dropdown-item btn btn-xs btn-danger" onclick="updatenot({{$client->client_id}})">Not
                                                                     Interested</button>
-                                                            </form>
+                                                            {{-- </form> --}}
                                                         </li>
                                                         <li>
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ url('delete') }}/{{ $client->client_id }} ">
-                                                                @csrf
+                                                                @csrf --}}
                                                                 <button
-                                                                    class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                                                            </form>
+                                                                    class="dropdown-item btn btn-xs btn-danger" onclick="deleteclient({{$client->client_id}})">Delete</button>
+                                                            {{-- </form> --}}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -124,14 +124,15 @@
     <!--end page wrapper -->
 @endsection
 @section('script')
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-    <script>
+<script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var table = $('#example2').DataTable({
                 lengthChange: false,
@@ -140,5 +141,203 @@
             table.buttons().container()
                 .appendTo('#example2_wrapper .col-md-6:eq(0)');
         });
-    </script>
-@endsection
+    </script> --}}
+    <script>
+    function updatesuccess(id)
+    {
+    
+   
+        var clientstatus = 'Successed';
+    
+          $.ajax({
+            url: '/updatecstatus/'+id,
+            type: 'post',
+    
+            
+            data: {
+            
+                clientstatus: clientstatus,
+             
+              _token : $("input[name=_token]").val()
+            },
+            
+            success: function(response) {
+                
+                
+                $("#clientid" + id+" td:nth-child(6)").html(response.clientstatus);
+                // swal("Status updated!", "", "success");
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+            
+        
+                    }
+        
+      });
+    
+        
+            
+    }
+
+    function updatecall(id)
+    {
+    
+   
+        var clientstatus = 'Call Back';
+    
+          $.ajax({
+            url: '/updatecstatus/'+id,
+            type: 'post',
+    
+            
+            data: {
+            
+                clientstatus: clientstatus,
+             
+              _token : $("input[name=_token]").val()
+            },
+            
+            success: function(response) {
+                
+
+                $("#clientid" + id+" td:nth-child(6)").html(response.clientstatus);
+                // swal("Status updated!", "", "success");
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+            
+        
+                    }
+        
+      });
+    
+        
+            
+    }
+
+    function updateinterest(id)
+    {
+    
+   
+        var clientstatus = 'Interested';
+    
+          $.ajax({
+            url: '/updatecstatus/'+id,
+            type: 'post',
+    
+            
+            data: {
+            
+                clientstatus: clientstatus,
+             
+              _token : $("input[name=_token]").val()
+            },
+            
+            success: function(response) {
+                
+    
+                $("#clientid" + id+" td:nth-child(6)").html(response.clientstatus);
+                // swal("Status updated!", "", "success");
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+            
+        
+                    }
+        
+      });
+    
+        
+            
+    }
+
+    function updatenot(id)
+    {
+    
+   
+        var clientstatus = 'Not Interested';
+    
+          $.ajax({
+            url: '/updatecstatus/'+id,
+            type: 'post',
+    
+            
+            data: {
+            
+                clientstatus: clientstatus,
+             
+              _token : $("input[name=_token]").val()
+            },
+            
+            success: function(response) {
+                
+  
+                $("#clientid" + id+" td:nth-child(6)").html(response.clientstatus);
+                // swal("Status updated!", "", "success");
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+            
+        
+                    }
+        
+      });
+    
+        
+            
+    }
+
+    function deleteclient(id)
+    
+    {
+
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this data!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your data has been deleted!", {
+      icon: "success",
+      timer: 1000, 
+    });
+       
+        
+            $.ajax({
+                url:'/deleted/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                $("#clientid"+id).remove();
+                }
+
+            });
+        } else {
+   swal("Your data is safe!");
+        }
+});
+
+    }
+
+    
+        </script>
+    
+        @endsection
