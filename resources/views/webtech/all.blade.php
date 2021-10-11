@@ -1,9 +1,7 @@
 @extends("layouts.app")
-
 @section('style')
-    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 @endsection
-
 @section('wrapper')
     <!--start page wrapper -->
     <div class="page-wrapper">
@@ -20,7 +18,6 @@
                         </ol>
                     </nav>
                 </div>
-
             </div>
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Total Accounts</h6>
@@ -30,7 +27,6 @@
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
-
                                 <tr>
                                     <th>Domain Name</th>
                                     <th>Quota</th>
@@ -42,9 +38,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($data as $account)
-                                    <tr id="cid{{$account->compservice_id}}">
+                                    <tr id="cid{{ $account->compservice_id }}">
                                         <td>{{ $account->account->domainname }}</td>
                                         <td>{{ $account->account->hostingquota }}</td>
                                         <td>{{ $account->remaining_days }}</td>
@@ -64,26 +59,14 @@
                                                         <li><a class="dropdown-item"
                                                                 href="{{ url('edit-account') }}/{{ $account->account_id }}">Edit</a>
                                                         </li>
-
-
                                                         <li>
-                                                            {{-- <form action="{{url('update/'.$account->compservice_id)}} " method="post">
-                                    
-                                    @csrf
-                                    <input type="hidden" name="status" value="suspend"> --}}
-                                    <button class="dropdown-item btn btn-xs btn-danger" onclick="updateAccount({{$account->compservice_id}})">Suspend</button>
-                                {{-- </form> --}}
-                                
-                                                            </li>
-        
-                                                            <li>
-                                                            {{-- <form action="{{url('update/'.$account->compservice_id)}} " method="post">
-                                  
-                                    @csrf
-                                    <input type="hidden" name="status" value="delete"> --}}
-                                    <button class="dropdown-item btn btn-xs btn-danger" onclick="deleteAccount({{$account->compservice_id}})">Delete</button>
-                                {{-- </form> --}}
-                                                            </li>
+                                                            <button class="dropdown-item btn btn-xs btn-danger"
+                                                                onclick="updateAccount({{ $account->compservice_id }})">Suspend</button>
+                                                        </li>
+                                                        <li>
+                                                            <button class="dropdown-item btn btn-xs btn-danger"
+                                                                onclick="deleteAccount({{ $account->compservice_id }})">Delete</button>
+                                                        </li>
                                                         <li>
                                                             <hr class="dropdown-divider">
                                                         </li>
@@ -91,124 +74,71 @@
                                                                 href="{{ url('viewinvoice') }}/{{ $account->account_id }}">Print
                                                                 Invoice</a>
                                                         </li>
-
                                                     </ul>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-
-
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!--end page wrapper -->
 @endsection
-
 @section('script')
-    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-            var table = $('#example2').DataTable({
-                lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'print']
+    <script>
+        function updateAccount(id) {
+            var status = 'suspend';
+            $.ajax({
+                url: '/update/' + id,
+                type: 'post',
+                data: {
+                    status: status,
+                    _token: $("input[name=_token]").val()
+                },
+                success: function(response) {
+                    $("#cid" + id + " td:nth-child(6)").html(response.status);
+                    swal({
+                        title: "Status Updated!",
+                        icon: "success",
+                        timer: 1000,
+                        showConfirmButton: true
+                    });
+                }
             });
+        }
 
-            table.buttons().container()
-                .appendTo('#example2_wrapper .col-md-6:eq(0)');
-        });
-    </script> --}}
-<script>
-    function updateAccount(id)
-    {
-        
-      var status = 'suspend';
-    
-          $.ajax({
-            url: '/update/'+id,
-            type: 'post',
-            data: {
-             
-              status: status,
-             
-              _token : $("input[name=_token]").val()
-            },	
-            success: function(response) {
-                
-        
-                $("#cid" + id+" td:nth-child(6)").html(response.status);
-                // swal("Status updated!", "", "success");
-    
-                swal({
-        title: "Status Updated!",
-        icon: "success",
-        timer: 1000,
-        showConfirmButton: true
-      });
-    
-                    }
-        
-      });
-    
-        
-            
-    }
-    
-    
-    
-    function deleteAccount(id)
-    {
-    
-   
-        var status = 'delete';
-    
-          $.ajax({
-            url: '/update/'+id,
-            type: 'post',
-    
-            
-            data: {
-            
-              status: status,
-             
-              _token : $("input[name=_token]").val()
-            },
-            
-            success: function(response) {
-                
-    
-                $("#cid" + id+" td:nth-child(6)").html(response.status);
-                // swal("Status updated!", "", "success");
-                swal({
-        title: "Status Updated!",
-        icon: "success",
-        timer: 1000,
-        showConfirmButton: true
-      });
-            
-        
-                    }
-        
-      });
-    
-        
-            
-    }
-    
-        </script>
-    
-        @endsection
+        function deleteAccount(id) {
+            var status = 'delete';
+            $.ajax({
+                url: '/update/' + id,
+                type: 'post',
+                data: {
+                    status: status,
+                    _token: $("input[name=_token]").val()
+                },
+                success: function(response) {
+                    $("#cid" + id + " td:nth-child(6)").html(response.status);
+                    swal({
+                        title: "Status Updated!",
+                        icon: "success",
+                        timer: 1000,
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
+    </script>
+@endsection

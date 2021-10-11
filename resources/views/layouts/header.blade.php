@@ -98,7 +98,8 @@
                         <img src="{{ asset('user') }}/{{ Auth::user()->image }}" class="user-img"
                             alt="user avatar">
                     @else
-                        <img src="{{ asset('assets/images/webtechlogo.svg')}}" class="user-img" alt="user avatar">
+                        <img src="{{ asset('assets/images/webtechlogo.svg') }}" class="user-img"
+                            alt="user avatar">
                     @endif
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">{{ Auth::user()->name }}</p>

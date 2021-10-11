@@ -1,5 +1,4 @@
 @extends("layouts.app")
-
 @section('style')
     <link href="assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
     <link href="assets/plugins/datetimepicker/css/classic.time.css" rel="stylesheet" />
@@ -25,25 +24,20 @@
                             </ol>
                         </nav>
                     </div>
-
                 </div>
                 <!--end breadcrumb-->
-
                 <div class="row">
-
-                    @if(Session::has('message'))
-                    <script>
-                                                    swal({
-                                                        title: "New client added successfully!",
-                                                        icon: "success",
-                                                        timer: 1000,
-                                                        showConfirmButton: true
-                                                      });
-                                                      </script>
-                                                
-                                        @endif
+                    @if (Session::has('message'))
+                        <script>
+                            swal({
+                                title: "New client added successfully!",
+                                icon: "success",
+                                timer: 1000,
+                                showConfirmButton: true
+                            });
+                        </script>
+                    @endif
                     <div class="col-xl-9 mx-auto">
-
                         <div class="card border-top border-0 border-4 border-info">
                             <div class="card-body">
                                 <div class="border p-4 rounded">
@@ -60,9 +54,9 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientname"
                                                     placeholder="Enter Name">
-                                                    @error('clientname')
+                                                @error('clientname')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -70,9 +64,9 @@
                                             <div class="col-sm-9">
                                                 <input type="email" class="form-control" name="clientemail"
                                                     placeholder="Email Address">
-                                                    @error('clientemail')
+                                                @error('clientemail')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -80,44 +74,39 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientphone"
                                                     placeholder="Phone No">
-                                                    @error('clientphone')
+                                                @error('clientphone')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
-
                                         <div class="row mb-3">
                                             <label for="clientaddress" class="col-sm-3 col-form-label">Client Address</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="clientaddress"
                                                     placeholder="Address">
-                                                    @error('clientaddress')
+                                                @error('clientaddress')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
-
-
-
                                         <div class="row mb-3">
                                             <label for="requirement" class="col-sm-3 col-form-label">Client Requirement</label>
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" name="requirement" rows="3"
                                                     placeholder="Add requirements"></textarea>
-                                                    @error('requirement')
+                                                @error('requirement')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
-
                                         <div class="row mb-3">
                                             <label for="clientactive_date" class="col-sm-3 col-form-label">Active Date</label>
                                             <div class="col-sm-9">
                                                 <input type="date" class="form-control datepicker" name="clientactive_date"
                                                     placeholder="Active Date">
-                                                    @error('clientactive_date')
+                                                @error('clientactive_date')
                                                     <div class="alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -131,7 +120,7 @@
                                                     <option value="3">Not Interested</option>
                                                 </select>
                                                 @error('clientstatus')
-                                                <div class="alert-danger">{{ $message }}</div>
+                                                    <div class="alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
@@ -152,7 +141,6 @@
         </div>
     </div>
 @endsection
-
 @section('script')
     <script src="assets/plugins/datetimepicker/js/legacy.js"></script>
     <script src="assets/plugins/datetimepicker/js/picker.js"></script>
@@ -181,6 +169,4 @@
             });
         });
     </script>
-
-
 @endsection

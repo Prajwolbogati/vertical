@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @section('style')
-    <link href="{{ ('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 @endsection
 @section('wrapper')
     <div class="page-wrapper">
@@ -62,7 +62,7 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($data as $service)
-                                                        <tr id="service{{$service->service_id}}">
+                                                            <tr id="service{{ $service->service_id }}">
                                                                 <td>{{ $service->service_name }}</td>
                                                                 <td>
                                                                     <div class="col">
@@ -81,12 +81,9 @@
                                                                                         href="{{ url('edit-service') }}/{{ $service->service_id }}">Edit</a>
                                                                                 </li>
                                                                                 <li>
-                                                                                    {{-- <form
-                                                                                        action="{{ url('deleteservice') }}/{{ $service->service_id }} ">
-                                                                                        @csrf --}}
-                                                                                        <button
-                                                                                            class="dropdown-item btn btn-xs btn-danger" onclick="deleteservice({{$service->service_id}})">Delete</button>
-                                                                                    {{-- </form> --}}
+                                                                                    <button
+                                                                                        class="dropdown-item btn btn-xs btn-danger"
+                                                                                        onclick="deleteservice({{ $service->service_id }})">Delete</button>
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -114,7 +111,7 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($datas as $servicetype)
-                                                        <tr id="servicetype{{$servicetype->stype_id}}">
+                                                            <tr id="servicetype{{ $servicetype->stype_id }}">
                                                                 <td>
                                                                     {{ $servicetype->stype_name }}
                                                                 </td>
@@ -135,12 +132,9 @@
                                                                                         href="{{ url('edit-servicetype') }}/{{ $servicetype->stype_id }}">Edit</a>
                                                                                 </li>
                                                                                 <li>
-                                                                                    {{-- <form
-                                                                                        action="{{ url('deletestype') }}/{{ $servicetype->stype_id }} ">
-                                                                                        @csrf --}}
-                                                                                        <button
-                                                                                            class="dropdown-item btn btn-xs btn-danger" onclick="deleteservicetype({{$servicetype->stype_id}})">Delete</button>
-                                                                                    {{-- </form> --}}
+                                                                                    <button
+                                                                                        class="dropdown-item btn btn-xs btn-danger"
+                                                                                        onclick="deleteservicetype({{ $servicetype->stype_id }})">Delete</button>
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -163,10 +157,10 @@
     </div>
 @endsection
 @section('script')
-<script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
@@ -176,95 +170,65 @@
             $('#examples').DataTable();
         });
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-            var table = $('#example2').DataTable({
-                lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'print']
-            });
-            table.buttons().container()
-                .appendTo('#example2_wrapper .col-md-6:eq(0)');
-        });
-    </script> --}}
     <script>
-
-    function deleteservicetype(id)
-    
-    {
-
-        swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this data!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your data has been deleted!", {
-      icon: "success",
-      timer: 1000, 
-    });
-       
-        
-            $.ajax({
-                url:'/deletestype/'+id,
-                type:'DELETE',
-                data:{
-                    _token : $("input[name=_token]").val()
-                },
-                success:function(response)
-                {
-                $("#servicetype"+id).remove();
-                }
-
-            });
-        } else {
-   swal("Your data is safe!");
+        function deleteservicetype(id) {
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Poof! Your data has been deleted!", {
+                            icon: "success",
+                            timer: 1000,
+                        });
+                        $.ajax({
+                            url: '/deletestype/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: $("input[name=_token]").val()
+                            },
+                            success: function(response) {
+                                $("#servicetype" + id).remove();
+                            }
+                        });
+                    } else {
+                        swal("Your data is safe!");
+                    }
+                });
         }
-});
 
-    }
-
-    function deleteservice(id)
-    
-    {
-
-        swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this data!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your data has been deleted!", {
-      icon: "success",
-      timer: 1000, 
-    });
-       
-        
-            $.ajax({
-                url:'/deleteservice/'+id,
-                type:'DELETE',
-                data:{
-                    _token : $("input[name=_token]").val()
-                },
-                success:function(response)
-                {
-                $("#service"+id).remove();
-                }
-
-            });
-        } else {
-   swal("Your data is safe!");
+        function deleteservice(id) {
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Poof! Your data has been deleted!", {
+                            icon: "success",
+                            timer: 1000,
+                        });
+                        $.ajax({
+                            url: '/deleteservice/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: $("input[name=_token]").val()
+                            },
+                            success: function(response) {
+                                $("#service" + id).remove();
+                            }
+                        });
+                    } else {
+                        swal("Your data is safe!");
+                    }
+                });
         }
-});
-
-    }
-
-    
-        </script>
-    
-        @endsection
+    </script>
+@endsection

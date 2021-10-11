@@ -4,9 +4,6 @@
         <div>
             <img src="{{ asset('setting') }}/{{ $setting->image }}" class="logo-icon" alt="logo icon">
         </div>
-        {{-- <div>
-                    <h4 class="logo-text">Rocker</h4>
-                </div> --}}
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
     </div>
