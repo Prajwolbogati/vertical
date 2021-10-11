@@ -89,7 +89,7 @@ Route::post('addsetting', [settingController::class, 'insertdata']);
 
 Route::post('addclient', [clientController::class, 'insertdata']);
 
-Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:Create');;
+Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:create permission');;
 
 Route::get('newsetting', [settingController::class, 'addSetting']);
 
