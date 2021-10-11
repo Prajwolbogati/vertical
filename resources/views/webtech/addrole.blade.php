@@ -1,7 +1,9 @@
 @extends("layouts.app")
 @section('style')
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{ asset('assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet')}}" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('wrapper')
@@ -68,7 +70,9 @@
     </div>
 @endsection
 @section('script')
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $('.single-select').select2({
             theme: 'bootstrap4',

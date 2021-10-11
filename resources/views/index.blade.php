@@ -119,19 +119,11 @@
                                                     <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
                                                     </li>
                                                     <li>
-                                                    <form action="{{url('update/'.$account->compservice_id)}} " method="post">
-                            @csrf
-                            <input type="hidden" name="status" value="suspend">
-                            <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
-                        </form>
-                                                    </li>
-                                                    <li>
-                                                    <form action="{{url('update/'.$account->compservice_id)}} " method="post">
-                            @csrf
-                            <input type="hidden" name="status" value="delete">
-                            <button class="dropdown-item btn btn-xs btn-danger">Delete</button>
-                        </form>
-                                                    </li>
+                                                        <button class="dropdown-item btn btn-xs btn-danger" onclick="updateAccount({{$account->compservice_id}})">Suspend</button>
+                                                                                </li>
+                                                                                <li>
+                                                        <button class="dropdown-item btn btn-xs btn-danger" onclick="deleteAccount({{$account->compservice_id}})">Delete</button>
+                                                                                </li>
                                                     <li>
                                                         <hr class="dropdown-divider">
                                                     </li>
@@ -156,6 +148,7 @@
 @section("script")
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
@@ -206,4 +199,48 @@ for (let i = 0; i < rows			.length; i++) {
         else{}
 }
 </script>
-@endsection
+<script>
+    function updateAccount(id)
+    {
+      var status = 'suspend';
+          $.ajax({
+            url: '/update/'+id,
+            type: 'post',
+            data: {
+              status: status,
+              _token : $("input[name=_token]").val()
+            },	
+            success: function(response) {
+                $("#cid" + id+" td:nth-child(8)").html(response.status);
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+                    }
+      });
+    }
+    function deleteAccount(id)
+    {
+        var status = 'delete';
+          $.ajax({
+            url: '/update/'+id,
+            type: 'post',
+            data: {
+              status: status,
+              _token : $("input[name=_token]").val()
+            },
+            success: function(response) {
+                $("#cid" + id+" td:nth-child(8)").html(response.status);
+                swal({
+        title: "Status Updated!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: true
+      });
+                    }
+      });
+    }
+        </script>
+        @endsection

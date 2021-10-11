@@ -70,11 +70,8 @@
                                                 <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
                                                 </li>
                                                 <li>
-                                                <form action="{{url('update/'.$account->compservice_id)}} " method="post">
-                        @csrf
-                        <input type="hidden" name="status" value="suspend">
-                        <button class="dropdown-item btn btn-xs btn-danger">Suspend</button>
-                    </form>
+                                                    <button class="dropdown-item btn btn-xs btn-danger"
+                                                        onclick="updateAccount({{ $account->compservice_id }})">Suspend</button>
                                                 </li>
                                                 <li>
                                                     <a  href="javascript:void(0)" onclick="deleteAccount({{$account->compservice_id}})" class="dropdown-item">Delete</a>
@@ -154,6 +151,26 @@ for (let i = 0; i < rows			.length; i++) {
 }
 </script>
 <script>
+function updateAccount(id) {
+            var status = 'suspend';
+            $.ajax({
+                url: '/update/' + id,
+                type: 'post',
+                data: {
+                    status: status,
+                    _token: $("input[name=_token]").val()
+                },
+                success: function(response) {
+                    $("#cid" + id + " td:nth-child(8)").html(response.status);
+                    swal({
+                        title: "Status Updated!",
+                        icon: "success",
+                        timer: 1000,
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
     function deleteAccount(id)
     {
         swal({
