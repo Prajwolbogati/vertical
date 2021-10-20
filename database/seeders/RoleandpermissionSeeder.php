@@ -14,11 +14,12 @@ class RoleandpermissionSeeder extends Seeder
     public function run()
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-        Permission::create(['name' => 'Create']);
-        Permission::create(['name' => 'Read']);
-       Permission::create(['name' => 'Update']);
-        Permission::create(['name' =>  'Delete']);
+        Permission::create(['name' => 'create permission']);
+        Permission::create(['name' => 'read permission']);
+        Permission::create(['name' => 'view permission']);
+       Permission::create(['name' => 'update permission']);
+        Permission::create(['name' =>  'delete permission']);
         $role = Role::create(['name' => 'Admin']);
-        $role->givePermissionTo('Create');
+        $role->givePermissionTo('create permission');
     }
 }

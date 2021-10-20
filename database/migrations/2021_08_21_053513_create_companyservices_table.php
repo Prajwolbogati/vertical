@@ -12,10 +12,10 @@ class CreateCompanyservicesTable extends Migration
     public function up()
     {
         Schema::create('companyservices', function (Blueprint $table) {
-            $table->bigIncrements('compservice_id');
-            $table->bigInteger('account_id')->unsigned()->nullable();
+            $table->increments('compservice_id');
+            $table->integer('account_id')->unsigned()->nullable();
             $table->foreign('account_id')->references('account_id')->on('accounts')->onUpdate('cascade')->onDelete('cascade');
-            $table->bigInteger('service_id')->unsigned()->nullable();
+            $table->integer('service_id')->unsigned()->nullable();
             $table->foreign('service_id')->references('service_id')->on('services')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status');
             $table->integer('vat_amount');

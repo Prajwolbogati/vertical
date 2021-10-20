@@ -12,7 +12,7 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->bigIncrements('setting_id');
+            $table->increments('setting_id');
             $table->string('companyname');
             $table->string('companyaddress');
             $table->string('companyphone');

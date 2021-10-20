@@ -12,7 +12,7 @@ class CreateAccountsTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->bigIncrements('account_id');
+            $table->increments('account_id');
             $table->string('domainname')->unique();
             $table->string('hostingquota')->nullable();
             $table->string('fullname');

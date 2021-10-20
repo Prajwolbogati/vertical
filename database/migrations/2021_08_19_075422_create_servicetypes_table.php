@@ -12,7 +12,7 @@ class CreateServicetypesTable extends Migration
     public function up()
     {
         Schema::create('servicetypes', function (Blueprint $table) {
-            $table->bigIncrements('stype_id');
+            $table->increments('stype_id');
             $table->string('stype_name');
             $table->timestamps();
         });

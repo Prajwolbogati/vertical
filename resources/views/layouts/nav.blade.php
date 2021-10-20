@@ -2,7 +2,12 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
+            @if (!empty($setting->image))
             <img src="{{ asset('setting') }}/{{ $setting->image }}" class="logo-icon" alt="logo icon">
+            @else
+            <img src="{{ asset('assets/images/webtech.svg') }}" class="logo-icon"
+                alt="user avatar">
+        @endif
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
