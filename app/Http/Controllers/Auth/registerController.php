@@ -36,7 +36,7 @@ $data= Role::all();
             'role' => 'required',
             'password' => 'required|string|confirmed|min:8',
         ]);
-        $user =  $user = new User();
+        $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
@@ -45,7 +45,6 @@ $data= Role::all();
                 $user->givePermissionTo($request->permissions);
             }
             $user->save();
-        event(new Registered($user));
         session::flash('message','Data inserted successfully');
         return redirect()->back();
     }
@@ -95,7 +94,8 @@ $data= Role::all();
                 $user['image'] = $this->uploadimage($request->image);
                  }
         $user->save();
-        return redirect()->back()->with('success', 'Profile Successfully Updated');
+        session::flash('message','Profile updated successfully');
+        return redirect()->back();
     }
     public function uploadimage($imagename){
         $name = $imagename->getClientOriginalName();
@@ -110,7 +110,9 @@ $data= Role::all();
         $user->update([
             'password' => bcrypt($request->newpassword)
         ]);
-        return redirect()->back()->with('success', 'Password has been Changed Successfully');
+        session::flash('messages','Password changed successfully');
+        return redirect()->back();
+        
     }
     public function editUser($id){
         $singledata = User::where('id',$id)->first();

@@ -19,7 +19,7 @@ $service->stype_id=$req->stype_id;
 $service->service_name=$req->service_name;
 $service['created_at'] = date('Y-m-d H:i:s');
 $service->save();
-session::flash('message','Data inserted successfully');
+session::flash('messag','Data inserted successfully');
 return redirect()->back();
 }
 public function updateData(Request $req)
@@ -33,7 +33,7 @@ public function updateData(Request $req)
 $service->service_name=$req->service_name;
     $service['updated_at'] = date('Y-m-d H:i:s');
     $service->save();
-    session::flash('message','Data updated successfully');
+    session::flash('messa','Data updated successfully');
     return redirect()->back();
 }
 public function allService(){

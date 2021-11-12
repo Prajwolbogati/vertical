@@ -63,6 +63,7 @@ class RoleController extends Controller
         if($request->has("permissions")){
             $role->givePermissionTo($request->permissions);
         }
+          session::flash('messages','Role added successfully');
         return redirect()->back();
     }
     public function getAll(){
@@ -96,7 +97,9 @@ class RoleController extends Controller
             $role->givePermissionTo($request->permissions);
         }
 $role->save();
+  session::flash('messages','Role updated successfully');
         return redirect()->back();
+       
     }
     public function show($id)
     {

@@ -129,7 +129,11 @@
       </div>
       </form>
       <div class="row">
-      @if (Session::has('message'))
+      
+      <form class="form-horizontal" method="POST" action="{{ url('change') }}">
+      @csrf
+      <div class="col-sm-12">
+          @if (Session::has('messages'))
       <script>
           swal({
               title: "Password changed successfully!",
@@ -139,9 +143,6 @@
           });
       </script>
       @endif
-      <form class="form-horizontal" method="POST" action="{{ url('change') }}">
-      @csrf
-      <div class="col-sm-12">
       <div class="card">
       <div class="card-body">
       <h5 class="d-flex align-items-center mb-3">Change Password</h5>

@@ -18,13 +18,13 @@
                     </script>
                 @endif
                 <div class="col-xl-9 mx-auto">
-                    <div class="card border-top border-0 border-4 border-info">
+                    <div class="card border-top border-0 border-4 border-primary">
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="card-title d-flex align-items-center">
-                                    <div><i class="bx bxs-user me-1 font-22 text-info"></i>
+                                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                     </div>
-                                    <h5 class="mb-0 text-info">Add User</h5>
+                                    <h5 class="mb-0 text-primary">Add User</h5>
                                 </div>
                                 <form class="row g-3" method="post"
                                     action="{{ url('updateuser/' . $singledata->id) }}">
@@ -104,7 +104,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-info px-5">Register</button>
+                                            <button type="submit" class="btn btn-primary px-5">Register</button>
                                         </div>
                                     </div>
                             </div>

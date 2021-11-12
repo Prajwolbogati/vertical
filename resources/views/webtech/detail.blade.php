@@ -14,13 +14,13 @@
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">View All</li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Total Accounts</h6>
+            <h6 class="mb-0 text-uppercase">Details</h6>
             <hr />
             <div class="card">
                 <div class="card-body">
@@ -44,16 +44,16 @@
                                         <td>{{ $comp->account->domainname }}</td>
                                         <td>{{ $comp->account->hostingquota }}</td>
                                         <td>{{ $comp->remaining_days }}</td>
-                                        <td>{{ $comp->finalamount }}</td>
+                                        <td>{{ $comp->amountafterdiscount }}</td>
                                         <td>{{ $comp->exp_date }}</td>
                                         <td>{{ $comp->service->parent->stype_name }}</td>
                                         <td>{{ $comp->status }}</td>
                                         <td>
                                             <div class="col">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success">Action</button>
+                                                    <button type="button" class="btn btn-primary">Action</button>
                                                     <button type="button"
-                                                        class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                        class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                         data-bs-toggle="dropdown" aria-expanded="false"> <span
                                                             class="visually-hidden">Toggle Dropdown</span>
                                                     </button>

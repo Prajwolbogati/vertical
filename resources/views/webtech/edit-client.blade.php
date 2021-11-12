@@ -6,6 +6,7 @@
     <link rel="stylesheet"
         href="assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('wrapper')
@@ -37,13 +38,13 @@
                     </script>
                 @endif
                 <div class="col-xl-9 mx-auto">
-                    <div class="card border-top border-0 border-4 border-info">
+                    <div class="card border-top border-0 border-4 border-primary">
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="card-title d-flex align-items-center">
-                                    <div><i class="bx bxs-user me-1 font-22 text-info"></i>
+                                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                     </div>
-                                    <h5 class="mb-0 text-info">Add Client</h5>
+                                    <h5 class="mb-0 text-primary">Add Client</h5>
                                 </div>
                                 <form class="row g-3" method="post" action="{{ url('updateclient') }}">
                                     {{ csrf_field() }}
@@ -92,7 +93,7 @@
                                     <div class="row mb-3">
                                         <label for="requirement" class="col-sm-3 col-form-label">Client Requirement</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" name="requirement" rows="3"
+                                            <textarea class="form-control" id="summernote" name="requirement" rows="3"
                                                 placeholder="Add requirements">{{ $singledata->requirement }}</textarea>
                                             @error('requirement')
                                                 <div class="alert-danger">{{ $message }}</div>
@@ -128,7 +129,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-info px-5">Submit</button>
+                                            <button type="submit" class="btn btn-primary px-5">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -148,6 +149,26 @@
     <script src="assets/plugins/datetimepicker/js/picker.date.js"></script>
     <script src="assets/plugins/bootstrap-material-datetimepicker/js/moment.min.js"></script>
     <script src="assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+     <script>
+         $('#summernote').summernote({
+           placeholder: 'Client requirements',
+           tabsize: 2,
+           height: 100,
+           toolbar: [
+     // [groupName, [list of button]]
+     ['style', ['bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['fontsize', ['fontsize']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['height', ['height']]
+   ]
+         });
+        
+       </script>
     <script>
         $('.datepicker').pickadate({
                 selectMonths: true,

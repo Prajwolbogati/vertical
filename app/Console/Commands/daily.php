@@ -33,6 +33,7 @@ class daily extends Command
     public function handle()
     {
         DB::table('companyservices')->whereDate('exp_date', '<=', now())->update(['status' => 'expired']);
+         DB::table('companyservices')->whereDate('exp_date', '>', now())->where(['status'=>'expired'])->update(['status' => 'active']);
         echo "Operation Done";
     }
 }

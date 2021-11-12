@@ -49,32 +49,32 @@
                             </thead>
                             <tbody>
                             @foreach($data as $key=>$account)
-<tr class="{{$account->account->account_id}}" id="cid{{$account->compservice_id}}">
+<tr class="{{$account->account->account_id}}" id="cid{{$account->account_id}}">
                             <td class="text-center"> 
-                                <button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
+                                <button class="btn btn-sm btn-primary" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
                             </td>
-                                <td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
+                                <td> {{$account->account->domainname}}</td>
                                <td>{{$account->account->hostingquota}}</td>
                                <td>{{$account->remaining_days}}</td>
-                               <td>{{$account->finalamount}}</td>
+                               <td>{{$account->amountafterdiscount}}</td>
                                <td>{{$account->exp_date}}</td>
                                <td>{{$account->service->parent->stype_name}}</td>
                                <td>{{$account->status}}</td>
                                <td>
                                     <div class="col">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+                                            <button type="button" class="btn btn-primary">Action</button>
+                                            <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
                                                 </li>
                                                 <li>
                                                     <button class="dropdown-item btn btn-xs btn-danger"
-                                                        onclick="updateAccount({{ $account->compservice_id }})">Suspend</button>
+                                                        onclick="updateAccount({{ $account->account_id }})">Suspend</button>
                                                 </li>
                                                 <li>
-                                                    <a  href="javascript:void(0)" onclick="deleteAccount({{$account->compservice_id}})" class="dropdown-item">Delete</a>
+                                                    <a  href="javascript:void(0)" onclick="deleteAccount({{$account->account_id}})" class="dropdown-item">Delete</a>
                                                 </li>
                                                 <li>
                                                     <hr class="dropdown-divider">
@@ -115,7 +115,7 @@ var x = document.getElementsByClassName(element);
 console.log(x);
 if (x.length <= 1) {
                 x[0].firstElementChild.firstElementChild.disabled = true;
-                x[0].firstElementChild.firstElementChild.classList.remove("btn-success");
+                x[0].firstElementChild.firstElementChild.classList.remove("btn-primary");
                 x[0].firstElementChild.firstElementChild.classList.add("btn-secondary");
 }
 for (let i = 0; i < x.length; i++) {
@@ -131,7 +131,7 @@ for (let i = 0; i < x.length; i++) {
         if (rows[1].classList.contains("d-none")) {
         for (let i = 0; i < rows			.length; i++) {
             if (i != 0) {
-                rows[i].firstElementChild.firstElementChild.classList.remove("btn-success");
+                rows[i].firstElementChild.firstElementChild.classList.remove("btn-primary");
                 rows[i].firstElementChild.firstElementChild.innerHTML = ""
         }
                 rows[i].classList.remove("d-none");
@@ -154,7 +154,7 @@ for (let i = 0; i < rows			.length; i++) {
 function updateAccount(id) {
             var status = 'suspend';
             $.ajax({
-                url: '/update/' + id,
+                url: 'update/' + id,
                 type: 'post',
                 data: {
                     status: status,
@@ -187,7 +187,7 @@ function updateAccount(id) {
       timer: 1000, 
     });
             $.ajax({
-                url:'/delete/'+id,
+                url:'delete/'+id,
                 type:'DELETE',
                 data:{
                     _token : $("input[name=_token]").val()

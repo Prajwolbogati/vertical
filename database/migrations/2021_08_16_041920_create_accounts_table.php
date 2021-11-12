@@ -19,7 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('companyname');
             $table->string('companyaddress');
             $table->string('phone_num');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('marketby')->nullable();
             $table->longtext('detail')->nullable();
             $table->timestamps();

@@ -42,7 +42,7 @@ class companyservice extends Model
 {
 
     if ($this->exp_date) {
-        $remaining_days = Carbon::now()->diffInDays(Carbon::parse($this->exp_date));
+        $remaining_days = Carbon::now()->diffInDays(Carbon::parse($this->exp_date), false);
     } else {
         $remaining_days = 0;
     }

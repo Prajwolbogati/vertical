@@ -2,6 +2,7 @@
 namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\account;
+use App\Models\template;
 use App\Models\companyservice;
 use App\Models\service;
 use App\Models\servicetype;
@@ -43,17 +44,20 @@ class sendRemainderEmail extends Command
         ->orwhereRaw('DATEDIFF(exp_date,now()) = 7')
         ->orwhereRaw('DATEDIFF(exp_date,now()) = 3')
         ->orwhereRaw('DATEDIFF(exp_date,now()) = 0')->get();
+        $template = template::get();
+        
 $data = [];
 foreach($remainder as $remind){
     $data[$remind->account_id][] = $remind->toArray();
 }
 foreach($data as $account_id => $remainder){
-    $this->sendEmailToUser($account_id, $remainder);
+    $this->sendEmailToUser($account_id, $remainder, $template);
 }
     }
-    private function sendEmailToUser($account_id, $remainder)
+    private function sendEmailToUser($account_id, $remainder, $template)
     {
         $account = account::find($account_id);
-        Mail::to($account)->send(new ExpiryMail($remainder));
+        Mail::to($account)->send(new ExpiryMail($remainder, $template));
+       
     }
 }

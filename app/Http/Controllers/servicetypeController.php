@@ -17,7 +17,7 @@ class servicetypeController extends Controller
     $servicetype->stype_name=$req->stype_name;
     $servicetype['created_at'] = date('Y-m-d H:i:s');
     $servicetype->save();
-    session::flash('message','Data inserted successfully');
+    session::flash('messages','Data inserted successfully');
     return redirect()->back();
     }
     public function updateData(Request $req)
@@ -30,7 +30,7 @@ class servicetypeController extends Controller
 $service->stype_name=$req->stype_name;
     $service['updated_at'] = date('Y-m-d H:i:s');
     $service->save();
-    session::flash('message','Data updated successfully');
+    session::flash('mess','Data updated successfully');
     return redirect()->back();
 }
     public function addService(){

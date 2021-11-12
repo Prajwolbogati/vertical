@@ -8,7 +8,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Account</div>
+                <div class="breadcrumb-title pe-3">Users</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Total Accounts</h6>
+            <h6 class="mb-0 text-uppercase">Total Users</h6>
             <hr />
             <div class="card">
                 <div class="card-body">
@@ -47,9 +47,9 @@
                                         <td>
                                             <div class="col">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success">Action</button>
+                                                    <button type="button" class="btn btn-primary">Action</button>
                                                     <button type="button"
-                                                        class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                        class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                         data-bs-toggle="dropdown" aria-expanded="false"> <span
                                                             class="visually-hidden">Toggle Dropdown</span>
                                                     </button>
@@ -111,7 +111,7 @@
                             timer: 1000,
                         });
                         $.ajax({
-                            url: '/deleteuser/' + id,
+                            url: 'deleteuser/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: $("input[name=_token]").val()

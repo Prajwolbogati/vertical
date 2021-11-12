@@ -1,9 +1,7 @@
 @extends("layouts.app")
 @section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
-        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="{{ asset('assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet') }}" />
+<link href="{{ asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('wrapper')
@@ -22,58 +20,58 @@
                     </script>
                 @endif
                 <div class="col-xl-9 mx-auto">
-                    <div class="card border-top border-0 border-4 border-info">
+                    <div class="card border-top border-0 border-4 border-primary">
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="card-title d-flex align-items-center">
-                                    <div><i class="bx bxs-user me-1 font-22 text-info"></i>
+                                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
                                     </div>
-                                    <h5 class="mb-0 text-info">Add Role</h5>
+                                    <h5 class="mb-0 text-primary">Add Role</h5>
                                 </div>
                                 <form class="row g-3" method="post"
-                                    action="{{ url('updaterole/' . $singledata->id) }}">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{ $singledata->id }}">
-                                    <hr />
-                                    <div class="row mb-3">
-                                        <label for="name" class="col-sm-3 col-form-label">Enter Role</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="name" placeholder="Enter Role"
-                                                value="{{ $singledata->name }}">
-                                            @error('name')
-                                                <div class="alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                action="{{ url('updaterole/' . $singledata->id) }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{ $singledata->id }}">
+                                <hr />
+                                <div class="row mb-3">
+                                    <label for="name" class="col-sm-3 col-form-label">Enter Role</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="name" placeholder="Enter Role"
+                                            value="{{ $singledata->name }}">
+                                        @error('name')
+                                            <div class="alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="permissions" class="col-sm-3 col-form-label">Choose Permissions</label>
-                                        <div class="col-sm-9">
-                                            <select class="multiple-select" data-placeholder="Choose anything"
-                                                multiple="multiple" name="permissions[]">
-                                                @foreach ($singledata->permissions as $permission)
-                                                    @php
-                                                        $arr[] = $permission->name;
-                                                    @endphp
-                                                    <option value="{{ $permission->name }}" selected>
-                                                        {{ $permission->name }}</option>
-                                                @endforeach
-                                                @foreach ($permissio as $per)
-                                                    @if (in_array($per->name, $arr))
-                                                    @else
-                                                        <option value="{{ $per->name }}">{{ $per->name }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="permissions" class="col-sm-3 col-form-label">Choose Permissions</label>
+                                    <div class="col-sm-9">
+                                        <select class="multiple-select" data-placeholder="Choose anything"
+                                            multiple="multiple" name="permissions[]">
+                                            @foreach ($singledata->permissions as $permission)
+                                                @php
+                                                    $arr[] = $permission->name;
+                                                @endphp
+                                                <option value="{{ $permission->name }}" selected>
+                                                    {{ $permission->name }}</option>
+                                            @endforeach
+                                            @foreach ($permissio as $per)
+                                                @if (in_array($per->name, $arr))
+                                                @else
+                                                    <option value="{{ $per->name }}">{{ $per->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-info px-5">Submit</button>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary px-5">Submit</button>
                                     </div>
-                            </div>
-                            </form>
+                                </div>
+                        </div>
+                        </form>
                         </div>
                     </div>
                 </div>

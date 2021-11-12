@@ -22,7 +22,8 @@ public function Exp15($stype_id){
     ->whereHas('service.parent', function($q) use($stype_id) {
         $q->where('stype_id', '=', $stype_id);
     })
-    ->whereRaw('DATEDIFF(exp_date,now())<=15')->get();
+    ->whereRaw('DATEDIFF(exp_date,now())<=15')
+    ->whereRaw('DATEDIFF(exp_date,now())>7')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->get();
     return view ('webtech.status',['data'=>$data]);
 }
 public function Exp7($stype_id){
@@ -30,7 +31,8 @@ public function Exp7($stype_id){
     ->whereHas('service.parent', function($q) use($stype_id) {
         $q->where('stype_id', '=', $stype_id);
     })
-    ->whereRaw('DATEDIFF(exp_date,now())<=7')->get();
+    ->whereRaw('DATEDIFF(exp_date,now())<=7')
+    ->whereRaw('DATEDIFF(exp_date,now())>0')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->get();
    
     return view ('webtech.status',['data'=>$data]);
 }

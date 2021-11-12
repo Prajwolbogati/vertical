@@ -1,4 +1,5 @@
 @extends("layouts.app")
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @section('wrapper')
     <div class="page-wrapper">
         <div class="page-content">
@@ -22,7 +23,7 @@
                         <div class="text-end">
                             <form method="post" action="{{ url('send-email-pdf') }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-dark"><i class="fa fa-print"></i> Send
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-print"></i> Send
                                     Mail</button>
                                 <button class="btn btn-success" onclick="printme('invoic')"><i class="fa fa-print"></i>
                                     Print</button>
@@ -32,6 +33,16 @@
                         <hr />
                     </div>
                     <div id="invoic">
+                         @if (Session::has('message'))
+                        <script>
+                            swal({
+                                title: "Mail sent successfully!",
+                                icon: "success",
+                                timer: 1000,
+                                showConfirmButton: true
+                            });
+                        </script>
+                    @endif
                         <div class="invoice overflow-auto">
                             <div style="min-width: 600px">
                                 <header>

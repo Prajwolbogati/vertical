@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use PDF;
 use Mail;
+use Session;
 use App\Models\account;
 use App\Models\hello;
 use App\Models\hellos;
@@ -30,7 +31,7 @@ class PDFController extends Controller
         $data['vatsubtotal'] = $req->vatsubtotal;
         $data['vat'] = $req->vat;
         $data["email"] = $req->email;
-        $data["title"] = "From ItSolutionStuff.com";
+        $data["title"] = "Expiry Bill Notification";
         $data["body"] = "This is Demo";
         $pdf = PDF::loadView('webtech.haha', $data)
         ->setOptions([
@@ -43,6 +44,7 @@ class PDFController extends Controller
                     'mime' => 'application/pdf',
         ]);
         });
+         session::flash('message','Mail sent successfully');
         return redirect()->back();
     }
 }

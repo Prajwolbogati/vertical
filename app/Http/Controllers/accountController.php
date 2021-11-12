@@ -20,17 +20,17 @@ class accountController extends Controller
     // }
     public function index(){
         $data = companyservice::with('account','service.parent')    
-        ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
+        ->whereRaw('DATEDIFF(exp_date,now())<=7')->whereRaw('DATEDIFF(exp_date,now())>0')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->get();
         $seven = companyservice::with('account','service.parent')    
-        ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->count();
+        ->whereRaw('DATEDIFF(exp_date,now())<=7')->whereRaw('DATEDIFF(exp_date,now())>0')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->count();
         $fifteen = companyservice::with('account','service.parent')    
-        ->whereRaw('DATEDIFF(exp_date,now())<=15')-> orderBy('account_id', 'asc')->count();
+        ->whereRaw('DATEDIFF(exp_date,now())<=15')->whereRaw('DATEDIFF(exp_date,now())>7')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->count();
         $expired = companyservice::with('account','service.parent')
-        ->where('status' , 'expired')-> orderBy('account_id', 'asc')->count();
+        ->where('status' , 'expired')-> orderBy('account_id', 'desc')->count();
         $suspend = companyservice::with('account','service.parent') 
-        ->where('status' , 'suspend')-> orderBy('account_id', 'asc')->count();
+        ->where('status' , 'suspend')-> orderBy('account_id', 'desc')->count();
         $delete = companyservice::with('account','service.parent')
-        ->where('status' , 'delete')-> orderBy('account_id', 'asc')->count();
+        ->where('status' , 'delete')-> orderBy('account_id', 'desc')->count();
         return view ('index',[
             'data'=>$data,
             'seven'=>$seven,
@@ -42,6 +42,9 @@ class accountController extends Controller
     }
 public function insertdata(Request $req)
 {
+
+    DB::beginTransaction();
+    try{
     $req->validate([
         'domainname' => 'required|string|max:255|unique:accounts',
         'fullname' => 'required|string|max:255',
@@ -92,8 +95,23 @@ $companyservice->discount=$req->discount[$key] ? $req->discount[$key] : 0;
 $companyservice->save();
 }
 }
+if($account && $companyservice){
+    DB::commit();
+}else{
+    DB::rollback();
+}
 session::flash('message','Data inserted successfully');
 return redirect()->back();
+
+    }
+    catch(Exception $ex){
+        DB::rollback();
+        return redirect()->back();
+    }
+
+
+// session::flash('message','Data inserted successfully');
+// return redirect()->back();
 }
 public function allAccount(){
     $data = account::with(['compservice.service.parent'])->get();
@@ -145,7 +163,6 @@ public function editAccount($id){
                 if($service_id){
 if(isSet($req->compservice_id[$key])){
     $companyservice = companyservice::find($req->compservice_id[$key]);
-    $companyservice->status='active';
     $companyservice->vat_amount= "13";
     $companyservice->service_id= $service_id;
     $companyservice->account_id=$account->account_id;
@@ -176,26 +193,40 @@ $companyservice->save();
         }
         public function updateStatus(Request $req, $id)
         {
+            $comp = companyservice::where('account_id',$id)->get();
+            foreach($comp as $com){
+            $com->status=$req->status;
+        $com->save();
+        }
+        return Response::json($com);
+        }
+        public function updatesStatus(Request $req, $id)
+        {
             $comp = companyservice::find($id);
             $comp->status=$req->status;
         $comp->save();
         return Response::json($comp);
-        // return response()->json(['success'=>'Article updated successfully']);
-        // session::flash('message','Data updated successfully');
         }
         public function delete($id){
-            $comp = companyservice::find($id);
-            $comp->delete();
-            session::flash('message','Data deleted successfully');
-                }
+            $comp = companyservice::where('account_id',$id)->get();
+            foreach($comp as $com){
+            $com->delete();
+            }
+            return Response::json($com);
+            }
+                public function deletes($id){
+                    $comp = companyservice::find($id);
+                    $comp->delete();
+                    session::flash('message','Data deleted successfully');
+                        }
         public function Exp15(){
             $data = companyservice::with('account','service.parent')
-            ->whereRaw('DATEDIFF(exp_date,now())<=15')-> orderBy('account_id', 'asc')->get();
+            ->whereRaw('DATEDIFF(exp_date,now())<=15') ->whereRaw('DATEDIFF(exp_date,now())>7')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->get();
             return view ('webtech.accountview',['data'=>$data]);
         }
         public function Exp7(){
             $data = companyservice::with('account','service.parent')
-            ->whereRaw('DATEDIFF(exp_date,now())<=7')-> orderBy('account_id', 'asc')->get();
+            ->whereRaw('DATEDIFF(exp_date,now())<=7') ->whereRaw('DATEDIFF(exp_date,now())>0')->where('status' ,'!=' , 'delete')-> orderBy('account_id', 'desc')->get();
             return view ('webtech.accountview',['data'=>$data]);
         }
         public function Expired(){

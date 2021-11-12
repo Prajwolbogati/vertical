@@ -7,6 +7,7 @@
         href="{{ asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 @section('wrapper')
     <div class="page-wrapper">
@@ -35,7 +36,7 @@
                                             <h5 class="mb-0 text-primary">Client Info</h5>
                                         </div>
                                         <hr />
-                                        <div class="row">
+                                        <div class="row space">
                                             <div class="col-md-6">
                                                 <label for="domainname" class="form-label">Domain Name</label>
                                                 <input type="text" class="form-control" name="domainname"
@@ -53,7 +54,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row space">
                                             <div class="col-md-6">
                                                 <label for="fullname" class="form-label">Full Name</label>
                                                 <input type="text" class="form-control" name="fullname"
@@ -71,7 +72,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row space">
                                             <div class="col-6">
                                                 <label for="companyaddress" class="form-label">Company Address</label>
                                                 <input type="text" class="form-control" name="companyaddress"
@@ -89,7 +90,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row space">
                                             <div class="col-md-6">
                                                 <label for="email" class="form-label">Company Email</label>
                                                 <input type="email" class="form-control" name="email"
@@ -118,7 +119,7 @@
                                         </div>
                                         <hr />
                                         <div class="row g-3">
-                                            <textarea id="mytextareas" name="detail">Hello, World!</textarea>
+                                            <textarea id="summernote" name="detail"></textarea>
                                             @error('detail')
                                                 <div class="alert-danger">{{ $message }}</div>
                                             @enderror
@@ -240,6 +241,27 @@
     <script
         src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js') }}">
     </script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+     <script>
+         $('#summernote').summernote({
+           placeholder: 'Requirements',
+           tabsize: 2,
+           height: 100,
+           toolbar: [
+     // [groupName, [list of button]]
+     ['style', ['bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['fontsize', ['fontsize']],
+     ['color', ['color']],
+     ['height', ['height']],
+     ['para', ['ul', 'ol', 'paragraph']]
+     
+   ]
+         });
+        
+       </script>
     <script>
         function checkMe(x) {
             var id = x.dataset.servicename;
@@ -272,10 +294,5 @@
             });
         });
     </script>
-    <script src="assets/js/tinymce.min.js"></script>
-    <script>
-        tinymce.init({
-            selector: '#mytextareas'
-        });
-    </script>
+    
 @endsection

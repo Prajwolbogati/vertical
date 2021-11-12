@@ -8,7 +8,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Account</div>
+                <div class="breadcrumb-title pe-3">Services</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -43,15 +43,15 @@
                                         <td>{{ $account->account->domainname }}</td>
                                         <td>{{ $account->account->hostingquota }}</td>
                                         <td>{{ $account->remaining_days }}</td>
-                                        <td>{{ $account->finalamount }}</td>
+                                        <td>{{ $account->amountafterdiscount }}</td>
                                         <td>{{ $account->exp_date }}</td>
                                         <td>{{ $account->status }}</td>
                                         <td>
                                             <div class="col">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success">Action</button>
+                                                    <button type="button" class="btn btn-primary">Action</button>
                                                     <button type="button"
-                                                        class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                        class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                         data-bs-toggle="dropdown" aria-expanded="false"> <span
                                                             class="visually-hidden">Toggle Dropdown</span>
                                                     </button>
@@ -66,6 +66,10 @@
                                                         <li>
                                                             <button class="dropdown-item btn btn-xs btn-danger"
                                                                 onclick="deleteAccount({{ $account->compservice_id }})">Delete</button>
+                                                        </li>
+                                                        <li>
+                                                            <button class="dropdown-item btn btn-xs btn-danger"
+                                                                onclick="activeAccount({{ $account->compservice_id }})">Active</button>
                                                         </li>
                                                         <li>
                                                         <li>
@@ -103,7 +107,7 @@
         function updateAccount(id) {
             var status = 'suspend';
             $.ajax({
-                url: '/update/' + id,
+                url: '/updates/' + id,
                 type: 'post',
                 data: {
                     status: status,
@@ -120,11 +124,30 @@
                 }
             });
         }
-
+ function activeAccount(id) {
+            var status = 'active';
+            $.ajax({
+                url: '/updates/' + id,
+                type: 'post',
+                data: {
+                    status: status,
+                    _token: $("input[name=_token]").val()
+                },
+                success: function(response) {
+                    $("#cid" + id + " td:nth-child(6)").html(response.status);
+                    swal({
+                        title: "Status Updated!",
+                        icon: "success",
+                        timer: 1000,
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
         function deleteAccount(id) {
             var status = 'delete';
             $.ajax({
-                url: '/update/' + id,
+                url: '/updates/' + id,
                 type: 'post',
                 data: {
                     status: status,

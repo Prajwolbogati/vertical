@@ -92,7 +92,7 @@ return [
     ],
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'prajwol@wtn.com.np'),
+        'address' => env('MAIL_FROM_ADDRESS', 'billing@webtech.net.np'),
         'name' => env('MAIL_FROM_NAME', 'Expiry'),
     ],
 

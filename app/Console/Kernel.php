@@ -2,6 +2,8 @@
 namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\sendRemainderEmail;
+use App\Console\Commands\daily;
+use App\Console\Commands\delete;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
@@ -12,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         sendRemainderEmail::class,
+         daily::class,
+         delete::class,
     ];
     /**
      * Define the application's command schedule.
@@ -21,7 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('daily:update')->daily();
+         $schedule->command('daily:update')->dailyAt('11:22');
+         $schedule->command('remainder:emails')->dailyAt('11:22');
+         $schedule->command('daily:delete')->dailyAt('11:22');
     }
     /**
      * Register the commands for the application.

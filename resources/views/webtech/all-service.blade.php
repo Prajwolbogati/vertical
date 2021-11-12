@@ -68,9 +68,9 @@
                                                                     <div class="col">
                                                                         <div class="btn-group">
                                                                             <button type="button"
-                                                                                class="btn btn-success">Action</button>
+                                                                                class="btn btn-primary">Action</button>
                                                                             <button type="button"
-                                                                                class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                                                class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                                                 data-bs-toggle="dropdown"
                                                                                 aria-expanded="false"> <span
                                                                                     class="visually-hidden">Toggle
@@ -119,9 +119,9 @@
                                                                     <div class="col">
                                                                         <div class="btn-group">
                                                                             <button type="button"
-                                                                                class="btn btn-success">Action</button>
+                                                                                class="btn btn-primary">Action</button>
                                                                             <button type="button"
-                                                                                class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                                                class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                                                 data-bs-toggle="dropdown"
                                                                                 aria-expanded="false"> <span
                                                                                     class="visually-hidden">Toggle
@@ -186,7 +186,7 @@
                             timer: 1000,
                         });
                         $.ajax({
-                            url: '/deletestype/' + id,
+                            url: 'deletestype/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: $("input[name=_token]").val()
@@ -216,7 +216,7 @@
                             timer: 1000,
                         });
                         $.ajax({
-                            url: '/deleteservice/' + id,
+                            url: 'deleteservice/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: $("input[name=_token]").val()

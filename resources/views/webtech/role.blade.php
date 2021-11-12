@@ -8,7 +8,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Account</div>
+                <div class="breadcrumb-title pe-3">Roles and Permissions</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -21,9 +21,9 @@
             </div>
             <!--end breadcrumb-->
             <div class=" d-sm-flex align-items-center">
-                <h6 class="mb-0 text-uppercase">Total Accounts</h6>
+                <h6 class="mb-0 text-uppercase">Roles</h6>
                 <div class="ms-auto">
-                    <button type="button" class="btn btn-primary role"><a href="{{ url('addrole') }}">Add new
+                    <button type="button" class="btn btn-primary role"><a class="role" href="{{ url('addrole') }}">Add new
                             Role</a></button>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    
                                     <th>Role</th>
                                     <th>Permission</th>
                                     <th>Action</th>
@@ -43,20 +43,20 @@
                             <tbody>
                                 @forelse ($roles as $role )
                                     <tr id="role{{ $role->id }}">
-                                        <td>{{ $role->id }}</td>
+                                       
                                         <td>{{ $role->name }}</td>
                                         <td>
                                             @foreach ($role->permissions as $permission)
-                                                <button class="btn btn-info" type="button">
+                                                <button class="btn btn-primary" type="button">
                                                     {{ $permission->name }}</button>
                                             @endforeach
                                         </td>
                                         <td>
                                             <div class="col">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success">Action</button>
+                                                    <button type="button" class="btn btn-primary">Action</button>
                                                     <button type="button"
-                                                        class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split"
+                                                        class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                                                         data-bs-toggle="dropdown" aria-expanded="false"> <span
                                                             class="visually-hidden">Toggle Dropdown</span>
                                                     </button>
@@ -112,7 +112,7 @@
                             timer: 1000,
                         });
                         $.ajax({
-                            url: '/deleterole/' + id,
+                            url: 'deleterole/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: $("input[name=_token]").val()

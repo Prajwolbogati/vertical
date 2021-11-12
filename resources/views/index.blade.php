@@ -12,9 +12,9 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Exp in 15 days</p>
-                                    <h4 class="my-1 text-info">{{$fifteen}}</h4>
+                                    <h4 class="my-1 text-secondary">{{$fifteen}}</h4>
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
+                                <div class=" ms-auto"><i class="bx bx-dots-horizontal-rounded font-22"></i>
                                 </div>
                             </div>
                         </div>
@@ -26,9 +26,9 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Exp in 7 days</p>
-                                    <h4 class="my-1 text-danger">{{$seven}}</h4>
+                                    <h4 class="my-1 text-secondary">{{$seven}}</h4>
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
+                               <div class=" ms-auto"><i class="bx bx-dots-horizontal-rounded font-22"></i>
                                 </div>
                             </div>
                         </div>
@@ -40,23 +40,23 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Expired</p>
-                                    <h4 class="my-1 text-success">{{$expired}}</h4>
+                                    <h4 class="my-1 text-secondary">{{$expired}}</h4>
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
+                                <div class=" ms-auto"><i class="bx bx-dots-horizontal-rounded font-22"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                    <div class="card radius-10 border-start border-0 border-3 border-secondary">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Suspended</p>
-                                    <h4 class="my-1 text-success">{{$suspend}}</h4>
+                                    <h4 class="my-1 text-secondary">{{$suspend}}</h4>
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
+                                <div class=" ms-auto"><i class="bx bx-dots-horizontal-rounded font-22"></i>
                                 </div>
                             </div>
                         </div>
@@ -68,9 +68,9 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Deleted</p>
-                                    <h4 class="my-1 text-warning">{{$delete}}</h4>
+                                    <h4 class="my-1 text-secondary">{{$delete}}</h4>
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
+                               <div class=" ms-auto"><i class="bx bx-dots-horizontal-rounded font-22"></i>
                                 </div>
                             </div>
                         </div>
@@ -103,17 +103,17 @@
                                 @foreach($data as $key=>$account)
     <tr class="{{$account->account->account_id}}" id="{{$account->account_id}}">
                                 <td class="text-center"> 
-                                    <button class="btn btn-sm btn-success" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
+                                    <button class="btn btn-sm btn-primary" data-serviceName="{{$account -> account -> account_id}}" onclick="checkMe(this)">+</button>
                                 </td>
-                                    <td> <a href="{{url('detail')}}/{{$account->account_id}}">{{$account->account->domainname}}</a></td>
+                                    <td> {{$account->account->domainname}}</td>
                                    <td>{{$account->remaining_days}}</td>
                                    <td>{{$account->exp_date}}</td>
                                    <td>{{$account->service->parent->stype_name}}</td>
                                    <td>
                                         <div class="col">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-success">Action</button>
-                                                <button type="button" class="btn btn-success split-bg-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+                                                <button type="button" class="btn btn-primary">Action</button>
+                                                <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="{{url('edit-account')}}/{{$account->account_id}}">Edit</a>
@@ -164,7 +164,7 @@ var x = document.getElementsByClassName(element);
 console.log(x);
 if (x.length <= 1) {
                 x[0].firstElementChild.firstElementChild.disabled = true;
-                x[0].firstElementChild.firstElementChild.classList.remove("btn-success");
+                x[0].firstElementChild.firstElementChild.classList.remove("btn-primary");
                 x[0].firstElementChild.firstElementChild.classList.add("btn-secondary");
 }
 for (let i = 0; i < x.length; i++) {
@@ -180,7 +180,7 @@ for (let i = 0; i < x.length; i++) {
         if (rows[1].classList.contains("d-none")) {
         for (let i = 0; i < rows			.length; i++) {
             if (i != 0) {
-                rows[i].firstElementChild.firstElementChild.classList.remove("btn-success");
+                rows[i].firstElementChild.firstElementChild.classList.remove("btn-primary");
                 rows[i].firstElementChild.firstElementChild.innerHTML = ""
         }
                 rows[i].classList.remove("d-none");
@@ -204,7 +204,7 @@ for (let i = 0; i < rows			.length; i++) {
     {
       var status = 'suspend';
           $.ajax({
-            url: '/update/'+id,
+            url: 'update/'+id,
             type: 'post',
             data: {
               status: status,
@@ -225,7 +225,7 @@ for (let i = 0; i < rows			.length; i++) {
     {
         var status = 'delete';
           $.ajax({
-            url: '/update/'+id,
+            url: 'update/'+id,
             type: 'post',
             data: {
               status: status,

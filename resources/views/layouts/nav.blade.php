@@ -30,13 +30,8 @@
             <ul>
                 <li> <a href="{{ url('newaccount') }}"><i class="bx bx-right-arrow-alt"></i>New Account</a>
                 </li>
-                <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div><i class='bx bx-right-arrow-alt'></i>View Account
-                        </div>
-                    </a>
-                    <ul>
-                        <li> <a href="{{ url('allAccount') }}"><i class="bx bx-right-arrow-alt"></i>View All</a>
+                
+                        <li> <a href="{{ url('allAccount') }}"><i class="bx bx-right-arrow-alt"></i>Total Account</a>
                         </li>
                         <li> <a href="{{ url('exp-15') }}"><i class="bx bx-right-arrow-alt"></i>Expire in 15 days</a>
                         </li>
@@ -49,8 +44,7 @@
                         </li>
                         <li> <a href="{{ url('deleted') }}"><i class="bx bx-right-arrow-alt"></i>Deleted Accounts</a>
                         </li>
-                    </ul>
-                </li>
+                   
             </ul>
         </li>
         <li>
@@ -131,6 +125,13 @@
                     </li>
                 @endforeach
             </ul>
+        </li>
+        <li>
+            <a href="{{ url('mailtemplate') }}">
+                <div class="parent-icon"><i class="fadeIn animated bx bx-mail-send"></i>
+                </div>
+                <div class="menu-title"> Mail Templates </div>
+            </a>
         </li>
         <li>
             <a href="{{ url('newsetting') }}">

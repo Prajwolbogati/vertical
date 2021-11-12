@@ -14,6 +14,7 @@ use App\Http\Controllers\roleController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +41,20 @@ Route::get('/', [EmailVerificationPromptController::class, '__invoke']);
 
 
 Route::get('/index', [accountController::class, 'index']);
+Route::get('cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    
+    Artisan::call('view:cache');
+    Artisan::call('config:cache');
+    return redirect()->back();
+});
 
 
 
-Route::get('newaccount', [accountController::class, 'newAccount']);
+Route::get('newaccount', [accountController::class, 'newAccount'])->middleware('permission:create permission');
 
 Route::post('addaccount', [accountController::class, 'insertdata']);
 
@@ -67,6 +78,8 @@ Route::post('updateaccount/{id?}', [accountController::class, 'updateData']);
 
 Route::post('/update/{id}', [accountController::class, 'updateStatus']);
 
+Route::post('/updates/{id}', [accountController::class, 'updatesStatus']);
+
 Route::get('newclient', [clientController::class, 'addClient']);
 
 Route::get('newservice', [servicetypeController::class, 'addService']);
@@ -77,8 +90,6 @@ Route::get('allClient', [clientController::class, 'allClient']);
 
 Route::get('edit-client/{id}', [clientController::class, 'editClient']);
 
-
-
 Route::post('updateclient', [clientController::class, 'updateData']);
 
 Route::post('/updatecstatus/{id}', [clientController::class, 'updateclientStatus']);
@@ -87,11 +98,17 @@ Route::post('updatesetting', [settingController::class, 'updateData']);
 
 Route::post('addsetting', [settingController::class, 'insertdata']);
 
+Route::post('addtemplate', [settingController::class, 'insert']);
+
 Route::post('addclient', [clientController::class, 'insertdata']);
 
-Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:create permission');;
+Route::post('addservicetype', [servicetypeController::class, 'insertdata'])->middleware('permission:create permission');
 
 Route::get('newsetting', [settingController::class, 'addSetting']);
+
+Route::get('mailtemplate', [settingController::class, 'mail']);
+
+Route::get('mailtemplates', [settingController::class, 'send']);
 
 Route::get('allservices', [serviceController::class, 'allService']);
 
@@ -121,6 +138,8 @@ Route::delete('/deletestype/{id}', [servicetypeController::class, 'deleteStype']
 
 Route::delete('/delete/{id}', [accountController::class, 'delete']);
 
+Route::delete('/deletes/{id}', [accountController::class, 'deletes']);
+
 Route::get('delete/{id}', [companyserviceController::class, 'delete']);
 
 Route::get('exp-15', [accountController::class, 'Exp15']);
@@ -135,13 +154,11 @@ Route::get('suspend', [accountController::class, 'Suspend']);
 
 Route::get('viewrole', [roleController::class, 'viewRole']);
 
-
 Route::get('viewuser', [roleController::class, 'viewUser']);
 
 Route::get('addrole', [roleController::class, 'addRole']);
 
 Route::get('profileupdate', [roleController::class, 'profileupdate']);
-
 
 Route::get('viewinvoice/{id}', [settingController::class, 'viewInvoice']);
 

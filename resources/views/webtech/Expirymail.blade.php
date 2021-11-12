@@ -8,17 +8,33 @@
 </head>
 <body>
     @foreach ($remainder as $remind)
-        <pre class="haha">
-Dear <strong>{{ $remind['account']['fullname'] }},</strong>
-Your domain {{ $remind['account']['domainname'] }} hosting from {{ $remind['active_date'] }} to {{ $remind['exp_date'] }} with webspace {{ $remind['account']['hostingquota'] }} has been expired.
-Please renew the domain at your earliest convenience to ensure the service continues uninterrupted. The domain might be subjected to suspension and cancellation if it is not renewed before the expiration date and we have no liability whatsoever with respect to any such cancellation. Should you have any questions about the renewal process, please feel free to contact us.
-Thank you for your cooperation.
-Administrator
-Webtech Nepal
-Lazimpat, kathmandu
-Email: webtechnepal.com
-Phone: 99999999999
-    </pre>
+    @foreach ($template as $key=>$temp)
+    @if(\Carbon\Carbon::parse($remind['exp_date'])->diffInDays( \Carbon\Carbon::now()) == 0)
+    @if($key == 0)
+@php
+$message = str_replace('{{ $remind[\'account\'][\'fullname\'] }}', $remind['account']['fullname'], $temp['template'] );
+$message = str_replace('{{ $remind[\'account\'][\'domainname\'] }} ', $remind['account']['domainname'], $message );
+$message = str_replace('{{ $remind[\'active_date\'] }} ', $remind['active_date'], $message );
+$message = str_replace('{{ $remind[\'exp_date\'] }} ', $remind['exp_date'], $message );
+$message = str_replace('{{ $remind[\'account\'][\'hostingquota\'] }} ', $remind['account']['hostingquota'], $message );
+@endphp
+<pre>
+@php echo $message; @endphp</pre>
+@endif
+    @else
+@if($key > 0)
+    @php
+$message = str_replace('{{ $remind[\'account\'][\'fullname\'] }}', $remind['account']['fullname'], $temp['template'] );
+$message = str_replace('{{ $remind[\'account\'][\'domainname\'] }} ', $remind['account']['domainname'], $message );
+$message = str_replace('{{ $remind[\'active_date\'] }} ', $remind['active_date'], $message );
+$message = str_replace('{{ $remind[\'exp_date\'] }} ', $remind['exp_date'], $message );
+$message = str_replace('{{ $remind[\'account\'][\'hostingquota\'] }} ', $remind['account']['hostingquota'], $message );
+@endphp
+<pre>
+@php echo $message; @endphp</pre>
+    @endif
+             @endif
+    @endforeach
     @endforeach
 </body>
 </html>

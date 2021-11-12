@@ -18,12 +18,23 @@ body {
 a {
 	text-decoration: none
 }
+.form-label{
+	margin-bottom: 0.0rem!important;
+}
+.space{
+	margin-bottom: 0.6rem;
+}
 
 .wrapper {
 	width: 100%;
 	position: relative
 }
-
+.now {
+    border-width: 0px;
+    border: none;
+    font-size: 1.25rem!important;
+    color: #0dcaf0!important;
+}
 .sidebar-wrapper {
 	width: 250px;
 	height: 100%;
@@ -63,7 +74,7 @@ a {
 	width: 95%;
 }
 .role{
- color: #000!important;
+ color: #fffefe!important;
 
 }
 
@@ -78,7 +89,7 @@ a {
 .toggle-icon {
 	font-size: 22px;
 	cursor: pointer;
-	color: #008cff
+	color: #0d6efd;
 }
 
 .topbar {
@@ -387,7 +398,7 @@ a {
 	border-radius: 10px;
 	bottom: 20px;
 	right: 12px;
-	background-color: #008cff;
+	background-color: #0d6efd;
 	z-index: 5
 }
 
@@ -1868,11 +1879,11 @@ a {
 }
 
 .btn i {
-	vertical-align: middle;
-	font-size: 1.3rem;
-	margin-top: -1em;
-	margin-bottom: -1em;
-	margin-right: 5px
+    vertical-align: middle;
+    font-size: 0.5rem;
+    margin-top: -1em;
+    margin-bottom: -1em;
+    margin-right: 0px;
 }
 
 
